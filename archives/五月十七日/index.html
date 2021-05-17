@@ -23,18 +23,18 @@
         }
     </script>
     
-<title>5月8日上午小结 - 我的个人博客</title>
+<title>五月十七日 - 我的个人博客</title>
 <meta name="author" content="刘胜琪" />
-<meta name="description" content="又急起来了" />
-<meta property="og:title" content="5月8日上午小结 - 我的个人博客" />
-<meta property="og:description" content="又急起来了" />
+<meta name="description" content="将坚持变成习惯" />
+<meta property="og:title" content="五月十七日 - 我的个人博客" />
+<meta property="og:description" content="将坚持变成习惯" />
 <meta property="og:site_name" content="我的个人博客" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/Blog/archives/conclude/" />
+<meta property="og:url" content="/Blog/archives/%E4%BA%94%E6%9C%88%E5%8D%81%E4%B8%83%E6%97%A5/" />
 <meta property="og:image" content="" />
-<meta property="article:published_time" content="2021-05-08T00:00:00-00.00" />
-<meta name="twitter:title" content="5月8日上午小结 - 我的个人博客" />
-<meta name="twitter:description" content="又急起来了" />
+<meta property="article:published_time" content="2021-05-17T00:00:00-00.00" />
+<meta name="twitter:title" content="五月十七日 - 我的个人博客" />
+<meta name="twitter:description" content="将坚持变成习惯" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content="" />
 
@@ -99,11 +99,11 @@ var _hmt = _hmt || [];
 <main>    
     <section class="ga-section ga-content">
         <article class="yue">
-            <h1 class="ga-post_title">5月8日上午小结</h1>
+            <h1 class="ga-post_title">五月十七日</h1>
             <span class="ga-post_meta ga-mono">
                 <span>刘胜琪</span>
                 <time>
-                    2021-05-08
+                    2021-05-17
                 </time>
                 
                 in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
@@ -113,89 +113,13 @@ var _hmt = _hmt || [];
                 
             </span>
             <div class="ga-content_body">
-                <h1>事情记录</h1>
-<ol>
-<li>尝试使用Hexo，使用新的主题fluid</li>
-<li>更改GitHub action（失败😥连接出错😖）</li>
-<li>hexo生成文章的步骤不清楚</li>
-<li>.ssh生成有问题</li>
-</ol>
-<h2>解决方法</h2>
-<ol>
-<li>不使用hexo</li>
-<li>继续了解GitHub action机制</li>
-</ol>
-<p>自己不能太着急，找到自己喜欢的东西，认真记录生活每一天。</p><figure style="flex: 66.71875" ><img loading="lazy" width="427" height="320" src="https://im0-tub-com.yandex.net/i?id=2c27f5792796367ec0725562281747d6&n=13" /></figure><h2>记录hexo使用方法</h2>
-<ol>
-<li><div class="highlight"><pre><span></span>$ hexo init <span class="o">[</span>folder<span class="o">]</span>
-</pre></div>
-<p>新建一个网站。如果没有设置 <code>folder</code> ，Hexo 默认在目前的文件夹建立网站。</p></li>
-<li><div class="highlight"><pre><span></span>$ hexo new <span class="o">[</span>layout<span class="o">]</span> &lt;title&gt;
-</pre></div>
-<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p><table>
-<thead>
-<tr>
-  <th style="text-align:left">参数</th>
-  <th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="text-align:left"><code>-p</code>, <code>--path</code></td>
-  <td style="text-align:left">自定义新文章的路径</td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-r</code>, <code>--replace</code></td>
-  <td style="text-align:left">如果存在同名文章，将其替换</td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-s</code>, <code>--slug</code></td>
-  <td style="text-align:left">文章的 Slug，作为新文章的文件名和发布后的 URL</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li><div class="highlight"><pre><span></span>$ hexo generate
-</pre></div>
-<table>
-<thead>
-<tr>
-  <th style="text-align:left">选项</th>
-  <th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="text-align:left"><code>-d</code>, <code>--deploy</code></td>
-  <td style="text-align:left">文件生成后立即部署网站</td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-w</code>, <code>--watch</code></td>
-  <td style="text-align:left">监视文件变动</td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-b</code>, <code>--bail</code></td>
-  <td style="text-align:left">生成过程中如果发生任何未处理的异常则抛出异常</td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-f</code>, <code>--force</code></td>
-  <td style="text-align:left">强制重新生成文件 Hexo 引入了差分机制，如果 <code>public</code> 目录存在，那么 <code>hexo g</code> 只会重新生成改动的文件。 使用该参数的效果接近 <code>hexo clean &amp;&amp; hexo generate</code></td>
-</tr>
-<tr>
-  <td style="text-align:left"><code>-c</code>, <code>--concurrency</code></td>
-  <td style="text-align:left">最大同时生成文件的数量，默认无限制</td>
-</tr>
-</tbody>
-</table>
-<p><strong>总结</strong></p><p>使用hexo生成静态博客，调用命令过多，造成时间浪费，主题自己以后有时间可以尝试更改主题样式，使博客更美观，现在已经够用了</p></li>
-</ol>
-
+                <p><strong>五月十七日</strong></p><p>​	一天平平谈谈，上午完成了嵌入式实验并撰写报告。自己感觉自我理解能力是足够的，但是整理表述能力要继续加强，使得整体框架可以唬人。</p><p>​	下午体育课，进行打墙测试，慌慌张张的完成这次测试。一开始确实是慌，没有真正的心止入水，但在测试中慢慢找到了状态，还好。下课后完成了80公里，美妙。</p><p>​	完成工科创代码解耦，却又出现了一点点问题，今天应该是可以解决的。</p><p>​	晚上实验室没有见到学长，只能通过线上沟通，野蛮成长吧，多沟通，多交流，静下心来静心思考问题，提出解决方法。</p><figure style="flex: 50.0" ><img loading="lazy" width="320" height="320" src="https://im0-tub-com.yandex.net/i?id=f22af1b149bd14a9547fb499acdecc5e&n=13" /></figure>
             </div>
         </article>
         <div id="ga-tags">
     
     <span class="ga-tag">
-        <a class="ga-highlight" href="/Blog/tag/%E5%8D%9A%E5%AE%A2/">#博客</a>
+        <a class="ga-highlight" href="/Blog/tag/%E6%97%A5%E8%AE%B0/">#日记</a>
     </span>
     
 </div>
@@ -205,14 +129,14 @@ var _hmt = _hmt || [];
 <section id="ga-content_pager">
 
     <div class="next">
-        <a class="ga-highlight" href="/Blog/archives/happy%20and%20relax/">五月九日</a>
-        <p class="yue">美好的一天</p>
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
     </div>
 
 
     <div class="prev">
-        <a class="ga-highlight" href="/Blog/archives/%E5%B0%81%E9%9D%A2/">markdown论文封面</a>
-        <p class="yue">记录个人封面</p>
+        <a class="ga-highlight" href="/Blog/archives/try%20to%20work%20hard/">五月十六日</a>
+        <p class="yue">时刻警醒自己</p>
     </div>
 
 </section>
