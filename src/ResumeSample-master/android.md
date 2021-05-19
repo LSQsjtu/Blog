@@ -1,3 +1,14 @@
+---
+layout: post
+title: Android
+date: 2021-5-19
+status: publish
+author: 刘胜琪
+categories: 
+  - 简历
+tags: 
+  - 简历
+---
 # Android程序员简历模板
 
 本简历模板由国内首家互联网人才拍卖网站「 [JobDeer.com](http://www.jobdeer.com) 」提供。

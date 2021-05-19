@@ -1,3 +1,14 @@
+---
+layout: post
+title: 通用
+date: 2021-5-19
+status: publish
+author: 刘胜琪
+categories: 
+  - 简历
+tags: 
+  - 简历
+---
 # 说明
 
 本简历模板由国内首家互联网人才拍卖网站「 [JobDeer.com](http://www.jobdeer.com) 」提供。
