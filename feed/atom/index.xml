@@ -1,12 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2021-05-19T09:05:21.078385+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/%E5%9D%9A%E6%8C%81/</id><title>五月十八日</title><updated>2021-05-19T09:05:21.078786+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;ol&gt;
-&lt;li&gt;眼泪这东西啊，是流出来就能把辛酸和悲伤都冲走的好东西。可等你们长大成人了就会明白，人生还有眼泪也冲刷不干净的巨大悲伤，还有难忘的痛苦让你们即使想哭也不能流泪，所以真正坚强的人，都是越想哭反而笑得越大声，怀揣着痛苦和悲伤，即使如此也要带上它们笑着前行。&lt;/li&gt;
-&lt;li&gt;人啊，根据重新振作的方法可分为两种：一种是看着比自己卑微的东西，寻找垫底的聊以自慰；另一种则是看着比自己伟大的东西，狠狠踢醒毫无气度的自己。&lt;/li&gt;
-&lt;li&gt;有阳光的地方就会有阴影，所以有阴影的地方也一定会有阳光。绝望的颜色越是浓厚，在哪里也一定会存在耀眼的希望之光。&lt;/li&gt;
-&lt;li&gt;关于自己的生活，我和你都不是读者，而是作者。至少结局，还是能自己说了算的。&lt;/li&gt;
-&lt;li&gt;拥有和舍弃都很痛苦，既然无论怎样都会痛苦的话，我宁可选择守护它而痛苦。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;​    一天的课程占据了今天的主要。又发生了管理不当出现矛盾的情况，自己要引以为戒，洗澡之后还是舒服啊！🎄&lt;/p&gt;&lt;p&gt;要继续努力，成长为自己想要成长的样子。&lt;/p&gt;&lt;figure style="flex: 33.37278106508876" &gt;&lt;img width="564" height="845" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/845f07ba8705422322823bb7bb8cd1e8.jpg" /&gt;&lt;/figure&gt;</content><link href="/Blog/archives/%E5%9D%9A%E6%8C%81/" rel="alternate"/><published>2021-05-18T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/</id><title>架构师</title><updated>2021-05-19T09:05:21.078748+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;架构师简历模板&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2021-05-19T14:02:34.554580+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/</id><title>架构师</title><updated>2021-05-19T14:02:34.555059+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;架构师简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -188,7 +181,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/IOS/</id><title>IOS</title><updated>2021-05-19T09:05:21.078716+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;iOS程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/IOS/</id><title>IOS</title><updated>2021-05-19T14:02:34.555024+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;iOS程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -334,7 +327,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/IOS/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/PHP/</id><title>PHP</title><updated>2021-05-19T09:05:21.078683+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;PHP程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/IOS/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/PHP/</id><title>PHP</title><updated>2021-05-19T14:02:34.554987+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;PHP程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -479,7 +472,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/PHP/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/NodeJS/</id><title>NodeJS</title><updated>2021-05-19T09:05:21.078651+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;NodeJS程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/PHP/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/NodeJS/</id><title>NodeJS</title><updated>2021-05-19T14:02:34.554951+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;NodeJS程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -612,7 +605,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/NodeJS/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E9%80%9A%E7%94%A8/</id><title>通用</title><updated>2021-05-19T09:05:21.078611+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;说明&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/NodeJS/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E9%80%9A%E7%94%A8/</id><title>通用</title><updated>2021-05-19T14:02:34.554908+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;说明&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -679,7 +672,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/%E9%80%9A%E7%94%A8/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Android/</id><title>Android</title><updated>2021-05-19T09:05:21.078579+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Android程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/%E9%80%9A%E7%94%A8/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Android/</id><title>Android</title><updated>2021-05-19T14:02:34.554872+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Android程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -818,7 +811,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/Android/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Java/</id><title>Java</title><updated>2021-05-19T09:05:21.078544+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Java程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/Android/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Java/</id><title>Java</title><updated>2021-05-19T14:02:34.554835+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Java程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -999,7 +992,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/Java/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/C/C%2B%2B/</id><title>C/C++</title><updated>2021-05-19T09:05:21.078500+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;C/C++程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/Java/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/C/C%2B%2B/</id><title>C/C++</title><updated>2021-05-19T14:02:34.554775+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;C/C++程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -1160,7 +1153,7 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/C/C%2B%2B/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/web/</id><title>web</title><updated>2021-05-19T09:05:21.078436+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Web前端程序员简历模板&lt;/h1&gt;
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/C/C%2B%2B/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/web/</id><title>web</title><updated>2021-05-19T14:02:34.554732+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;h1&gt;Web前端程序员简历模板&lt;/h1&gt;
 &lt;p&gt;本简历模板由国内首家互联网人才拍卖网站「 &lt;a href="http://www.jobdeer.com"&gt;JobDeer.com&lt;/a&gt; 」提供。&lt;/p&gt;&lt;p&gt;（括号里的是我们的顾问编写的说明，建议在简历书写完成后统一删除）&lt;/p&gt;&lt;h2&gt;先讲讲怎样才是一份好的技术简历&lt;/h2&gt;
 &lt;p&gt;首先，一份好的简历不光说明事实，更通过FAB模式来增强其说服力。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;Feature：是什么&lt;/li&gt;
@@ -1307,4 +1300,4 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;致谢&lt;/h1&gt;
-&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/web/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry></feed>
+&lt;p&gt;感谢您花时间阅读我的简历，期待能有机会和您共事。&lt;/p&gt;</content><link href="/Blog/archives/web/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E4%BA%94%E6%9C%88%E5%8D%81%E4%B9%9D%E6%97%A5/</id><title>五月十九日</title><updated>2021-05-19T14:02:34.554634+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;五月十九日&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;又偷偷的想放松一下，没有紧迫感，虽然有大创项目的催促，有sota复现的忙碌，还有课程大作业的赶工，可是自己有时就是想放下这一切，好好的放松一下，就渐渐的将某些事情的重要性淡化，让它变的举重若轻。压迫之后就直接放缓步伐，可是过于紧张赶忙又会让自己变的心烦意乱，难以平静，要有干劲，还有就是一定再陷进去了。&lt;/p&gt;&lt;figure style="flex: 66.71875" &gt;&lt;img width="427" height="320" src="https://im0-tub-com.yandex.net/i?id=5f28b35384960743cf4aa743467a92fd&amp;n=13" /&gt;&lt;/figure&gt;&lt;p&gt;玩可以玩，但自己每一天都要进步，都要明白和反思自己，努力变的更好！&lt;/p&gt;&lt;figure style="flex: 50.0" &gt;&lt;img width="564" height="564" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f4e0cb66f2ae630a267d88aab3be254b.jpg" /&gt;&lt;/figure&gt;</content><link href="/Blog/archives/%E4%BA%94%E6%9C%88%E5%8D%81%E4%B9%9D%E6%97%A5/" rel="alternate"/><published>2021-05-19T00:00:00+08:06</published></entry></feed>
