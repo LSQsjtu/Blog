@@ -73,7 +73,7 @@ social_links = [
 head_addon = r'''
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
-<link rel="shortcut icon" href="${static_prefix}Arley.png">
+<link rel="shortcut icon" href="${static_prefix}logo.jpg">
 <script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
 <!-- szgotop -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
