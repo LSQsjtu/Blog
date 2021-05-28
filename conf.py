@@ -108,7 +108,10 @@ var _hmt = _hmt || [];
 </script>
 '''
 
-footer_addon = ''
+footer_addon = r'''
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+'''
 
 body_addon = r'''
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
