@@ -12,6 +12,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/%E5%85%AD%E6%9C%88%E4%BA%8C%E6%97%A5/</loc>
+    <lastmod>2021-06-02</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/emoji-cheat-sheet/</loc>
+    <lastmod>2021-06-02</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/%E5%85%AD%E6%9C%88%E4%B8%80%E6%97%A5/</loc>
     <lastmod>2021-06-01</lastmod>
     <changefreq>always</changefreq>
