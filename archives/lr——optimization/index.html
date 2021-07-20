@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/56575e71af9e0b35cf335abdf3e95973.json"
+        }
+    </script>
+    
+<title>pytorch学习率调整 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="转自知乎" />
+<meta property="og:title" content="pytorch学习率调整 - 我的个人博客" />
+<meta property="og:description" content="转自知乎" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/lr%E2%80%94%E2%80%94optimization/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-19T00:00:00-00.00" />
+<meta name="twitter:title" content="pytorch学习率调整 - 我的个人博客" />
+<meta name="twitter:description" content="转自知乎" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">pytorch学习率调整</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-07-19
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>一、pytorch中学习率调整方法</strong></p><p><strong>1. lr_scheduler.StepLR</strong></p><p>class torch.optim.lr_scheduler.StepLR(optimizer, step_size, gamma=0.1, last_epoch=-1)</p><p><strong>功能：</strong> 等间隔调整学习率，<strong>调整倍数为gamma倍，调整间隔为step_size</strong>。间隔单位是step。需要注意的是，step通常是指epoch，不要弄成iteration了。</p><p><strong>参数：</strong></p><p>step_size(int)- 学习率下降间隔数，若为30，则会在30、60、90......个step时，将*<em>学习率调整为lr</em>gamma**。</p><p>gamma(float)- 学习率调整倍数，<strong>默认为0.1倍，即下降10倍</strong>。</p><p>last_epoch(int)- <strong>上一个epoch数</strong>，这个变量用来指示学习率是否需要调整。当last_epoch符合设定的间隔时，就会对学习率进行调整。<strong>当为-1时，学习率设置为初始值</strong>。</p><p><strong>2.lr_scheduler.MultiStepLR</strong></p><p>class torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones, gamma=0.1, last_epoch=-1)</p><p><strong>功能：</strong> 按设定的间隔调整学习率。这个方法适合后期调试使用，==观察loss曲线==，为每个实验定制学习率调整时机。</p><p><strong>参数：</strong></p><p>milestones(list)- 一个list，==每一个元素代表何时调整学习率==，list元素必须是递增的。如 milestones=[30,80,120]</p><p>gamma(float)- 学习率调整倍数，默认为0.1倍，即下降10倍。</p><p>last_epoch(int)- 上一个epoch数，这个变量用来指示学习率是否需要调整。当last_epoch符合设定的间隔时，就会对学习率进行调整。当为-1时，学习率设置为初始值。</p><p><strong>3.lr_scheduler.ExponentialLR</strong></p><p>class torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma, last_epoch=-1)</p><p><strong>功能：</strong> 按指数衰减调整学习率，调整公式: lr = lr * gamma** <strong>epoch</strong></p><p>参数：</p><p><strong>gamma- 学习率调整倍数的底，指数为epoch，即 gamma*</strong>*epoch</p><p>last_epoch(int)- 上一个epoch数，这个变量用来指示学习率是否需要调整。当last_epoch符合设定的间隔时，就会对学习率进行调整。当为-1时，学习率设置为初始值。</p><p><strong>4.lr_scheduler.CosineAnnealingLR</strong></p><p>class torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epoch=-1)</p><p><strong>功能：</strong> 以余弦函数为周期，并在每个周期最大值时重新设置学习率。具体如下图所示</p><figure style="flex: 77.92207792207792" ><img width="720" height="462" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/766ae875366d7fedfd1e5d0ccba04d34.jpg" /></figure><p>详细请阅读论文《 SGDR: Stochastic Gradient Descent with Warm Restarts》(ICLR-2017)：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1608.03983"><a href="https://arxiv.org/abs/1608.03983">https://arxiv.org/abs/1608.03983</a></a></p><p><strong>参数：</strong></p><p>T_max(int)- 一次学习率周期的迭代次数，即T_max个epoch之后重新设置学习率。 eta_min(float)- 最小学习率，即在一个周期中，学习率最小会下降到eta_min，默认值为0。</p><p>学习率调整公式为：</p><figure style="flex: 278.46153846153845" ><img width="362" height="65" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/708c59d860cae21f9926274afe951a8d.jpg" /></figure><p>可以看出是以初始学习率为最大学习率，以2*Tmax为周期，在一个周期内先下降，后上升。</p><p>实例： T_max = 200, 初始学习率 = 0.001, eta_min = 0</p><figure style="flex: 76.57342657342657" ><img width="219" height="143" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/df4aea5436368aa7d5e63c326bab902c.jpg" /></figure><p><strong>5.lr_scheduler.ReduceLROnPlateau</strong></p><p>class torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10, verbose=False, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)</p><p><strong>功能：</strong> 当某指标不再变化（下降或升高），调整学习率，这是非常实用的学习率调整策略。例如，当验证集的loss不再下降时，进行学习率调整；或者监测验证集的accuracy，当accuracy不再上升时，则调整学习率。</p><p><strong>参数：</strong></p><p>mode(str)- 模式选择，有 min和max两种模式，min表示当指标不再降低(如监测loss)，max表示当指标不再升高(如监测accuracy)。</p><p>factor(float)- 学习率调整倍数(等同于其它方法的gamma)，即学习率更新为 lr = lr * factor patience(int)- 直译——&quot;耐心&quot;，即忍受该指标多少个step不变化，当忍无可忍时，调整学习率。注，可以不是连续5次。</p><p>verbose(bool)- 是否打印学习率信息， print('Epoch {:5d}: reducing learning rate' ' of group {} to {:.4e}.'.format(epoch, i, new_lr))</p><p>threshold(float)- Threshold for measuring the new optimum，配合threshold_mode使用，默认值1e-4。作用是用来控制当前指标与best指标的差异。</p><p>threshold_mode(str)- 选择判断指标是否达最优的模式，有两种模式，rel和abs。 当threshold_mode = rel，并且mode = max时，dynamic_threshold = best * ( 1 + threshold )； 当threshold_mode = rel，并且mode = min时，dynamic_threshold = best * ( 1 - threshold )； 当threshold_mode = abs，并且mode = max时，dynamic_threshold = best + threshold ； 当threshold_mode = rel，并且mode = max时，dynamic_threshold = best - threshold</p><p>cooldown(int)- “冷却时间“，当调整学习率之后，让学习率调整策略冷静一下，让模型再训练一段时间，再重启监测模式。</p><p>min_lr(float or list)- 学习率下限，可为float，或者list，当有多个参数组时，可用list进行设置。</p><p>eps(float)- 学习率衰减的最小值，当学习率变化小于eps时，则不调整学习率。</p><p><strong>6.lr_scheduler.LambdaLR</strong></p><p>class torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda, last_epoch=-1)</p><p><strong>功能：</strong> 为不同参数组设定不同学习率调整策略。调整规则为，lr = base_lr * lmbda(self.last_epoch) 。</p><p><strong>参数：</strong></p><p>lr_lambda(function or list)- 一个计算<strong>学习率调整倍数的函数</strong>，输入通常为step，当有多个参数组时，设为list。</p><p>last_epoch(int)- 上一个epoch数，这个变量用来指示学习率是否需要调整。当last_epoch符合设定的间隔时，就会对学习率进行调整。当为-1时，学习率设置为初始值。</p><p><strong>例如：</strong></p><div class="highlight"><pre><span></span><span class="n">ignored_params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">net</span><span class="o">.</span><span class="n">fc3</span><span class="o">.</span><span class="n">parameters</span><span class="p">()))</span>
+<span class="n">base_params</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="nb">id</span><span class="err">§</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignored_params</span><span class="p">,</span> <span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span>
+    <span class="p">{</span><span class="err">‘</span><span class="n">params</span><span class="err">’</span><span class="p">:</span> <span class="n">base_params</span><span class="p">},</span>
+    <span class="p">{</span><span class="err">‘</span><span class="n">params</span><span class="err">’</span><span class="p">:</span> <span class="n">net</span><span class="o">.</span><span class="n">fc3</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="err">‘</span><span class="n">lr</span><span class="err">’</span><span class="p">:</span> <span class="mf">0.001</span><span class="o">*</span><span class="mi">100</span><span class="p">}],</span> 
+    <span class="mf">0.001</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+
+<span class="n">lambda1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">epoch</span><span class="p">:</span> <span class="n">epoch</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="n">lambda2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">epoch</span><span class="p">:</span> <span class="mf">0.95</span> <span class="o">**</span> <span class="n">epoch</span>
+
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">LambdaLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">lr_lambda</span><span class="o">=</span><span class="p">[</span><span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epoch: &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;lr: &#39;</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">get_lr</span><span class="p">())</span>
+</pre></div>
+<p><strong>输出：</strong></p><div class="highlight"><pre><span></span><span class="n">epoch</span><span class="p">:</span> <span class="mi">0</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">1</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.095</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">2</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.09025</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">3</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0857375</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">4</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.081450625</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">5</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.07737809374999999</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">6</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.07350918906249998</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">7</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.06983372960937498</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">8</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.06634204312890622</span><span class="p">]</span>
+<span class="n">epoch</span><span class="p">:</span> <span class="mi">9</span> <span class="n">lr</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.0630249409724609</span><span class="p">]</span>
+</pre></div>
+<p>第一个参数组的学习率为0：这是因为学习率计算方式。 第一个参数组的初始学习率设置为0.001, lambda1 = lambda epoch: epoch // 3, 第1个epoch时，由lr = base_lr * lmbda(self.last_epoch)，可知道 lr = 0.001 * (0//3) ，又因为1//3等于0，所以导致学习率为0。</p><p>第二个参数组的学习率变化，初始为0.1，lr = 0.1 * 0.95^epoch ，当epoch为0时，lr=0.1 ，epoch为1时，lr=0.1*0.95。</p><hr />
+<p><strong>二、 学习率调整小结及step源码阅读</strong></p><p><strong>2.1 学习率调整小结</strong></p><p>Pytorch提供了六种学习率调整方法，可分为三大类，分别是</p><ol>
+<li><p>有序调整；</p></li>
+<li><p>自适应调整；</p></li>
+<li><p>自定义调整。</p></li>
+</ol>
+<p>第一类，依一定规律有序进行调整，这一类是最常用的，分别是等间隔下降(Step)，按需设定下降间隔(MultiStep)，指数下降(Exponential)和CosineAnnealing。这四种方法的调整时机都是人为可控的，也是<strong>训练时常用到的</strong>。</p><p>第二类，依训练状况伺机调整，这就是ReduceLROnPlateau方法。该法通过监测某一指标的变化情况，当该指标不再怎么变化的时候，就是调整学习率的时机，因而属于自适应的调整。</p><p>第三类，自定义调整，Lambda。Lambda方法提供的调整策略十分灵活，我们可以为不同的层设定不同的学习率调整方法，这在fine-tune中十分有用，我们不仅可为不同的层设定不同的学习率，还可以为其设定不同的学习率调整策略，简直不能更棒！</p><p><strong>2.2 step源码阅读</strong></p><p>在pytorch中，学习率的更新是通过scheduler.step()，而我们知道影响学习率的一个重要参数就是epoch，而epoch与scheduler.step()是如何关联的呢？这就需要看源码了。 源码在torch/optim/lr_scheduler.py，step()方法在_LRScheduler类当中，该类作为所有学习率调整的基类，其中定义了一些基本方法，如现在要介绍的step()，以及最常用的get_lr()，不过get_lr()是一个虚函数，均需要在派生类中重新定义函数。</p><p>看看step()</p><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">epoch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">epoch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+    <span class="k">for</span> <span class="n">param_group</span><span class="p">,</span> <span class="n">lr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lr</span><span class="p">()):</span>
+    	<span class="n">param_group</span><span class="p">[</span><span class="err">‘</span><span class="n">lr</span><span class="err">’</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+</pre></div>
+<p>函数接收变量epoch，默认为None，当为None时，epoch = self.last_epoch + 1。从这里知道，last_epoch是用以记录epoch的。上面有提到last_epoch的初始值是-1，因此，第一个epoch的值为 -1+1 =0。接着最重要的一步就是获取学习率，并更新。 由于pytorch是基于参数组的管理方式，这里需要采用for循环对每一个参数组的学习率进行获取及更新。这里需要注意的是get_lr()，get_lr()的功能就是获取当前epoch，该参数组的学习率。</p><p>这里以StepLR()为例，介绍get_lr()，请看代码：</p><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">base_lr</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">base_lr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lrs</span><span class="p">]</span>
+</pre></div>
+<p>由于pytorch是基于参数组的管理方式，可能会有多个参数组，因此用for循环，返回的是一个list。list元素的计算方式为 base_lr * self.gamma ** (self.last_epoch // self.step_size)。</p><p>看完代码，可以知道，在执行一次scheduler.step()之后，epoch会加1，因此scheduler.step()要放在epoch的for循环当中执行。</p><hr />
+<div class="highlight"><pre><span></span><span class="c1">#优化函数，model.parameters()为该实例中可优化的参数，lr为参数优化的选项（学习率等）</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span> <span class="c1">#查看可优化的参数有哪些</span>
+  <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/keng/">pytorch代码坑</a>
+        <p class="yue">转自知乎</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
