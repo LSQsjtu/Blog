@@ -12,6 +12,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/resnet/</loc>
+    <lastmod>2021-07-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/key_point/</loc>
+    <lastmod>2021-07-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/strange%20idea/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>always</changefreq>

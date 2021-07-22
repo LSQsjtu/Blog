@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/6944ccd3ad8fdf785221f639c9a2c8a8.json"
+        }
+    </script>
+    
+<title>resnet网络 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="残差网络学习" />
+<meta property="og:title" content="resnet网络 - 我的个人博客" />
+<meta property="og:description" content="残差网络学习" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/resnet/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-22T00:00:00-00.00" />
+<meta name="twitter:title" content="resnet网络 - 我的个人博客" />
+<meta name="twitter:description" content="残差网络学习" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">resnet网络</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-07-22
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>restnet</strong></p><ol>
+<li><strong>简化了学习过程，增强了梯度传播</strong></li>
+</ol>
+<p>相比于学习原始的信号，残差网络学习的是信号的差值，这在许多的研究中被验证是更加有效的，它简化了学习的过程。</p><p><strong>根据我们前面的内容可知，在一定程度上，网络越深表达能力越强，性能越好。</strong></p><p>然而随着网络深度的增加，带来了许多优化相关的问题，比如梯度消散，梯度爆炸。</p><p>残差网络从根本上解决了梯度问题</p><figure style="flex: 121.0762331838565" ><img width="1080" height="446" src="https://res-static.hc-cdn.cn/fms/img/fb9d7c7db3bb265f7f997160aa48bc641603780769781" /></figure><ol start="2">
+<li><strong>打破了网络的不对称性</strong></li>
+</ol>
+<p>虽然残差网络可以通过跳层连接，增强了梯度的流动，从而使得上千层网络的训练成为可能，<strong>不过相关的研究表面残差网络的有效性，更加体现在减轻了神经网络的退化。</strong></p><p><strong>如果在网络中每个层只有少量的隐藏单元对不同的输入改变它们的激活值，而大部分隐藏单元对不同的输入都是相同的反应，此时整个权重矩阵的秩不高。并且随着网络层数的增加，连乘后使得整个秩变的更低，这就是我们常说的网络退化问题。</strong></p><ol start="3">
+<li><strong>增强了网络的泛化能力</strong></li>
+</ol>
+<p>一个残差块可以用表示为：</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7Bl%2B1%7D%3D+x_l%2B%5Cmathcal%7BF%7D%28x_l%2C+%7BW_l%7D%29%5Ctag%7B1%7D" /></figure><p>残差块分成两部分直接映射部分和残差部分。 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=h%28x_l%29" /><figcaption>[公式]</figcaption></figure> 是直接映射，反应在图1中是左边的曲线； <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cmathcal%7BF%7D%28x_l%2C+%7BW_l%7D%29" /><figcaption>[公式]</figcaption></figure> 是残差部分，一般由两个或者三个卷积操作构成，即下图中右侧包含卷积的部分。</p><figure style="flex: 23.668639053254438" ><img width="160" height="338" src="https://pic2.zhimg.com/80/v2-bd76d0f10f84d74f90505eababd3d4a1_720w.jpg" /><figcaption>img</figcaption></figure><p>上图中的Weight在卷积网络中是指卷积操作，addition是指单位加操作。</p><p><strong>残差网络的背后原理</strong></p><p>残差块一个更通用的表示方式是</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=y_l%3D+h%28x_l%29%2B%5Cmathcal%7BF%7D%28x_l%2C+%7BW_l%7D%29%5Ctag%7B3%7D" /><figcaption>[公式]</figcaption></figure><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7Bl%2B1%7D+%3D+f%28y_l%29%5Ctag%7B4%7D" /><figcaption>[公式]</figcaption></figure><p>现在我们先不考虑升维或者降维的情况，那么在[1]中， <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=h%28%5Ccdot%29" /><figcaption>[公式]</figcaption></figure> 是直接映射， <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=f%28%5Ccdot%29" /><figcaption>[公式]</figcaption></figure> 是激活函数，一般使用ReLU。我们首先给出两个假设：</p><ul>
+<li>假设1： <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=h%28%5Ccdot%29" /><figcaption>[公式]</figcaption></figure> 是直接映射；</li>
+<li>假设2： <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=f%28%5Ccdot%29" /><figcaption>[公式]</figcaption></figure> 是直接映射。</li>
+</ul>
+<p>那么这时候残差块可以表示为：</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7Bl%2B1%7D+%3D+x_l+%2B+%5Cmathcal%7BF%7D%28x_l%2C+%7BW_l%7D%29%5Ctag%7B5%7D" /><figcaption>[公式]</figcaption></figure><p>对于一个更深的层 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=L" /><figcaption>[公式]</figcaption></figure> ，其与 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=l" /><figcaption>[公式]</figcaption></figure> 层的关系可以表示为</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_L+%3D+x_l+%2B+%5Csum_%7Bi%3Dl%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29%5Ctag%7B6%7D" /><figcaption>[公式]</figcaption></figure><p>这个公式反应了残差网络的两个属性：</p><ol>
+<li><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=L" /><figcaption>[公式]</figcaption></figure> 层可以表示为==任意一个比它浅的l层和他们之间的残差部分之和；==</li>
+<li><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_L%3D+x_0+%2B+%5Csum_%7Bi%3D0%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29" /><figcaption>[公式]</figcaption></figure> ， <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=L" /><figcaption>[公式]</figcaption></figure> 是各个残差块特征的单位累和，而MLP是特征矩阵的累积。</li>
+</ol>
+<p>根据BP（back propagation）中使用的导数的链式法则，损失函数 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cvarepsilon" /><figcaption>[公式]</figcaption></figure> 关于 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_l" /><figcaption>[公式]</figcaption></figure> 的梯度可以表示为</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_l%7D+%3D+%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D%5Cfrac%7B%5Cpartial+x_L%7D%7B%5Cpartial+x_l%7D+%3D+%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D%281%2B%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+x_l%7D%5Csum_%7Bi%3Dl%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29%29+%3D+%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D%2B%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D+%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+x_l%7D%5Csum_%7Bi%3Dl%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29+%5Ctag%7B7%7D" /><figcaption>[公式]</figcaption></figure><p>上面公式反映了残差网络的两个属性：</p><ol>
+<li>在整个训练过程中， <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+x_l%7D%5Csum_%7Bi%3Dl%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29+" /><figcaption>[公式]</figcaption></figure> 不可能一直为 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=-1" /><figcaption>[公式]</figcaption></figure> ，也就是说在残差网络中==不会出现梯度消失的问题==。</li>
+<li><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D" /><figcaption>[公式]</figcaption></figure> 表示 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=L" /><figcaption>[公式]</figcaption></figure> 层的梯度可以直接传递到任何一个比它浅的 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=l" /><figcaption>[公式]</figcaption></figure> 层。</li>
+</ol>
+<p>通过分析残差网络的正向和反向两个过程，我们发现，当残差块满足上面两个假设时，信息可以非常畅通的在高层和低层之间相互传导，说明这两个假设是让残差网络可以训练深度模型的充分条件。那么这两个假设是必要条件吗？</p><p><strong>直接映射是最好的选择</strong></p><p>对于假设1，我们采用反证法，假设 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=h%28x_l%29+%3D+%5Clambda_l+x_l" /><figcaption>[公式]</figcaption></figure> ，那么这时候，残差块（图3.b）表示为</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7Bl%2B1%7D+%3D+%5Clambda_lx_l+%2B+%5Cmathcal%7BF%7D%28x_l%2C+%7BW_l%7D%29%5Ctag%7B8%7D" /><figcaption>[公式]</figcaption></figure><p>对于更深的L层</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7BL%7D+%3D+%28%5Cprod_%7Bi%3Dl%7D%5E%7BL-1%7D%5Clambda_i%29x_l+%2B+%5Csum_%7Bi%3Dl%7D%5E%7BL-1%7D%5Cmathcal%7BF%7D%28x_i%2C+%7BW_i%7D%29%5Ctag%7B9%7D" /></figure><p>为了简化问题，我们只考虑公式的左半部分 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_%7BL%7D+%3D+%28%5Cprod_%7Bi%3Dl%7D%5E%7BL-1%7D%5Clambda_l%29x_l" /></figure> ，损失函数 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cvarepsilon" /><figcaption>[公式]</figcaption></figure> 对 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=x_l" /><figcaption>[公式]</figcaption></figure> 求偏微分得</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial%5Cvarepsilon%7D%7B%5Cpartial+x_l%7D+%3D+%5Cfrac%7B%5Cpartial%5Cvarepsilon%7D%7B%5Cpartial+x_L%7D+%5Cleft%28+%28%5Cprod_%7Bi%3Dl%7D%5E%7BL-1%7D%5Clambda_i%29+%2B+%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+x_l%7D+%5Chat%7B%5Cmathcal%7BF%7D%7D%28x_i%2C+%5Cmathcal%7BW%7D_i%29%5Cright%29%5Ctag%7B10%7D+" /></figure><p>上面公式反映了两个属性：</p><ol>
+<li>当 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Clambda%3E1" /><figcaption>[公式]</figcaption></figure> 时，很有可能发生梯度爆炸；</li>
+<li>当 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Clambda%3C1" /><figcaption>[公式]</figcaption></figure> 时，梯度变成0，会阻碍残差网络信息的反向传递，从而影响残差网络的训练。</li>
+</ol>
+<p>所以 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Clambda" /><figcaption>[公式]</figcaption></figure> ==必须等1==。同理，其他常见的激活函数都会产生和上面的例子类似的阻碍信息反向传播的问题。</p><p>对于其它不影响梯度的 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=h%28%5Ccdot%29" /><figcaption>[公式]</figcaption></figure> ，例如LSTM中的门机制（图3.c，图3.d）或者Dropout（图3.f）以及[1]中用于降维的 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=1%5Ctimes1" /><figcaption>[公式]</figcaption></figure> 卷积（图3.e）也许会有效果，作者采用了实验的方法进行验证，实验结果见图4</p><figure style="flex: 52.63157894736842" ><img width="720" height="684" src="https://pic2.zhimg.com/80/v2-843326b572e2e4c5c8956e289bd3f58d_720w.jpg" /><figcaption>img</figcaption></figure><p>图3：直接映射的变异模型</p><figure style="flex: 109.7560975609756" ><img width="720" height="328" src="https://pic4.zhimg.com/80/v2-5d8fd2868a4ba30e61ce477ab00d7f0f_720w.jpg" /><figcaption>img</figcaption></figure>图4：变异模型（均为110层）在Cifar10数据集上的表现<p>从图4的实验结果中我们可以看出，在所有的变异模型中，依旧是==直接映射的效果最好==。下面我们对图3中的各种变异模型的分析</p><ol>
+<li>Exclusive Gating：在LSTM的门机制中，绝大多数门的值为0或者1，几乎很难落到0.5附近。当 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=g%28x%29%5Crightarrow0" /><figcaption>[公式]</figcaption></figure> 时，残差块变成只有直接映射组成，阻碍卷积部分特征的传播；当 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=g%28x%29%5Crightarrow1" /><figcaption>[公式]</figcaption></figure> 时，直接映射失效，退化为普通的卷积网络；</li>
+<li>Short-cut only gating： <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=g%28x%29%5Crightarrow0" /><figcaption>[公式]</figcaption></figure> 时，此时网络便是[1]提出的直接映射的残差网络； <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=g%28x%29%5Crightarrow1" /><figcaption>[公式]</figcaption></figure> 时，退化为普通卷积网络；</li>
+<li>Dropout：类似于将直接映射乘以 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=1-p" /><figcaption>[公式]</figcaption></figure> ，所以会影响梯度的反向传播；</li>
+<li><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=1%5Ctimes1" /><figcaption>[公式]</figcaption></figure> conv： <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=1%5Ctimes1" /><figcaption>[公式]</figcaption></figure> 卷积比直接映射拥有更强的表示能力，但是实验效果却不如直接映射，说明该问题更可能是优化问题而非模型容量问题。</li>
+</ol>
+<p>所以我们可以得出结论：假设1成立，即</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=y_l+%3D+x_l+%2B+%5Cmathcal%7BF%7D%28x_l%2C+w_l%29+%5Ctag%7B11%7D" /><figcaption>[公式]</figcaption></figure><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=y_%7Bl%2B1%7D+%3D+x_%7Bl%2B1%7D+%2B+%5Cmathcal%7BF%7D%28x_%7Bl%2B1%7D%2C+w_%7Bl%2B1%7D%29+%3D+f%28y_l%29+%2B+%5Cmathcal%7BF%7D%28f%28y_l%29%2C+w_%7Bl%2B1%7D%29+%5Ctag%7B12%7D" /><figcaption>[公式]</figcaption></figure>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/key_point/">论文阅读</a>
+        <p class="yue">action recognition相关论文阅读</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
