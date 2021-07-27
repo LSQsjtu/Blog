@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/6dd6798b2afe7f37263a4384b81e067b.json"
+        }
+    </script>
+    
+<title>github阅读 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="HMDB51数据集" />
+<meta property="og:title" content="github阅读 - 我的个人博客" />
+<meta property="og:description" content="HMDB51数据集" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/github%20HMDB51%E6%80%BB%E7%BB%93/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-27T00:00:00-00.00" />
+<meta name="twitter:title" content="github阅读 - 我的个人博客" />
+<meta name="twitter:description" content="HMDB51数据集" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">github阅读</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-07-27
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>3D-CNN Method</h2>
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>iDT</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>LRCN</td>
+  <td></td>
+  <td>CVPR 2015</td>
+</tr>
+<tr>
+  <td>LSTM composite model</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>C3D</td>
+  <td></td>
+  <td>2015</td>
+</tr>
+<tr>
+  <td>TSN</td>
+  <td></td>
+  <td>ECCV 2016</td>
+</tr>
+<tr>
+  <td>R3DCNN</td>
+  <td>NVIDIA</td>
+  <td>2016</td>
+</tr>
+<tr>
+  <td>P3D</td>
+  <td>MSRA</td>
+  <td>ICCV 2017</td>
+</tr>
+<tr>
+  <td>R3D/2.5D</td>
+  <td></td>
+  <td>2017</td>
+</tr>
+<tr>
+  <td>T3D</td>
+  <td></td>
+  <td>2017</td>
+</tr>
+<tr>
+  <td>R2+1D</td>
+  <td></td>
+  <td>2018</td>
+</tr>
+</tbody>
+</table>
+<!-- more -->
+<p>--</p><hr />
+<p>General LIb:</p><p>[ video model zoo (caffe2) ] <a href="https://github.com/facebookresearch/VMZ">https://github.com/facebookresearch/VMZ</a></p><p>Currently, this codebase supports the following models:</p><ul>
+<li>R(2+1)D, MCx models <a href="https://research.fb.com/wp-content/uploads/2018/04/a-closer-look-at-spatiotemporal-convolutions-for-action-recognition.pdf">[1]</a>.</li>
+<li>CSN models <a href="https://arxiv.org/pdf/1904.02811.pdf">[2]</a>.</li>
+<li>R(2+1)D and CSN models pre-trained on large-scale (65 million!) weakly-supervised public Instagram videos (<strong>IG-65M</strong>) <a href="https://research.fb.com/wp-content/uploads/2019/05/Large-scale-weakly-supervised-pre-training-for-video-action-recognition.pdf">[3]</a>.</li>
+</ul>
+<h3>C3D</h3>
+<p>[github caffe ]<a href="https://github.com/facebook/C3D">https://github.com/facebook/C3D</a></p><p>[ github tensorflow ]<a href="https://github.com/hx173149/C3D-tensorflow">https://github.com/hx173149/C3D-tensorflow</a></p><p>[github pytorch] <a href="https://github.com/jfzhang95/pytorch-video-recognition">https://github.com/jfzhang95/pytorch-video-recognition</a></p><p>3x3x3  Kernel</p><figure style="flex: 262.77372262773724" ><img width="720" height="137" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/71853e0cfa11f4c2df712fc43d7ee2f4.jpg" /><figcaption>img</figcaption></figure><figure style="flex: 42.767857142857146" ><img width="479" height="560" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b43d027f12bba9f3525b3e699fd0ac8f.jpg" /><figcaption>img</figcaption></figure><h3>P3D</h3>
+<p>[ caffe ] <a href="https://github.com/ZhaofanQiu/pseudo-3d-residual-networks">https://github.com/ZhaofanQiu/pseudo-3d-residual-networks</a></p><p>[ pytorch ] <a href="https://github.com/jfzhang95/pytorch-video-recognition">https://github.com/jfzhang95/pytorch-video-recognition</a></p><p>Learning spatio-temporal representation with pseudo-3d residual networks. In ICCV, 2017.</p><figure style="flex: 79.02208201892745" ><img width="501" height="317" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/424604edeaa910b2e7f9068987cbd376.png" /><figcaption>1567834917557</figcaption></figure><figure style="flex: 121.82857142857142" ><img width="2132" height="875" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/2843da38780038aff460bbcd558bab05.png" /><figcaption>1567834970578</figcaption></figure><h3>T3D*</h3>
+<p>Architecture: DenseNet + 3D</p><p>[ github pytorch] <a href="https://github.com/MohsenFayyaz89/T3D">https://github.com/MohsenFayyaz89/T3D</a></p><figure style="flex: 97.0059880239521" ><img width="648" height="334" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/8498c4f96d09598e772ad76adb771aa4.jpg" /><figcaption>img</figcaption></figure><figure style="flex: 44.662921348314605" ><img width="477" height="534" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/c03698d9b35355fcf748ec0b723ba4bd.jpg" /><figcaption>img</figcaption></figure><h3>Res3D/R3D</h3>
+<p>architecture:	ResNet + 3DConv</p><p>[github pytorch] <a href="https://github.com/jfzhang95/pytorch-video-recognition">https://github.com/jfzhang95/pytorch-video-recognition</a></p><figure style="flex: 59.01856763925729" ><img width="445" height="377" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/8150945c2e765ba0c3418c83799ad304.jpg" /><figcaption>img</figcaption></figure><figure style="flex: 51.63170163170163" ><img width="443" height="429" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/023a150c62aa2f2fabe6010dca6c74b5.jpg" /><figcaption>img</figcaption></figure><h4>R2.5D</h4>
+<figure style="flex: 59.58083832335329" ><img width="398" height="334" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/aa929bfe9c21b425a5c3ba07516d40c3.png" /><figcaption>1567836996218</figcaption></figure><h3>R2+1D</h3>
+<p>[ offical video model zoo (caffe2) ] <a href="https://github.com/facebookresearch/VMZ">https://github.com/facebookresearch/VMZ</a></p><p>[ github PyTorch] <a href="https://github.com/leftthomas/R2Plus1D-C3D">https://github.com/leftthomas/R2Plus1D-C3D</a></p><figure style="flex: 49.527186761229316" ><img width="419" height="423" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d9b208e0c8fd89040655af70eee8f95c.png" /><figcaption>Figure 2</figcaption></figure><h3>R3DCNN</h3>
+<p>[NVIDIA]<a href="https://research.nvidia.com/sites/default/files/publications/NVIDIA_R3DCNN_cvpr2016.pdf">https://research.nvidia.com/sites/default/files/publications/NVIDIA_R3DCNN_cvpr2016.pdf</a></p><p>[tensorflow ]<a href="https://github.com/breadbread1984/R3DCNN">https://github.com/breadbread1984/R3DCNN</a></p><p>[tensorflow ] <a href="https://github.com/kilsenp/R3DCNN-tensorflow">https://github.com/kilsenp/R3DCNN-tensorflow</a></p><p>architecture: C3D + RNN</p><h3>TSN</h3>
+<p>[github caffe ] <a href="https://github.com/yjxiong/temporal-segment-networks">https://github.com/yjxiong/temporal-segment-networks</a></p><p>[ caffe opensource ] <a href="https://github.com/yjxiong/caffe">https://github.com/yjxiong/caffe</a></p><p>[Paper] <a href="https://arxiv.org/pdf/1608.00859.pdf">https://arxiv.org/pdf/1608.00859.pdf</a></p><figure style="flex: 87.5" ><img width="1393" height="796" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/03c5b5d0c76ff8ac3419831b8c213d31.png" /><figcaption>1568038064174</figcaption></figure><h3>I3D</h3>
+<p>Architecture: Inception base</p><p>[git keras ] <a href="https://github.com/OanaIgnat/i3d_keras">https://github.com/OanaIgnat/i3d_keras</a></p><p>[Paper ] <a href="https://arxiv.org/pdf/1705.07750.pdf">https://arxiv.org/pdf/1705.07750.pdf</a></p><figure style="flex: 118.86792452830188" ><img width="2016" height="848" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/69f472dba62bd4c9c900fd5fad1f8aeb.png" /><figcaption>1568037268584</figcaption></figure><figure style="flex: 97.72946859903382" ><img width="2023" height="1035" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/45c870c31d512a5092a0aff42829b21c.png" /><figcaption>1568037351528</figcaption></figure>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/-/">#-</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/3/">#3</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/D/">#D</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/-/">#-</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/C/">#C</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/N/">#N</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/N/">#N</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/schedule/">论文后续安排</a>
+        <p class="yue">action recognition后续工作安排</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
