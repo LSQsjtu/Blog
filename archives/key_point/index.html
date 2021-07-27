@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/24e81a2cd3e3a35ffdc7312fbf6b4219.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/3e70e7934c206b8d48da6f2de7093741.json"
         }
     </script>
     
@@ -132,7 +132,7 @@ var _hmt = _hmt || [];
 <p>使用交叉熵，获得比KL-loss更高的准确度，原因是temperature不好确定</p><p>mutual learning 使用多个学生网络</p><figure style="flex: 91.98250728862973" ><img width="631" height="343" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d467e9d6ba401d7fcb9e8fc3e7a0bc2c.png" /><figcaption>image-20210723101729283</figcaption></figure><p>解决的问题，将没有标注的skeleton data用于学生网络的训练，增强了数据集的可用性，（可不可以直接用teacher 网络的输出作为ground truth，这样的准确率等于0.86*0.86=0.7396）mutual learning 74.2差不多</p><p>利用了缺失标签的信息才是它的长处</p><ol start="4">
 <li><strong>Graph distillation for action detection with privileged modalities</strong></li>
 </ol>
-<p>解决问题：source domain大部分信息没有利用到</p>
+<p>解决问题：source domain大部分信息没有利用到</p><p>human parsing:人体部分的颜色标注</p><p>前面层低级语义信息可以共享</p><p>1*1卷积：局部卷积，信息充分融合</p><p>训练方式，数据集</p><p>会议更新的比较快</p><p>bilstm：帧顺着输一次，倒着输一次，可以得到后面的信息</p><p>LSTM学习到后面的隐变量</p><p>HDM51 dataloader</p>
             </div>
         </article>
         <div id="ga-tags">
