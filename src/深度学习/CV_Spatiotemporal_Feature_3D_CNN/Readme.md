@@ -1,4 +1,4 @@
-```
+---
 layout: post
 title: github阅读
 slug: github HMDB51总结
@@ -8,9 +8,11 @@ author: 刘胜琪
 categories: 
   - 默认分类
 tags: 
-	-3D-CNN
+  -3D-CNN
 excerpt: HMDB51数据集
-```
+---
+
+
 
 ##  3D-CNN Method
 
