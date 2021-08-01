@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/a23a1b76cdf1a4c932d5d876575f07e1.json"
+        }
+    </script>
+    
+<title>docker使用 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="docker使用" />
+<meta property="og:title" content="docker使用 - 我的个人博客" />
+<meta property="og:description" content="docker使用" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/docker%E4%BD%BF%E7%94%A8/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-30T00:00:00-00.00" />
+<meta name="twitter:title" content="docker使用 - 我的个人博客" />
+<meta name="twitter:description" content="docker使用" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">docker使用</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-07-30
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>docker使用</strong></p><p>命令：</p><div class="highlight"><pre><span></span>docker run -it ubuntu /bin/bash
+</pre></div>
+<p>参数说明：</p><ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
+<li><strong>ubuntu</strong>: ubuntu 镜像。</li>
+<li><strong>/bin/bash</strong>：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。</li>
+</ul>
+<p>要退出终端，直接输入 <strong>exit</strong>:</p><h3>启动已停止运行的容器</h3>
+<p>查看所有的容器命令如下：</p>
+<pre><code>$ docker ps -a
+</code></pre>
+<figure style="flex: 1217.1052631578948" ><img width="1850" height="76" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/36bdc4d66eebe31fcf823d3af0a3bbd5.png" /></figure>使用 docker start 启动一个已停止的容器：
+<pre><code>$ docker start b750bbbcfd88 
+</code></pre>
+<figure style="flex: 848.3050847457627" ><img width="1001" height="59" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/da2e587fad6f121a93678c557f0a4ac4.png" /></figure><h3>后台运行</h3>
+<p>在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 <strong>-d</strong> 指定容器的运行模式。</p>
+<pre><code>$ docker run -itd --name ubuntu-test ubuntu /bin/bash
+</code></pre>
+<p>点击图片查看大图：</p><p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-run-d.png"><figure style="flex: 1322.5" ><img width="1587" height="60" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/4735f78c70d26c666ab5c85a11a97379.png" /></figure></a></p><p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-run-d2.png"><figure style="flex: 1151.9736842105262" ><img width="1751" height="76" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/2baa0f19820e31a07d4b9a8d0c8d5f54.png" /></figure></a></p><p><strong>注：</strong>加了 <strong>-d</strong> 参数默认不会进入容器，想要进入容器需要使用指令 <strong>docker exec</strong>（下面会介绍到）。</p><h3>停止一个容器</h3>
+<p>停止容器的命令如下：</p>
+<pre><code>$ docker stop &lt;容器 ID&gt;
+</code></pre>
+<figure style="flex: 910.0" ><img width="1001" height="55" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-stop-1.png" /><figcaption>img</figcaption></figure><p>停止的容器可以通过 docker restart 重启：</p>
+<pre><code>$ docker restart &lt;容器 ID&gt;
+</code></pre>
+<figure style="flex: 862.9310344827586" ><img width="1001" height="58" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-stop-2.png" /><figcaption>img</figcaption></figure><h3>进入容器</h3>
+<p>在使用 <strong>-d</strong> 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入：</p><ul>
+<li><strong>docker attach</strong></li>
+<li><strong>docker exec</strong>：推荐大家使用 docker exec 命令，因为此退出容器终端，不会导致容器的停止。</li>
+</ul>
+<p><strong>attach 命令</strong></p><p>下面演示了使用 docker attach 命令。</p>
+<pre><code>$ docker attach 1e560fca3906 
+</code></pre>
+<p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-attach.png"><figure style="flex: 232.69230769230768" ><img width="1573" height="338" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-attach.png" /><figcaption>img</figcaption></figure></a></p><p><strong>注意：</strong> 如果从这个容器退出，会导致容器的停止。</p><p><strong>exec 命令</strong></p><p>下面演示了使用 docker exec 命令。</p>
+<pre><code>docker exec -it 243c32535da7 /bin/bash
+</code></pre>
+<p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-exec.png"><figure style="flex: 247.64150943396226" ><img width="1575" height="318" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-exec.png" /><figcaption>img</figcaption></figure></a></p><p><strong>注意：</strong> 如果从这个容器退出，容器不会停止，这就是为什么推荐大家使用 <strong>docker exec</strong> 的原因。</p><p>更多参数说明请使用 <strong>docker exec --help</strong> 命令查看。</p><h3>导出和导入容器</h3>
+<p><strong>导出容器</strong></p><p>如果要导出本地某个容器，可以使用 <strong>docker export</strong> 命令。</p>
+<pre><code>$ docker export 1e560fca3906 &gt; ubuntu.tar
+</code></pre>
+<p>导出容器 1e560fca3906 快照到本地文件 ubuntu.tar。</p><p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-export.png"><figure style="flex: 280.7142857142857" ><img width="1572" height="280" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-export.png" /><figcaption>img</figcaption></figure></a></p><p>这样将导出容器快照到本地文件。</p><p><strong>导入容器快照</strong></p><p>可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1:</p>
+<pre><code>$ cat docker/ubuntu.tar | docker import - test/ubuntu:v1
+</code></pre>
+<p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-import.png"><figure style="flex: 232.36607142857142" ><img width="1041" height="224" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-import.png" /><figcaption>img</figcaption></figure></a></p><p>此外，也可以通过指定 URL 或者某个目录来导入，例如：</p>
+<pre><code>$ docker import http://example.com/exampleimage.tgz example/imagerepo
+</code></pre>
+<h3>删除容器</h3>
+<p>删除容器使用 <strong>docker rm</strong> 命令：</p>
+<pre><code>$ docker rm -f 1e560fca3906
+</code></pre>
+<p><a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-container-rmi.png"><figure style="flex: 247.16981132075472" ><img width="1572" height="318" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-container-rmi.png" /><figcaption>img</figcaption></figure></a></p><p>下面的命令可以清理掉所有处于终止状态的容器。</p><p>$ docker container prune</p><div class="highlight"><pre><span></span>nvidia-docker run -it --name<span class="o">=</span>容器名 -v 宿主机目录:/容器内目录 -p 自定义端口号（此处假定为23333）:22 ufoym/deepo bash
+</pre></div>
+<p>镜像ufoym/deepo</p><p>-v是实现目录挂载，关于目录挂载，-p是端口映射，映射成功后可以直接通过映射后的端口访问docker。</p><p>举例：</p><p>假设服务器IP地址为** . ** . *. ***，端口映射为 -p 23333:22  -p 23334:6006  -p 23335:8888，其中8888是jupyter的默认端口，6006是tensorboard的默认端口。则可</p><ul>
+<li>通过IP地址的23333端口可以直接访问docker，无需通过22端口进入服务器，再在服务器中进入docker</li>
+<li>同一网段内的任意浏览器都可以通过 IP地址:6006来访问tensorboard（前提：已开启tensorboard服务）</li>
+<li>同一网段内的任意浏览器都可以通过 IP地址:8888来访问jupyter（前提：已开启jupyter服务）</li>
+</ul>
+<p>如果要在主机（计算机或VM）与使用Deepo的容器之间共享数据和配置，请使用-v选项，例如</p><div class="highlight"><pre><span></span>nvidia-docker run -it -v /host/data:/data -v /host/config:/config ufoym/deepo bash
+</pre></div>
+<p>某些框架（例如PyTorch）使用共享内存在进程之间共享数据，因此如果使用多处理，容器运行的默认共享内存段大小是不够的，您应该使用<code>--ipc=host</code>或<code>--shm-size</code>命令行选项增加共享内存大小到<code>nvidia-docker run</code>。</p><div class="highlight"><pre><span></span>nvidia-docker run -it --ipc<span class="o">=</span>host ufoym/deepo bash
+</pre></div>
+<h4>共享内存参数</h4>
+<p>shmmax:共享内存段最大尺寸(字节)
+shmmni:共享内存段最大数目
+shmall:系统共享内存最大尺寸(页), 对32位系统，一页(page)等于4KB
+shmmin:共享内存段最小尺寸(字节)
+shmseg:每进程最大共享内存段数量</p>
+<pre><code>--ipc=&quot;MODE&quot; : Set the IPC mode for the container
+
+&quot;shareable&quot;: Own private IPC namespace, with a possibility to share it with other containers.
+
+&quot;host&quot;: Use the host system’s IPC namespace.
+</code></pre>
+<p>使用host将IPC名称空间公开给控制了主机的攻击者。使用shareable，只能在容器内部访问IPC名称空间，其中可能包含任何攻击。 host模式的存在是为了允许容器与其主机之间进行协作。</p><p>--shm-size命令：设置共享内存，shared memory</p>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/Linux/">#Linux</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/pytorch%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">pytorch常见错误总结</a>
+        <p class="yue">总结</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
