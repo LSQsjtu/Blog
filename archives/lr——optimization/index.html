@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/eb4a9f2698a33d9e591848392dc7858e.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/fbbba590fef666eeb81f3096c709ee25.json"
         }
     </script>
     
@@ -164,7 +164,23 @@ var _hmt = _hmt || [];
   <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
-
+<p><strong>三、源码解读</strong></p><p>有两种定义optimizer的方法：</p><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span>    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">parameters</span><span class="p">()},</span>    
+                       <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">}],</span> 
+                      <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+<p>如果是第一种定义的方法：在这个初始化方法中，会把这些参数先改造成<code>[{'params': Alexnet.parameters()}]</code>这样的一个长度为1的list。然后对这个list进行加工，添加上defaults中的参数，如果我们使用Alexnet来做一个例子的话，就是下边这个样子：</p><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">Alexnet</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">])</span>
+<span class="c1"># [dict_keys([&#39;params&#39;, &#39;lr&#39;, &#39;betas&#39;, &#39;eps&#39;, &#39;weight_decay&#39;, &#39;amsgrad&#39;])]</span>
+</pre></div>
+<p>如果是第二种定义的方法：因为传入的本身就是dict的形式，所以会继续对他进行加工，添加上后边的参数，我们直接看疗效：</p><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span>    
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="n">Alexnet</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">parameters</span><span class="p">()},</span>   
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="n">Alexnet</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">}],</span>
+     <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">])</span>
+<span class="c1"># [dict_keys([&#39;params&#39;, &#39;lr&#39;, &#39;momentum&#39;, &#39;dampening&#39;, &#39;weight_decay&#39;, &#39;nesterov&#39;]), dict_keys([&#39;params&#39;, &#39;lr&#39;, &#39;momentum&#39;, &#39;dampening&#39;, &#39;weight_decay&#39;, &#39;nesterov&#39;])]</span>
+</pre></div>
+<p>这次的list变成了两个元素，而且每个元素的组成和使用Adam也不一样了，这很明显，因为不同的优化器需要的参数不同嘛~(关于不同层的lr不同的设置这里给出官网<a href="https://pytorch.org/docs/1.1.0/optim.html#per-parameter-options">链接</a>)</p><p>但是两者是相似的，就是每个元素都有params和lr，这就够了。</p><p>pytorch1.1+是先训练，然后再<code>step()</code></p><p>scheduler会调用<code>get_lr()</code>重载函数更换lr</p>
             </div>
         </article>
         <div id="ga-tags">
