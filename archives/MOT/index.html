@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/ffb2bd6118b0c9b6f7d2aad10c00f7a7.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/cbfaeacc930e3a96d1a1035028b7d1da.json"
         }
     </script>
     
@@ -903,7 +903,12 @@ var _hmt = _hmt || [];
 
 <span class="n">Rendering</span> <span class="n">curves</span>
 </pre></div>
-<p>NDS的全称是Navigation Data Standard（导航数据标准）</p><p>MOT评价标准：</p><figure style="flex: 35.714285714285715" ><img width="720" height="1008" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/9c151553c4216046ad06347ea45f8be7.jpg" /><figcaption>img</figcaption></figure><p>使用test生成prediction.json文件之后再用于tracking</p>
+<p>NDS的全称是Navigation Data Standard（导航数据标准）</p><p>MOT评价标准：</p><figure style="flex: 35.714285714285715" ><img width="720" height="1008" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/9c151553c4216046ad06347ea45f8be7.jpg" /><figcaption>img</figcaption></figure><p>使用test生成prediction.json文件之后再用于tracking</p><ol>
+<li><p>backbone：主干网络，经常使用的是resnet VGG等，而不是我们自己设计的网络，因为这些网络已经证明了在分类等问题上的特征提取能力是很强的。在用这些网络作为backbone的时候，都是直接加载官方已经训练好的模型参数，后面接着我们自己的网络。让网络的这两个部分同时进行训练，因为加载的backbone模型已经具有提取特征的能力了，在我们的训练过程中，会对他进行微调，使得其更适合于我们自己的任务。</p></li>
+<li><p>head：是获取网络输出内容的网络，利用之前提取的特征，head利用这些特征，做出预测。</p></li>
+<li><p>neck:是放在backbone和head之间的，是为了更好的利用backbone提取的特征</p></li>
+</ol>
+
             </div>
         </article>
         <div id="ga-tags">
