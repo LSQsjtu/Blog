@@ -821,5 +821,5 @@ MOT评价标准：
 2. head：是获取网络输出内容的网络，利用之前提取的特征，head利用这些特征，做出预测。
 3. neck:是放在backbone和head之间的，是为了更好的利用backbone提取的特征
 
-
+主要生成文件为dbinfos_train_10sweeps_withvelo.pkl <-- GT database info files可是缺少了“coors”这个键值
 
