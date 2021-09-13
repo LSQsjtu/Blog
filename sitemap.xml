@@ -12,6 +12,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/face%20tracking/</loc>
+    <lastmod>2021-09-13</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/RAAR3DNet/</loc>
+    <lastmod>2021-09-12</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/3DMM/</loc>
     <lastmod>2021-09-10</lastmod>
     <changefreq>always</changefreq>

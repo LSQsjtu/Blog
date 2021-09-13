@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/314bbab752aa28f1373adeea6a097970.json"
+        }
+    </script>
+    
+<title>RAAR3DNet理解 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="RAAR3DNet手势识别" />
+<meta property="og:title" content="RAAR3DNet理解 - 我的个人博客" />
+<meta property="og:description" content="RAAR3DNet手势识别" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/RAAR3DNet/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-09-12T00:00:00-00.00" />
+<meta name="twitter:title" content="RAAR3DNet理解 - 我的个人博客" />
+<meta name="twitter:description" content="RAAR3DNet手势识别" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">RAAR3DNet理解</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-09-12
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p>Dynamic- Static Attention (DSA)生成heatmap，时序和空间上的attention。代码中为MaxPool3d_5a_2x2类</p><p>主要region attention</p><p><strong>a fast approximate rank pooling algorithm</strong>去学习图片累积的时间信息</p><p>DSA consists of the SAtt and DAtt sub-modules. SAtt highlights the hands/arms features via an online learnable Gaussian skeleton heatmap while DAtt captures the gesture motions via the proposed fast approximate rank pooling al- gorithm</p><p>将I3D中前两个inception module改为cell1，中间五个inception module改为cell2，最后两个改为cell3</p><p><em>a fast approximate rank pooling algorithm</em>（MaxPool3dSamePadding，3D池化）</p><img src="RAAR3DNet.assets/image-20210621165020409.png" alt="image-20210621165020409" style="zoom:50%;" />
+<p>rank pooling计算后面帧与前面帧的差距（feature）</p><figure style="flex: 196.6887417218543" ><img width="1188" height="302" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/fa203b61bddf5cd6fb85075be68881a9.png" /><figcaption>image-20210624161336372</figcaption></figure><img src="RAAR3DNet.assets/image-20210621165137037.png" alt="image-20210621165137037" style="zoom:50%;" />
+<p>$T=m-n+1$</p><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tensor_merge</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">arrrp</span> <span class="o">=</span> <span class="n">tensor_arr_rp</span><span class="p">(</span><span class="n">tensor_split</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1">#DI且m-n=slef._w,tensor_split(x)为每一帧的f</span>
+<span class="n">arrrp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bnrp</span><span class="p">(</span><span class="n">tensor_merge</span><span class="p">(</span><span class="n">arrrp</span><span class="p">)))</span> 
+<span class="n">arrrp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">size</span><span class="p">())</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="o">*</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tensor_split</span><span class="p">(</span><span class="n">arrrp</span><span class="p">),</span> <span class="n">tensor_split</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span> <span class="c1">#加1防止0 attention map，逐元素相乘</span>
+<span class="n">arrrp</span> <span class="o">=</span> <span class="p">[</span><span class="n">oneconv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tensor_split</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">arrrp</span><span class="p">)]</span><span class="c1">#attention和feature卷积 时间attention</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="nb">zip</span><span class="p">([</span><span class="n">iterable</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>  <span class="c1">#返回一个或多个迭代器;取最短的一个</span>
+</pre></div>
+<p><strong>:gmap:</strong> gaussian heat map</p><p><strong>HeatmapNet</strong> 产生热图</p><p><code># logits is batch X time X classes, which is what we want to work with</code></p><p><code>return logits.squeeze(), gmap3, (f1, f2, f3,f4, f5)</code></p><p>返回置信度，最终heat map，中间特征</p><img src="RAAR3DNet.assets/image-20210621212820360.png" alt="image-20210621212820360" style="zoom:50%;" />
+<p>heatmap获得</p><img src="RAAR3DNet.assets/image-20210621212901148.png" alt="image-20210621212901148" style="zoom: 67%;" />
+<p>guidance map做平均，通过均方差MSEloss学习heatmap net</p><figure style="flex: 254.82456140350877" ><img width="581" height="114" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/4ccda829c5669a7b934424708ac388c7.png" /><figcaption>image-20210624113034031</figcaption></figure><p>训练使用的数据集不一样？</p><figure style="flex: 129.79041916167665" ><img width="867" height="334" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/3428e5c200f6360538d1d31deda9bf9b.png" /><figcaption>image-20210624115213094</figcaption></figure><p>baseline中没有训练heatmap net</p>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/-/">#-</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%89%8B/">#手</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E5%8A%BF/">#势</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E8%AF%86/">#识</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E5%88%AB/">#别</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/Blog/archives/face%20tracking/">face tracking</a>
+        <p class="yue">项目学习</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/3DMM/">3DMM的3D人脸重建</a>
+        <p class="yue">重新开始一个新的项目</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
