@@ -69,3 +69,6 @@ tasks = [
 
 猜想输出为regression，height-above-ground，dimension，rotation，velocity，heat-map
 
+H,W为180
+
+batch_box_preds：tensor[(1, 32400, 9)]，32400=180*180，9=xs(1)+ys(1)+batch_hei(1)+batch_dim(3)+batch_vel(2)+batch_rot(1)
