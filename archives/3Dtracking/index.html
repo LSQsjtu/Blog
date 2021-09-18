@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/1aab9c1a7920e009cf5b2e442679fbdb.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/603f8e4710460ed39ae3405e6df25dc4.json"
         }
     </script>
     
@@ -124,7 +124,7 @@ var _hmt = _hmt || [];
     <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pedestrian&quot;</span><span class="p">,</span> <span class="s2">&quot;traffic_cone&quot;</span><span class="p">]),</span>
 <span class="p">]</span>
 </pre></div>
-<p>六种种类一个batch_size</p><p>猜想输出为regression，height-above-ground，dimension，rotation，velocity，heat-map</p>
+<p>六种种类一个batch_size</p><p>猜想输出为regression，height-above-ground，dimension，rotation，velocity，heat-map</p><p>H,W为180</p><p>batch_box_preds：tensor[(1, 32400, 9)]，32400=180*180，9=xs(1)+ys(1)+batch_hei(1)+batch_dim(3)+batch_vel(2)+batch_rot(1)</p>
             </div>
         </article>
         <div id="ga-tags">
