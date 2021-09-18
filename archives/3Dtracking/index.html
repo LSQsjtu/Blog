@@ -23,19 +23,20 @@
         }
     </script>
     
-<title>标签: 错 - 我的个人博客</title>
-<meta name="author" content="LSQ" />
-<meta name="description" content="记录生活美好" />
-<meta property="og:title" content="标签: 错 - 我的个人博客" />
-<meta property="og:description" content="记录生活美好" />
+<title>Centerpoint based 3D Tracking - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="项目学习" />
+<meta property="og:title" content="Centerpoint based 3D Tracking - 我的个人博客" />
+<meta property="og:description" content="项目学习" />
 <meta property="og:site_name" content="我的个人博客" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/Blog/tag/%E9%94%99/" />
-<meta property="og:image" content="我的个人博客" />
-<meta name="twitter:title" content="标签: 错 - 我的个人博客" />
-<meta name="twitter:description" content="记录生活美好" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/3Dtracking/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-09-17T00:00:00-00.00" />
+<meta name="twitter:title" content="Centerpoint based 3D Tracking - 我的个人博客" />
+<meta name="twitter:description" content="项目学习" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png" />
+<meta name="twitter:image" content="" />
 
 
     
@@ -98,27 +99,60 @@ var _hmt = _hmt || [];
             <div class="wrapper">
                 
 <main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Centerpoint based 3D Tracking</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-09-17
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>Centerpoint</strong></p><p>voxel网络结构和输出tensor形状</p><p>reader：type=&quot;VoxelFeatureExtractorV3&quot;,</p><p>输入torch.Size([110066, 10, 5])&quot;features&quot;， torch.Size([110066])&quot;num_voxels&quot;，输出torch.Size([82289, 5])</p><p>backbone：type=&quot;SpMiddleResNetFHD&quot;</p><p>输入torch.Size([82289, 5])，torch.Size([82345, 4]) coordinate，batch_size:1，data[input_shape]：[1440 1440   40]，输出x.shape：torch.Size([1, 256, 180, 180])，{'conv1': &lt;spconv.SparseConvTensor object at 0x7f8f56e68ef0&gt;, 'conv2': &lt;spconv.SparseConvTensor object at 0x7f8f56e68b70&gt;, 'conv3': &lt;spconv.SparseConvTensor object at 0x7f8f56e68f98&gt;, 'conv4': &lt;spconv.SparseConvTensor object at 0x7f8f56e68d30&gt;} voxel_feature</p><p>neck：type=&quot;RPN&quot;</p><p>输入x.shape：torch.Size([1, 256, 180, 180])，输出x.shape：torch.Size([1, 512, 180, 180])</p><p>bbox_head：type=&quot;CenterHead&quot;</p><p>输入x.shape：torch.Size([1, 512, 180, 180])，输出list为</p><p><strong>[</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])}</strong></p><p><strong>]</strong></p><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;car&quot;</span><span class="p">]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;truck&quot;</span><span class="p">,</span> <span class="s2">&quot;construction_vehicle&quot;</span><span class="p">]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bus&quot;</span><span class="p">,</span> <span class="s2">&quot;trailer&quot;</span><span class="p">]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;barrier&quot;</span><span class="p">]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;motorcycle&quot;</span><span class="p">,</span> <span class="s2">&quot;bicycle&quot;</span><span class="p">]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pedestrian&quot;</span><span class="p">,</span> <span class="s2">&quot;traffic_cone&quot;</span><span class="p">]),</span>
+<span class="p">]</span>
+</pre></div>
+<p>六种种类一个batch_size</p><p>猜想输出为regression，height-above-ground，dimension，rotation，velocity，heat-map</p>
+            </div>
+        </article>
+        <div id="ga-tags">
     
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
 
-<section id="ga-archive_list" class="ga-section" data-title="#错">
-    <ul>
-        
-        <li>
-            <h1><a target="_self" class="ga-highlight" href="/Blog/archives/pytorch%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">pytorch常见错误总结</a></h1>
-            <time class="ga-mono" datetime="2021-07-29T00:00:00-00.00">
-                2021-07-29
-            </time>
-        </li>
-        
-    </ul>
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/face%20tracking/">face tracking</a>
+        <p class="yue">项目学习</p>
+    </div>
+
 </section>
 
-<section class="ga-section ga-mono" id="ga-pager">
-    
-    <span>Page 1 of 1</span>
-    
-</section>
 
+    
 
 </main>
 
