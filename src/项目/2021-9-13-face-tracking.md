@@ -18,4 +18,4 @@ excerpt: 项目学习
 
 
 
-scp发送要填密码验证时不能使用nohup sh
+2D动漫脸的关键点手工标记，不用标记嘴巴和鼻子，用3D模型的2D投影去fitting，刚好取脸颊和眼睛的点去fitting
