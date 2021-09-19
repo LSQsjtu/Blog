@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/603f8e4710460ed39ae3405e6df25dc4.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/404d5633343b1255f95c16a5cda7c49e.json"
         }
     </script>
     
@@ -122,7 +122,7 @@ var _hmt = _hmt || [];
 <li><p>​	<strong>不启用 Batch Normalization 和 Dropout</strong></p><p>model.eval()是保证BN层能够用全部训练数据的均值和方差，即测试过程中要保证BN层的均值和方差不变。对于Dropout，model.eval()是利用到了所有网络连接，即不进行随机舍弃神经元</p><p>dropout层会让<em>所有的激活单元都通过</em>，而BN层会停止计算和更新mean和var，直接使用在训练阶段已经学出的<em>mean和var值</em></p></li>
 <li><p>在model(test)之前，需要加上model.eval()，否则的话，有输入数据，即使不训练，它也会改变权值。这是model中含有BN层和Dropout所带来的的性质。该模式不会影响各层的gradient计算行为，即gradient计算和存储与training模式一样，只是不进行反向传播（back probagation)。</p></li>
 </ul>
-<p><strong>model.eval()和with torch.no_grad()的区别</strong></p><p>with torch.no_grad()则主要是用于停止autograd模块的工作，以起到加速和节省显存的作用。它的作用是将该with语句包裹起来的部分停止梯度的更新，从而节省了GPU算力和显存，但是并不会影响dropout和BN层的行为</p><p>而model.eval()在不更新梯度的情况下会影响dropout和BN层的情况</p><p>以后调用model时提前声明模式</p>
+<p><strong>model.eval()和with torch.no_grad()的区别</strong></p><p>with torch.no_grad()则主要是用于停止autograd模块的工作，以起到加速和节省显存的作用。它的作用是将该with语句包裹起来的部分停止梯度的更新，从而节省了GPU算力和显存，但是并不会影响dropout和BN层的行为</p><p>而model.eval()在不更新梯度的情况下会影响dropout和BN层的情况</p><p>以后调用model时提前声明模式</p><p>__get_item__参数idx为对应data的序号</p>
             </div>
         </article>
         <div id="ga-tags">
