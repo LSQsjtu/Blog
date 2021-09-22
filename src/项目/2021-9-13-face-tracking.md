@@ -19,3 +19,7 @@ excerpt: 项目学习
 
 
 2D动漫脸的关键点手工标记，不用标记嘴巴和鼻子，用3D模型的2D投影去fitting，刚好取脸颊和眼睛的点去fitting
+
+
+
+设计两个网络，前面一个叫encoder，生成latent code再进入decoder，生成output
