@@ -107,3 +107,8 @@ data中point是10个lidar文件中的点拼接在一起，第一个文件读入�
 Sparse Convolution成功用于3D目标检测的网络，相比于3D Convolution，在运算速度和显存消耗中有巨大的优势。
 
 python前r表示禁止转义
+
+
+
+backbone中对于feature进行卷积，体素数减少，最后dense生成密集要求size的vector
+
