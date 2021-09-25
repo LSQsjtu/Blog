@@ -1,79 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Fri, 24 Sep 2021 13:46:38 +0806</lastBuildDate><pubDate>Fri, 24 Sep 2021 13:46:38 +0806</pubDate><item><title>docker使用</title><link>/Blog/archives/docker%E4%BD%BF%E7%94%A8/</link><description>&lt;p&gt;&lt;strong&gt;docker使用&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;命令：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker run -it ubuntu /bin/bash
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;参数说明：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;-i&lt;/strong&gt;: 交互式操作。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-t&lt;/strong&gt;: 终端。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ubuntu&lt;/strong&gt;: ubuntu 镜像。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;/bin/bash&lt;/strong&gt;：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;要退出终端，直接输入 &lt;strong&gt;exit&lt;/strong&gt;:&lt;/p&gt;&lt;h3&gt;启动已停止运行的容器&lt;/h3&gt;
-&lt;p&gt;查看所有的容器命令如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker ps -a
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure style="flex: 1217.1052631578948" &gt;&lt;img width="1850" height="76" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/36bdc4d66eebe31fcf823d3af0a3bbd5.png" /&gt;&lt;/figure&gt;使用 docker start 启动一个已停止的容器：
-&lt;pre&gt;&lt;code&gt;$ docker start b750bbbcfd88 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure style="flex: 848.3050847457627" &gt;&lt;img width="1001" height="59" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/da2e587fad6f121a93678c557f0a4ac4.png" /&gt;&lt;/figure&gt;&lt;h3&gt;后台运行&lt;/h3&gt;
-&lt;p&gt;在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 &lt;strong&gt;-d&lt;/strong&gt; 指定容器的运行模式。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker run -itd --name ubuntu-test ubuntu /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;点击图片查看大图：&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-run-d.png"&gt;&lt;figure style="flex: 1322.5" &gt;&lt;img width="1587" height="60" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/4735f78c70d26c666ab5c85a11a97379.png" /&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-run-d2.png"&gt;&lt;figure style="flex: 1151.9736842105262" &gt;&lt;img width="1751" height="76" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/2baa0f19820e31a07d4b9a8d0c8d5f54.png" /&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;加了 &lt;strong&gt;-d&lt;/strong&gt; 参数默认不会进入容器，想要进入容器需要使用指令 &lt;strong&gt;docker exec&lt;/strong&gt;（下面会介绍到）。&lt;/p&gt;&lt;h3&gt;停止一个容器&lt;/h3&gt;
-&lt;p&gt;停止容器的命令如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker stop &amp;lt;容器 ID&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure style="flex: 910.0" &gt;&lt;img width="1001" height="55" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-stop-1.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;停止的容器可以通过 docker restart 重启：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker restart &amp;lt;容器 ID&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure style="flex: 862.9310344827586" &gt;&lt;img width="1001" height="58" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-stop-2.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;h3&gt;进入容器&lt;/h3&gt;
-&lt;p&gt;在使用 &lt;strong&gt;-d&lt;/strong&gt; 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;docker attach&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;docker exec&lt;/strong&gt;：推荐大家使用 docker exec 命令，因为此退出容器终端，不会导致容器的停止。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;attach 命令&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;下面演示了使用 docker attach 命令。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker attach 1e560fca3906 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-attach.png"&gt;&lt;figure style="flex: 232.69230769230768" &gt;&lt;img width="1573" height="338" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-attach.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 如果从这个容器退出，会导致容器的停止。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;exec 命令&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;下面演示了使用 docker exec 命令。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker exec -it 243c32535da7 /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-exec.png"&gt;&lt;figure style="flex: 247.64150943396226" &gt;&lt;img width="1575" height="318" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-exec.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 如果从这个容器退出，容器不会停止，这就是为什么推荐大家使用 &lt;strong&gt;docker exec&lt;/strong&gt; 的原因。&lt;/p&gt;&lt;p&gt;更多参数说明请使用 &lt;strong&gt;docker exec --help&lt;/strong&gt; 命令查看。&lt;/p&gt;&lt;h3&gt;导出和导入容器&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;导出容器&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;如果要导出本地某个容器，可以使用 &lt;strong&gt;docker export&lt;/strong&gt; 命令。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker export 1e560fca3906 &amp;gt; ubuntu.tar
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;导出容器 1e560fca3906 快照到本地文件 ubuntu.tar。&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-export.png"&gt;&lt;figure style="flex: 280.7142857142857" &gt;&lt;img width="1572" height="280" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-export.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;这样将导出容器快照到本地文件。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;导入容器快照&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ cat docker/ubuntu.tar | docker import - test/ubuntu:v1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-import.png"&gt;&lt;figure style="flex: 232.36607142857142" &gt;&lt;img width="1041" height="224" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-import.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;此外，也可以通过指定 URL 或者某个目录来导入，例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker import http://example.com/exampleimage.tgz example/imagerepo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;删除容器&lt;/h3&gt;
-&lt;p&gt;删除容器使用 &lt;strong&gt;docker rm&lt;/strong&gt; 命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker rm -f 1e560fca3906
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://www.runoob.com/wp-content/uploads/2016/05/docker-container-rmi.png"&gt;&lt;figure style="flex: 247.16981132075472" &gt;&lt;img width="1572" height="318" src="https://www.runoob.com/wp-content/uploads/2016/05/docker-container-rmi.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;下面的命令可以清理掉所有处于终止状态的容器。&lt;/p&gt;&lt;p&gt;$ docker container prune&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nvidia-docker run -it --name&lt;span class="o"&gt;=&lt;/span&gt;容器名 -v 宿主机目录:/容器内目录 -p 自定义端口号（此处假定为23333）:22 ufoym/deepo bash
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;镜像ufoym/deepo&lt;/p&gt;&lt;p&gt;-v是实现目录挂载，关于目录挂载，-p是端口映射，映射成功后可以直接通过映射后的端口访问docker。&lt;/p&gt;&lt;p&gt;举例：&lt;/p&gt;&lt;p&gt;假设服务器IP地址为** . ** . *. ***，端口映射为 -p 23333:22  -p 23334:6006  -p 23335:8888，其中8888是jupyter的默认端口，6006是tensorboard的默认端口。则可&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;通过IP地址的23333端口可以直接访问docker，无需通过22端口进入服务器，再在服务器中进入docker&lt;/li&gt;
-&lt;li&gt;同一网段内的任意浏览器都可以通过 IP地址:6006来访问tensorboard（前提：已开启tensorboard服务）&lt;/li&gt;
-&lt;li&gt;同一网段内的任意浏览器都可以通过 IP地址:8888来访问jupyter（前提：已开启jupyter服务）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果要在主机（计算机或VM）与使用Deepo的容器之间共享数据和配置，请使用-v选项，例如&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nvidia-docker run -it -v /host/data:/data -v /host/config:/config ufoym/deepo bash
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;某些框架（例如PyTorch）使用共享内存在进程之间共享数据，因此如果使用多处理，容器运行的默认共享内存段大小是不够的，您应该使用&lt;code&gt;--ipc=host&lt;/code&gt;或&lt;code&gt;--shm-size&lt;/code&gt;命令行选项增加共享内存大小到&lt;code&gt;nvidia-docker run&lt;/code&gt;。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nvidia-docker run -it --ipc&lt;span class="o"&gt;=&lt;/span&gt;host ufoym/deepo bash
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;共享内存参数&lt;/h4&gt;
-&lt;p&gt;shmmax:共享内存段最大尺寸(字节)
-shmmni:共享内存段最大数目
-shmall:系统共享内存最大尺寸(页), 对32位系统，一页(page)等于4KB
-shmmin:共享内存段最小尺寸(字节)
-shmseg:每进程最大共享内存段数量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;--ipc=&amp;quot;MODE&amp;quot; : Set the IPC mode for the container
-
-&amp;quot;shareable&amp;quot;: Own private IPC namespace, with a possibility to share it with other containers.
-
-&amp;quot;host&amp;quot;: Use the host system’s IPC namespace.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;使用host将IPC名称空间公开给控制了主机的攻击者。使用shareable，只能在容器内部访问IPC名称空间，其中可能包含任何攻击。 host模式的存在是为了允许容器与其主机之间进行协作。&lt;/p&gt;&lt;p&gt;--shm-size命令：设置共享内存，shared memory&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/docker%E4%BD%BF%E7%94%A8/</guid><pubDate>Fri, 30 Jul 2021 00:00:00 +0806</pubDate></item><item><title>追踪基本知识</title><link>/Blog/archives/%E8%BF%BD%E8%B8%AA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/</link><description>&lt;p&gt;&lt;strong&gt;object detection&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Region Proposal Network，直接翻译是“&lt;strong&gt;区域生成网络&lt;/strong&gt;”，通俗讲是“筛选出可能会有目标的框”。其本质是基于滑窗的无类别object检测器，输入是任意尺度的图像，输出是一系列矩形候选区域。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;BEV(Bird's Eye View) Map&lt;/strong&gt;：bev视角，鸟瞰视角&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E8%BF%BD%E8%B8%AA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/</guid><pubDate>Sun, 01 Aug 2021 00:00:00 +0806</pubDate></item><item><title>CNN理解</title><link>/Blog/archives/CNN/</link><description>&lt;p&gt;&lt;strong&gt;CNN&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;卷积时channel 的意义：每个卷积核提取一个特征，多个卷积核提取多层特征&lt;/p&gt;&lt;hr /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Sat, 25 Sep 2021 06:10:00 +0806</lastBuildDate><pubDate>Sat, 25 Sep 2021 06:10:00 +0806</pubDate><item><title>CNN理解</title><link>/Blog/archives/CNN/</link><description>&lt;p&gt;&lt;strong&gt;CNN&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;卷积时channel 的意义：每个卷积核提取一个特征，多个卷积核提取多层特征&lt;/p&gt;&lt;hr /&gt;
 &lt;p&gt;事实上，当输入为图片或者feature map 时，池化层、非线性激活层、Batch Normalization 等层的输出也可以称作feature map 。卷积神经网络中，非全连接层、输出层以外的几乎所有层的输出都可以称作feature map 。&lt;/p&gt;&lt;hr /&gt;
 &lt;p&gt;填充：为了让输入尺寸不变，填充，卷积核大小减一&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;valid 填充：&lt;/p&gt;&lt;p&gt;不使用零来填充输入，卷积核只允许访问那些图像中能完全包含整个核的位置。
@@ -996,4 +922,226 @@ shmseg:每进程最大共享内存段数量&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;汽车编号-时间-相机位置-时间戳.jpg
 汽车编号-时间-雷达位置-时间戳.pcd.bin
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;'num_point_features'：前4个是点feature，一般是xyz和反射率，后一个是时间信息&lt;/p&gt;&lt;p&gt;‘feature_map_size’：180*180&lt;/p&gt;&lt;p&gt;for i，data in enumerate（dataloader）：一次性导入num_work个batch&lt;/p&gt;&lt;p&gt;data中point是10个lidar文件中的点拼接在一起，第一个文件读入的为最大的时间戳&lt;/p&gt;&lt;p&gt;Sparse Convolution成功用于3D目标检测的网络，相比于3D Convolution，在运算速度和显存消耗中有巨大的优势。&lt;/p&gt;&lt;p&gt;python前r表示禁止转义&lt;/p&gt;&lt;p&gt;backbone中对于feature进行卷积，体素数减少，最后dense生成密集要求size的vector&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/3Dtracking/</guid><pubDate>Fri, 17 Sep 2021 00:00:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;'num_point_features'：前4个是点feature，一般是xyz和反射率，后一个是时间信息&lt;/p&gt;&lt;p&gt;‘feature_map_size’：180*180&lt;/p&gt;&lt;p&gt;for i，data in enumerate（dataloader）：一次性导入num_work个batch&lt;/p&gt;&lt;p&gt;data中point是10个lidar文件中的点拼接在一起，第一个文件读入的为最大的时间戳&lt;/p&gt;&lt;p&gt;Sparse Convolution成功用于3D目标检测的网络，相比于3D Convolution，在运算速度和显存消耗中有巨大的优势。&lt;/p&gt;&lt;p&gt;python前r表示禁止转义&lt;/p&gt;&lt;p&gt;backbone中对于feature进行卷积，体素数减少，最后dense生成密集要求size的vector&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/3Dtracking/</guid><pubDate>Fri, 17 Sep 2021 00:00:00 +0806</pubDate></item><item><title>TMUX</title><link>/Blog/archives/tmux/</link><description>&lt;p&gt;Tmux 是一个终端复用器（terminal multiplexer），非常有用，属于常用的开发工具。&lt;/p&gt;&lt;p&gt;本文介绍如何使用 Tmux。&lt;/p&gt;&lt;figure style="flex: 189.5734597156398" &gt;&lt;img width="800" height="211" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/972e868f94a5b045caa03b39b3afc524.png" /&gt;&lt;/figure&gt;&lt;h2&gt;一、Tmux 是什么？&lt;/h2&gt;
+&lt;h3&gt;1.1 会话与进程&lt;/h3&gt;
+&lt;p&gt;命令行的典型使用方式是，打开一个终端窗口（terminal window，以下简称&amp;quot;窗口&amp;quot;），在里面输入命令。&lt;strong&gt;用户与计算机的这种临时的交互，称为一次&amp;quot;会话&amp;quot;（session）&lt;/strong&gt; 。&lt;/p&gt;&lt;p&gt;会话的一个重要特点是，窗口与其中启动的进程是&lt;a href="https://www.ruanyifeng.com/blog/2016/02/linux-daemon.html"&gt;连在一起&lt;/a&gt;的。打开窗口，会话开始；关闭窗口，会话结束，会话内部的进程也会随之终止，不管有没有运行完。&lt;/p&gt;&lt;p&gt;一个典型的例子就是，&lt;a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html"&gt;SSH 登录&lt;/a&gt;远程计算机，打开一个远程窗口执行命令。这时，网络突然断线，再次登录的时候，是找不回上一次执行的命令的。因为上一次 SSH 会话已经终止了，里面的进程也随之消失了。&lt;/p&gt;&lt;p&gt;为了解决这个问题，会话与窗口可以&amp;quot;解绑&amp;quot;：窗口关闭时，会话并不终止，而是继续运行，等到以后需要的时候，再让会话&amp;quot;绑定&amp;quot;其他窗口。&lt;/p&gt;&lt;h3&gt;1.2 Tmux 的作用&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Tmux 就是会话与窗口的&amp;quot;解绑&amp;quot;工具，将它们彻底分离。&lt;/strong&gt;&lt;/p&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）它允许在单个窗口中，同时访问多个会话。这对于同时运行多个命令行程序很有用。&lt;/p&gt;&lt;p&gt;（2） 它可以让新窗口&amp;quot;接入&amp;quot;已经存在的会话。&lt;/p&gt;&lt;p&gt;（3）它允许每个会话有多个连接窗口，因此可以多人实时共享会话。&lt;/p&gt;&lt;p&gt;（4）它还支持窗口任意的垂直和水平拆分。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;类似的终端复用器还有 GNU Screen。Tmux 与它功能相似，但是更易用，也更强大。&lt;/p&gt;&lt;h2&gt;二、基本用法&lt;/h2&gt;
+&lt;h3&gt;2.1 安装&lt;/h3&gt;
+&lt;p&gt;Tmux 一般需要自己安装。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Ubuntu 或 Debian&lt;/span&gt;
+$ sudo apt-get install tmux
+
+&lt;span class="c1"&gt;# CentOS 或 Fedora&lt;/span&gt;
+$ sudo yum install tmux
+
+&lt;span class="c1"&gt;# Mac&lt;/span&gt;
+$ brew install tmux
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2.2 启动与退出&lt;/h3&gt;
+&lt;p&gt;安装完成后，键入&lt;code&gt;tmux&lt;/code&gt;命令，就进入了 Tmux 窗口。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。&lt;/p&gt;&lt;figure style="flex: 73.54709418837675" &gt;&lt;img width="734" height="499" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f0e37423c3e6dca5e272d768d23b039d.png" /&gt;&lt;/figure&gt;&lt;p&gt;按下&lt;code&gt;Ctrl+d&lt;/code&gt;或者显式输入&lt;code&gt;exit&lt;/code&gt;命令，就可以退出 Tmux 窗口。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2.3 前缀键&lt;/h3&gt;
+&lt;p&gt;Tmux 窗口有大量的快捷键。所有快捷键都要通过前缀键唤起。默认的前缀键是&lt;code&gt;Ctrl+b&lt;/code&gt;，即先按下&lt;code&gt;Ctrl+b&lt;/code&gt;，快捷键才会生效。&lt;/p&gt;&lt;p&gt;举例来说，帮助命令的快捷键是&lt;code&gt;Ctrl+b ?&lt;/code&gt;。它的用法是，在 Tmux 窗口中，先按下&lt;code&gt;Ctrl+b&lt;/code&gt;，再按下&lt;code&gt;?&lt;/code&gt;，就会显示帮助信息。&lt;/p&gt;&lt;p&gt;然后，按下 ESC 键或&lt;code&gt;q&lt;/code&gt;键，就可以退出帮助。&lt;/p&gt;&lt;h2&gt;三、会话管理&lt;/h2&gt;
+&lt;h3&gt;3.1 新建会话&lt;/h3&gt;
+&lt;p&gt;第一个启动的 Tmux 窗口，编号是&lt;code&gt;0&lt;/code&gt;，第二个窗口的编号是&lt;code&gt;1&lt;/code&gt;，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。&lt;/p&gt;&lt;p&gt;使用编号区分会话，不太直观，更好的方法是为会话起名。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux new -s &amp;lt;session-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面命令新建一个指定名称的会话。&lt;/p&gt;&lt;h3&gt;3.2 分离会话&lt;/h3&gt;
+&lt;p&gt;在 Tmux 窗口中，按下&lt;code&gt;Ctrl+b d&lt;/code&gt;或者输入&lt;code&gt;tmux detach&lt;/code&gt;命令，就会将当前会话与窗口分离。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux detach
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。&lt;/p&gt;&lt;p&gt;&lt;code&gt;tmux ls&lt;/code&gt;命令可以查看当前所有的 Tmux 会话。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux ls
+&lt;span class="c1"&gt;# or&lt;/span&gt;
+$ tmux list-session
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.3 接入会话&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux attach&lt;/code&gt;命令用于重新接入某个已存在的会话。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
+$ tmux attach -t &lt;span class="m"&gt;0&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
+$ tmux attach -t &amp;lt;session-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.4 杀死会话&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux kill-session&lt;/code&gt;命令用于杀死某个会话。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
+$ tmux kill-session -t &lt;span class="m"&gt;0&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
+$ tmux kill-session -t &amp;lt;session-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.5 切换会话&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux switch&lt;/code&gt;命令用于切换会话。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
+$ tmux switch -t &lt;span class="m"&gt;0&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
+$ tmux switch -t &amp;lt;session-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.6 重命名会话&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux rename-session&lt;/code&gt;命令用于重命名会话。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux rename-session -t &lt;span class="m"&gt;0&lt;/span&gt; &amp;lt;new-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面命令将0号会话重命名。&lt;/p&gt;&lt;h3&gt;3.7 会话快捷键&lt;/h3&gt;
+&lt;p&gt;下面是一些会话相关的快捷键。&lt;/p&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b d&lt;/code&gt;：分离当前会话。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b s&lt;/code&gt;：列出所有会话。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b $&lt;/code&gt;：重命名当前会话。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;四、最简操作流程&lt;/h2&gt;
+&lt;p&gt;综上所述，以下是 Tmux 的最简操作流程。&lt;/p&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;新建会话&lt;code&gt;tmux new -s my_session&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;在 Tmux 窗口运行所需的程序。&lt;/li&gt;
+&lt;li&gt;按下快捷键&lt;code&gt;Ctrl+b d&lt;/code&gt;将会话分离。&lt;/li&gt;
+&lt;li&gt;下次使用时，重新连接到会话&lt;code&gt;tmux attach-session -t my_session&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;五、窗格操作&lt;/h2&gt;
+&lt;p&gt;Tmux 可以将窗口分成多个窗格（pane），每个窗格运行不同的命令。以下命令都是在 Tmux 窗口中执行。&lt;/p&gt;&lt;h3&gt;5.1 划分窗格&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux split-window&lt;/code&gt;命令用来划分窗格。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 划分上下两个窗格&lt;/span&gt;
+$ tmux split-window
+
+&lt;span class="c1"&gt;# 划分左右两个窗格&lt;/span&gt;
+$ tmux split-window -h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;figure style="flex: 80.74245939675174" &gt;&lt;img width="696" height="431" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/96766a56a4f500583b4be7b348b93fbb.jpg" /&gt;&lt;/figure&gt;&lt;h3&gt;5.2 移动光标&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux select-pane&lt;/code&gt;命令用来移动光标位置。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 光标切换到上方窗格&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -U
+
+&lt;span class="c1"&gt;# 光标切换到下方窗格&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -D
+
+&lt;span class="c1"&gt;# 光标切换到左边窗格&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -L
+
+&lt;span class="c1"&gt;# 光标切换到右边窗格&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -R
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;5.3 交换窗格位置&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux swap-pane&lt;/code&gt;命令用来交换窗格位置。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 当前窗格上移&lt;/span&gt;
+$ tmux swap-pane -U
+
+&lt;span class="c1"&gt;# 当前窗格下移&lt;/span&gt;
+$ tmux swap-pane -D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;5.4 窗格快捷键&lt;/h3&gt;
+&lt;p&gt;下面是一些窗格操作的快捷键。&lt;/p&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b %&lt;/code&gt;：划分左右两个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b &amp;quot;&lt;/code&gt;：划分上下两个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b &amp;lt;arrow key&amp;gt;&lt;/code&gt;：光标切换到其他窗格。&lt;code&gt;&amp;lt;arrow key&amp;gt;&lt;/code&gt;是指向要切换到的窗格的方向键，比如切换到下方窗格，就按方向键&lt;code&gt;↓&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b ;&lt;/code&gt;：光标切换到上一个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b o&lt;/code&gt;：光标切换到下一个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b {&lt;/code&gt;：当前窗格与上一个窗格交换位置。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b }&lt;/code&gt;：当前窗格与下一个窗格交换位置。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b Ctrl+o&lt;/code&gt;：所有窗格向前移动一个位置，第一个窗格变成最后一个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b Alt+o&lt;/code&gt;：所有窗格向后移动一个位置，最后一个窗格变成第一个窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b x&lt;/code&gt;：关闭当前窗格。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b !&lt;/code&gt;：将当前窗格拆分为一个独立窗口。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b z&lt;/code&gt;：当前窗格全屏显示，再使用一次会变回原来大小。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b Ctrl+&amp;lt;arrow key&amp;gt;&lt;/code&gt;：按箭头方向调整窗格大小。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b q&lt;/code&gt;：显示窗格编号。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;六、窗口管理&lt;/h2&gt;
+&lt;p&gt;除了将一个窗口划分成多个窗格，Tmux 也允许新建多个窗口。&lt;/p&gt;&lt;h3&gt;6.1 新建窗口&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux new-window&lt;/code&gt;命令用来创建新窗口。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux new-window
+
+&lt;span class="c1"&gt;# 新建一个指定名称的窗口&lt;/span&gt;
+$ tmux new-window -n &amp;lt;window-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;6.2 切换窗口&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux select-window&lt;/code&gt;命令用来切换窗口。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 切换到指定编号的窗口&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-window -t &amp;lt;window-number&amp;gt;
+
+&lt;span class="c1"&gt;# 切换到指定名称的窗口&lt;/span&gt;
+$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-window -t &amp;lt;window-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;6.3 重命名窗口&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tmux rename-window&lt;/code&gt;命令用于为当前窗口起名（或重命名）。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux rename-window &amp;lt;new-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;6.4 窗口快捷键&lt;/h3&gt;
+&lt;p&gt;下面是一些窗口操作的快捷键。&lt;/p&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b c&lt;/code&gt;：创建一个新窗口，状态栏会显示多个窗口的信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b p&lt;/code&gt;：切换到上一个窗口（按照状态栏上的顺序）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b n&lt;/code&gt;：切换到下一个窗口。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b &amp;lt;number&amp;gt;&lt;/code&gt;：切换到指定编号的窗口，其中的&lt;code&gt;&amp;lt;number&amp;gt;&lt;/code&gt;是状态栏上的窗口编号。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b w&lt;/code&gt;：从列表中选择窗口。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+b ,&lt;/code&gt;：窗口重命名。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;七、其他命令&lt;/h2&gt;
+&lt;p&gt;下面是一些其他命令。&lt;/p&gt;&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 列出所有快捷键，及其对应的 Tmux 命令&lt;/span&gt;
+$ tmux list-keys
+
+&lt;span class="c1"&gt;# 列出所有 Tmux 命令及其参数&lt;/span&gt;
+$ tmux list-commands
+
+&lt;span class="c1"&gt;# 列出当前所有 Tmux 会话的信息&lt;/span&gt;
+$ tmux info
+
+&lt;span class="c1"&gt;# 重新加载当前的 Tmux 配置&lt;/span&gt;
+$ tmux source-file ~/.tmux.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;八、参考链接&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"&gt;A Quick and Easy Guide to tmux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://danielmiessler.com/study/tmux/"&gt;Tactical tmux: The 10 Most Important Commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://linuxize.com/post/getting-started-with-tmux/"&gt;Getting started with Tmux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/tmux/</guid><pubDate>Sat, 25 Sep 2021 00:00:00 +0806</pubDate></item><item><title>后台和传输任务</title><link>/Blog/archives/%E5%90%8E%E5%8F%B0/</link><description>&lt;p&gt;&lt;strong&gt;后台任务&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;只要在命令的尾部加上符号&lt;code&gt;&amp;amp;&lt;/code&gt;，启动的进程就会成为&amp;quot;后台任务&amp;quot;&lt;/p&gt;&lt;p&gt;如果要让正在运行的&amp;quot;前台任务&amp;quot;变为&amp;quot;后台任务&amp;quot;，可以先按&lt;code&gt;ctrl + z&lt;/code&gt;，然后执行&lt;code&gt;bg&lt;/code&gt;命令（让最近一个暂停的&amp;quot;后台任务&amp;quot;继续执行）&lt;/p&gt;&lt;p&gt;&lt;strong&gt;SFTP&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;sftp user@ip&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  你要用sftp, 当然得登录到sftp服务器啊， 在linux的shell中执行上面的命令后， linux shell会提示用户输入密码， 我们就输入password吧。 这样就成功建立了sftp连接。
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;&lt;p&gt;help&lt;/p&gt;&lt;p&gt;建立连接后， linux shell中的$编程了sftp&amp;gt;,  这也对。 现在执行以下help, 可以看看sftp支持哪些命令。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;pwd和lpwd&lt;/p&gt;&lt;p&gt;pwd是看远端服务器的目录， 即sftp服务器默认的当前目录。  lpwd是看linux本地目录。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ls和lls&lt;/p&gt;&lt;p&gt;ls是看sftp服务器下当前目录下的东东， lls是看linux当前目录下的东东。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;put a.txt&lt;/p&gt;&lt;p&gt;这个是把linux当前目录下的a.txt文件上传到sftp服务器的当前目录下。&lt;/p&gt;&lt;figure style="flex: 271.9879518072289" &gt;&lt;img width="903" height="166" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/88742f8dc50eee3c01a6aef703bbd2d6.png" /&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;get b.txt&lt;/p&gt;&lt;p&gt;这个是把sftp服务器当前目录下的b.txt文件下载到linux当前目录下。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure style="flex: 277.1341463414634" &gt;&lt;img width="909" height="164" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/c5a88fd48ee4b823d9ae36dc72969a49.png" /&gt;&lt;/figure&gt;&lt;ol start="7"&gt;
+&lt;li&gt;&lt;p&gt;!command&lt;/p&gt;&lt;p&gt;这个是指在linux上执行command这个命令， 比如!ls是列举linux当前目录下的东东， !rm a.txt是删除linux当前目录下的a.txt文件。&lt;/p&gt;&lt;p&gt;这个命令非常非常有用， 因为在sftp&amp;gt; 后输入命令， 默认值针对sftp服务器的， 所以执行rm a.txt删除的是sftp服务器上的a.txt文件， 而非本地的linux上的a.txt文件。&lt;/p&gt;&lt;ol start="8"&gt;
+&lt;li&gt;&lt;p&gt;exit和quit&lt;/p&gt;&lt;p&gt;退出。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E5%90%8E%E5%8F%B0/</guid><pubDate>Sat, 25 Sep 2021 00:00:00 +0806</pubDate></item></channel></rss>

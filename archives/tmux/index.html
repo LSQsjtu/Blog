@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/cfd035bf3cfbc411fb030792277fd578.json"
+        }
+    </script>
+    
+<title>TMUX - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="tmux使用简介（转载自https://www.ruanyifeng.com/blog/2019/10/tmux.html）" />
+<meta property="og:title" content="TMUX - 我的个人博客" />
+<meta property="og:description" content="tmux使用简介（转载自https://www.ruanyifeng.com/blog/2019/10/tmux.html）" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/tmux/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-09-25T00:00:00-00.00" />
+<meta name="twitter:title" content="TMUX - 我的个人博客" />
+<meta name="twitter:description" content="tmux使用简介（转载自https://www.ruanyifeng.com/blog/2019/10/tmux.html）" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">TMUX</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-09-25
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p>Tmux 是一个终端复用器（terminal multiplexer），非常有用，属于常用的开发工具。</p><p>本文介绍如何使用 Tmux。</p><figure style="flex: 189.5734597156398" ><img width="800" height="211" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/972e868f94a5b045caa03b39b3afc524.png" /></figure><h2>一、Tmux 是什么？</h2>
+<h3>1.1 会话与进程</h3>
+<p>命令行的典型使用方式是，打开一个终端窗口（terminal window，以下简称&quot;窗口&quot;），在里面输入命令。<strong>用户与计算机的这种临时的交互，称为一次&quot;会话&quot;（session）</strong> 。</p><p>会话的一个重要特点是，窗口与其中启动的进程是<a href="https://www.ruanyifeng.com/blog/2016/02/linux-daemon.html">连在一起</a>的。打开窗口，会话开始；关闭窗口，会话结束，会话内部的进程也会随之终止，不管有没有运行完。</p><p>一个典型的例子就是，<a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH 登录</a>远程计算机，打开一个远程窗口执行命令。这时，网络突然断线，再次登录的时候，是找不回上一次执行的命令的。因为上一次 SSH 会话已经终止了，里面的进程也随之消失了。</p><p>为了解决这个问题，会话与窗口可以&quot;解绑&quot;：窗口关闭时，会话并不终止，而是继续运行，等到以后需要的时候，再让会话&quot;绑定&quot;其他窗口。</p><h3>1.2 Tmux 的作用</h3>
+<p><strong>Tmux 就是会话与窗口的&quot;解绑&quot;工具，将它们彻底分离。</strong></p><blockquote>
+<p>（1）它允许在单个窗口中，同时访问多个会话。这对于同时运行多个命令行程序很有用。</p><p>（2） 它可以让新窗口&quot;接入&quot;已经存在的会话。</p><p>（3）它允许每个会话有多个连接窗口，因此可以多人实时共享会话。</p><p>（4）它还支持窗口任意的垂直和水平拆分。</p></blockquote>
+<p>类似的终端复用器还有 GNU Screen。Tmux 与它功能相似，但是更易用，也更强大。</p><h2>二、基本用法</h2>
+<h3>2.1 安装</h3>
+<p>Tmux 一般需要自己安装。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># Ubuntu 或 Debian</span>
+$ sudo apt-get install tmux
+
+<span class="c1"># CentOS 或 Fedora</span>
+$ sudo yum install tmux
+
+<span class="c1"># Mac</span>
+$ brew install tmux
+</pre></div>
+</blockquote>
+<h3>2.2 启动与退出</h3>
+<p>安装完成后，键入<code>tmux</code>命令，就进入了 Tmux 窗口。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux
+</pre></div>
+</blockquote>
+<p>上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。</p><figure style="flex: 73.54709418837675" ><img width="734" height="499" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f0e37423c3e6dca5e272d768d23b039d.png" /></figure><p>按下<code>Ctrl+d</code>或者显式输入<code>exit</code>命令，就可以退出 Tmux 窗口。</p><blockquote>
+<div class="highlight"><pre><span></span>$ <span class="nb">exit</span>
+</pre></div>
+</blockquote>
+<h3>2.3 前缀键</h3>
+<p>Tmux 窗口有大量的快捷键。所有快捷键都要通过前缀键唤起。默认的前缀键是<code>Ctrl+b</code>，即先按下<code>Ctrl+b</code>，快捷键才会生效。</p><p>举例来说，帮助命令的快捷键是<code>Ctrl+b ?</code>。它的用法是，在 Tmux 窗口中，先按下<code>Ctrl+b</code>，再按下<code>?</code>，就会显示帮助信息。</p><p>然后，按下 ESC 键或<code>q</code>键，就可以退出帮助。</p><h2>三、会话管理</h2>
+<h3>3.1 新建会话</h3>
+<p>第一个启动的 Tmux 窗口，编号是<code>0</code>，第二个窗口的编号是<code>1</code>，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。</p><p>使用编号区分会话，不太直观，更好的方法是为会话起名。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux new -s &lt;session-name&gt;
+</pre></div>
+</blockquote>
+<p>上面命令新建一个指定名称的会话。</p><h3>3.2 分离会话</h3>
+<p>在 Tmux 窗口中，按下<code>Ctrl+b d</code>或者输入<code>tmux detach</code>命令，就会将当前会话与窗口分离。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux detach
+</pre></div>
+</blockquote>
+<p>上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p><p><code>tmux ls</code>命令可以查看当前所有的 Tmux 会话。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux ls
+<span class="c1"># or</span>
+$ tmux list-session
+</pre></div>
+</blockquote>
+<h3>3.3 接入会话</h3>
+<p><code>tmux attach</code>命令用于重新接入某个已存在的会话。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 使用会话编号</span>
+$ tmux attach -t <span class="m">0</span>
+
+<span class="c1"># 使用会话名称</span>
+$ tmux attach -t &lt;session-name&gt;
+</pre></div>
+</blockquote>
+<h3>3.4 杀死会话</h3>
+<p><code>tmux kill-session</code>命令用于杀死某个会话。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 使用会话编号</span>
+$ tmux kill-session -t <span class="m">0</span>
+
+<span class="c1"># 使用会话名称</span>
+$ tmux kill-session -t &lt;session-name&gt;
+</pre></div>
+</blockquote>
+<h3>3.5 切换会话</h3>
+<p><code>tmux switch</code>命令用于切换会话。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 使用会话编号</span>
+$ tmux switch -t <span class="m">0</span>
+
+<span class="c1"># 使用会话名称</span>
+$ tmux switch -t &lt;session-name&gt;
+</pre></div>
+</blockquote>
+<h3>3.6 重命名会话</h3>
+<p><code>tmux rename-session</code>命令用于重命名会话。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux rename-session -t <span class="m">0</span> &lt;new-name&gt;
+</pre></div>
+</blockquote>
+<p>上面命令将0号会话重命名。</p><h3>3.7 会话快捷键</h3>
+<p>下面是一些会话相关的快捷键。</p><blockquote>
+<ul>
+<li><code>Ctrl+b d</code>：分离当前会话。</li>
+<li><code>Ctrl+b s</code>：列出所有会话。</li>
+<li><code>Ctrl+b $</code>：重命名当前会话。</li>
+</ul>
+</blockquote>
+<h2>四、最简操作流程</h2>
+<p>综上所述，以下是 Tmux 的最简操作流程。</p><blockquote>
+<ol>
+<li>新建会话<code>tmux new -s my_session</code>。</li>
+<li>在 Tmux 窗口运行所需的程序。</li>
+<li>按下快捷键<code>Ctrl+b d</code>将会话分离。</li>
+<li>下次使用时，重新连接到会话<code>tmux attach-session -t my_session</code>。</li>
+</ol>
+</blockquote>
+<h2>五、窗格操作</h2>
+<p>Tmux 可以将窗口分成多个窗格（pane），每个窗格运行不同的命令。以下命令都是在 Tmux 窗口中执行。</p><h3>5.1 划分窗格</h3>
+<p><code>tmux split-window</code>命令用来划分窗格。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 划分上下两个窗格</span>
+$ tmux split-window
+
+<span class="c1"># 划分左右两个窗格</span>
+$ tmux split-window -h
+</pre></div>
+</blockquote>
+<figure style="flex: 80.74245939675174" ><img width="696" height="431" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/96766a56a4f500583b4be7b348b93fbb.jpg" /></figure><h3>5.2 移动光标</h3>
+<p><code>tmux select-pane</code>命令用来移动光标位置。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 光标切换到上方窗格</span>
+$ tmux <span class="k">select</span>-pane -U
+
+<span class="c1"># 光标切换到下方窗格</span>
+$ tmux <span class="k">select</span>-pane -D
+
+<span class="c1"># 光标切换到左边窗格</span>
+$ tmux <span class="k">select</span>-pane -L
+
+<span class="c1"># 光标切换到右边窗格</span>
+$ tmux <span class="k">select</span>-pane -R
+</pre></div>
+</blockquote>
+<h3>5.3 交换窗格位置</h3>
+<p><code>tmux swap-pane</code>命令用来交换窗格位置。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 当前窗格上移</span>
+$ tmux swap-pane -U
+
+<span class="c1"># 当前窗格下移</span>
+$ tmux swap-pane -D
+</pre></div>
+</blockquote>
+<h3>5.4 窗格快捷键</h3>
+<p>下面是一些窗格操作的快捷键。</p><blockquote>
+<ul>
+<li><code>Ctrl+b %</code>：划分左右两个窗格。</li>
+<li><code>Ctrl+b &quot;</code>：划分上下两个窗格。</li>
+<li><code>Ctrl+b &lt;arrow key&gt;</code>：光标切换到其他窗格。<code>&lt;arrow key&gt;</code>是指向要切换到的窗格的方向键，比如切换到下方窗格，就按方向键<code>↓</code>。</li>
+<li><code>Ctrl+b ;</code>：光标切换到上一个窗格。</li>
+<li><code>Ctrl+b o</code>：光标切换到下一个窗格。</li>
+<li><code>Ctrl+b {</code>：当前窗格与上一个窗格交换位置。</li>
+<li><code>Ctrl+b }</code>：当前窗格与下一个窗格交换位置。</li>
+<li><code>Ctrl+b Ctrl+o</code>：所有窗格向前移动一个位置，第一个窗格变成最后一个窗格。</li>
+<li><code>Ctrl+b Alt+o</code>：所有窗格向后移动一个位置，最后一个窗格变成第一个窗格。</li>
+<li><code>Ctrl+b x</code>：关闭当前窗格。</li>
+<li><code>Ctrl+b !</code>：将当前窗格拆分为一个独立窗口。</li>
+<li><code>Ctrl+b z</code>：当前窗格全屏显示，再使用一次会变回原来大小。</li>
+<li><code>Ctrl+b Ctrl+&lt;arrow key&gt;</code>：按箭头方向调整窗格大小。</li>
+<li><code>Ctrl+b q</code>：显示窗格编号。</li>
+</ul>
+</blockquote>
+<h2>六、窗口管理</h2>
+<p>除了将一个窗口划分成多个窗格，Tmux 也允许新建多个窗口。</p><h3>6.1 新建窗口</h3>
+<p><code>tmux new-window</code>命令用来创建新窗口。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux new-window
+
+<span class="c1"># 新建一个指定名称的窗口</span>
+$ tmux new-window -n &lt;window-name&gt;
+</pre></div>
+</blockquote>
+<h3>6.2 切换窗口</h3>
+<p><code>tmux select-window</code>命令用来切换窗口。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 切换到指定编号的窗口</span>
+$ tmux <span class="k">select</span>-window -t &lt;window-number&gt;
+
+<span class="c1"># 切换到指定名称的窗口</span>
+$ tmux <span class="k">select</span>-window -t &lt;window-name&gt;
+</pre></div>
+</blockquote>
+<h3>6.3 重命名窗口</h3>
+<p><code>tmux rename-window</code>命令用于为当前窗口起名（或重命名）。</p><blockquote>
+<div class="highlight"><pre><span></span>$ tmux rename-window &lt;new-name&gt;
+</pre></div>
+</blockquote>
+<h3>6.4 窗口快捷键</h3>
+<p>下面是一些窗口操作的快捷键。</p><blockquote>
+<ul>
+<li><code>Ctrl+b c</code>：创建一个新窗口，状态栏会显示多个窗口的信息。</li>
+<li><code>Ctrl+b p</code>：切换到上一个窗口（按照状态栏上的顺序）。</li>
+<li><code>Ctrl+b n</code>：切换到下一个窗口。</li>
+<li><code>Ctrl+b &lt;number&gt;</code>：切换到指定编号的窗口，其中的<code>&lt;number&gt;</code>是状态栏上的窗口编号。</li>
+<li><code>Ctrl+b w</code>：从列表中选择窗口。</li>
+<li><code>Ctrl+b ,</code>：窗口重命名。</li>
+</ul>
+</blockquote>
+<h2>七、其他命令</h2>
+<p>下面是一些其他命令。</p><blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># 列出所有快捷键，及其对应的 Tmux 命令</span>
+$ tmux list-keys
+
+<span class="c1"># 列出所有 Tmux 命令及其参数</span>
+$ tmux list-commands
+
+<span class="c1"># 列出当前所有 Tmux 会话的信息</span>
+$ tmux info
+
+<span class="c1"># 重新加载当前的 Tmux 配置</span>
+$ tmux source-file ~/.tmux.conf
+</pre></div>
+</blockquote>
+<h2>八、参考链接</h2>
+<ul>
+<li><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">A Quick and Easy Guide to tmux</a></li>
+<li><a href="https://danielmiessler.com/study/tmux/">Tactical tmux: The 10 Most Important Commands</a></li>
+<li><a href="https://linuxize.com/post/getting-started-with-tmux/">Getting started with Tmux</a></li>
+</ul>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/linux/">#linux</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/Blog/archives/%E5%90%8E%E5%8F%B0/">后台和传输任务</a>
+        <p class="yue">后台任务的启动</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/3Dtracking/">Centerpoint based 3D Tracking</a>
+        <p class="yue">项目学习</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>

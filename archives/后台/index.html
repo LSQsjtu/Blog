@@ -19,23 +19,24 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/8689fd365cfd83dcf1f487c3b73b439f.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/cfd035bf3cfbc411fb030792277fd578.json"
         }
     </script>
     
-<title>标签: 安排 - 我的个人博客</title>
-<meta name="author" content="LSQ" />
-<meta name="description" content="记录生活美好" />
-<meta property="og:title" content="标签: 安排 - 我的个人博客" />
-<meta property="og:description" content="记录生活美好" />
+<title>后台和传输任务 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="后台任务的启动" />
+<meta property="og:title" content="后台和传输任务 - 我的个人博客" />
+<meta property="og:description" content="后台任务的启动" />
 <meta property="og:site_name" content="我的个人博客" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/Blog/tag/%E5%AE%89%E6%8E%92/" />
-<meta property="og:image" content="我的个人博客" />
-<meta name="twitter:title" content="标签: 安排 - 我的个人博客" />
-<meta name="twitter:description" content="记录生活美好" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/%E5%90%8E%E5%8F%B0/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-09-25T00:00:00-00.00" />
+<meta name="twitter:title" content="后台和传输任务 - 我的个人博客" />
+<meta name="twitter:description" content="后台任务的启动" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png" />
+<meta name="twitter:image" content="" />
 
 
     
@@ -98,27 +99,71 @@ var _hmt = _hmt || [];
             <div class="wrapper">
                 
 <main>    
-    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">后台和传输任务</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-09-25
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>后台任务</strong></p><p>只要在命令的尾部加上符号<code>&amp;</code>，启动的进程就会成为&quot;后台任务&quot;</p><p>如果要让正在运行的&quot;前台任务&quot;变为&quot;后台任务&quot;，可以先按<code>ctrl + z</code>，然后执行<code>bg</code>命令（让最近一个暂停的&quot;后台任务&quot;继续执行）</p><p><strong>SFTP</strong></p><ol>
+<li><p>sftp user@ip</p>
+<pre><code>  你要用sftp, 当然得登录到sftp服务器啊， 在linux的shell中执行上面的命令后， linux shell会提示用户输入密码， 我们就输入password吧。 这样就成功建立了sftp连接。
 
-<section id="ga-archive_list" class="ga-section" data-title="#安排">
-    <ul>
-        
-        <li>
-            <h1><a target="_self" class="ga-highlight" href="/Blog/archives/schedule/">论文后续安排</a></h1>
-            <time class="ga-mono" datetime="2021-07-23T00:00:00-00.00">
-                2021-07-23
-            </time>
-        </li>
-        
-    </ul>
+</code></pre>
+<ol start="2">
+<li><p>help</p><p>建立连接后， linux shell中的$编程了sftp&gt;,  这也对。 现在执行以下help, 可以看看sftp支持哪些命令。</p></li>
+<li><p>pwd和lpwd</p><p>pwd是看远端服务器的目录， 即sftp服务器默认的当前目录。  lpwd是看linux本地目录。</p></li>
+<li><p>ls和lls</p><p>ls是看sftp服务器下当前目录下的东东， lls是看linux当前目录下的东东。</p></li>
+<li><p>put a.txt</p><p>这个是把linux当前目录下的a.txt文件上传到sftp服务器的当前目录下。</p><figure style="flex: 271.9879518072289" ><img width="903" height="166" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/88742f8dc50eee3c01a6aef703bbd2d6.png" /></figure></li>
+<li><p>get b.txt</p><p>这个是把sftp服务器当前目录下的b.txt文件下载到linux当前目录下。</p></li>
+</ol>
+</li>
+</ol>
+<figure style="flex: 277.1341463414634" ><img width="909" height="164" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/c5a88fd48ee4b823d9ae36dc72969a49.png" /></figure><ol start="7">
+<li><p>!command</p><p>这个是指在linux上执行command这个命令， 比如!ls是列举linux当前目录下的东东， !rm a.txt是删除linux当前目录下的a.txt文件。</p><p>这个命令非常非常有用， 因为在sftp&gt; 后输入命令， 默认值针对sftp服务器的， 所以执行rm a.txt删除的是sftp服务器上的a.txt文件， 而非本地的linux上的a.txt文件。</p><ol start="8">
+<li><p>exit和quit</p><p>退出。</p></li>
+</ol>
+</li>
+</ol>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/linux/">#linux</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/tmux/">TMUX</a>
+        <p class="yue">tmux使用简介（转载自https://www.ruanyifeng.com/blog/2019/10/tmux.html）</p>
+    </div>
+
 </section>
 
-<section class="ga-section ga-mono" id="ga-pager">
-    
-    <span>Page 1 of 1</span>
-    
-</section>
 
+    
 
 </main>
 
