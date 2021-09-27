@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f13a2b0fb851e1f422e2b96aa1fc3bcb.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/4d255bf664b3564ca5c7fd0e842142d3.json"
         }
     </script>
     
@@ -115,7 +115,7 @@ var _hmt = _hmt || [];
                 
             </span>
             <div class="ga-content_body">
-                <p><strong>Centerpoint</strong></p><p>voxel网络结构和输出tensor形状</p><p>reader：type=&quot;VoxelFeatureExtractorV3&quot;,取平均</p><p>输入torch.Size([体素数, 10, 5])&quot;features&quot;， torch.Size([体素数])&quot;num_voxels&quot;，输出torch.Size([体素数, 5])input_features</p><p>backbone：type=&quot;SpMiddleResNetFHD&quot;</p><p>输入torch.Size([体素数, 5])，torch.Size([体素数, 4]) coordinate[0,位置坐标]，batch_size:1，data[input_shape]：[1440 1440   40]，输出x.shape：torch.Size([1, 256, 180, 180])，{'conv1': &lt;spconv.SparseConvTensor object at 0x7f8f56e68ef0&gt;, 'conv2': &lt;spconv.SparseConvTensor object at 0x7f8f56e68b70&gt;, 'conv3': &lt;spconv.SparseConvTensor object at 0x7f8f56e68f98&gt;, 'conv4': &lt;spconv.SparseConvTensor object at 0x7f8f56e68d30&gt;} voxel_feature</p><p>neck：type=&quot;RPN&quot;</p><p>输入x.shape：torch.Size([1, 256, 180, 180])，输出x.shape：torch.Size([1, 512, 180, 180])</p><p>bbox_head：type=&quot;CenterHead&quot;</p><p>输入x.shape：torch.Size([1, 512, 180, 180])，输出list为</p><p><strong>[</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])}</strong></p><p><strong>]</strong></p><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+                <p><strong>Centerpoint</strong></p><p>voxel网络结构和输出tensor形状</p><p>reader：type=&quot;VoxelFeatureExtractorV3&quot;,取平均</p><p>输入torch.Size([体素数, 10, 5])&quot;features&quot;， torch.Size([体素数])&quot;num_voxels&quot;，输出torch.Size([体素数, 5])input_features</p><p>backbone：type=&quot;SpMiddleResNetFHD&quot;</p><p>输入torch.Size([体素数, 5])，torch.Size([体素数, 4]) coordinate[0,位置坐标]，batch_size:1，data[input_shape]：[1440 1440   40]，输出x.shape：torch.Size([1, 256, 180, 180])，{'conv1': &lt;spconv.SparseConvTensor object at 0x7f8f56e68ef0&gt;, 'conv2': &lt;spconv.SparseConvTensor object at 0x7f8f56e68b70&gt;, 'conv3': &lt;spconv.SparseConvTensor object at 0x7f8f56e68f98&gt;, 'conv4': &lt;spconv.SparseConvTensor object at 0x7f8f56e68d30&gt;} voxel_feature</p><p>neck：type=&quot;RPN&quot;</p><p>输入x.shape：torch.Size([1, 256, 180, 180])，输出x.shape：torch.Size([1, 512, 180, 180])</p><p>bbox_head：type=&quot;CenterHead&quot;</p><p>输入x.shape：torch.Size([1, 512, 180, 180])，输出list为</p><p><strong>[</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 1, 180, 180])},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 1, 180, 180])},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},</strong></p><p><strong>{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])}</strong></p><p><strong>]</strong></p><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
     <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;car&quot;</span><span class="p">]),</span>
     <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;truck&quot;</span><span class="p">,</span> <span class="s2">&quot;construction_vehicle&quot;</span><span class="p">]),</span>
     <span class="nb">dict</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bus&quot;</span><span class="p">,</span> <span class="s2">&quot;trailer&quot;</span><span class="p">]),</span>
@@ -205,7 +205,45 @@ detect到的物体数
 1533201474.9492579 0.5004210472106934
 142
 </code></pre>
-
+<p>sample中为key_frame， A keyframe is a frame where the time-stamps of data from all the sensors should be very close to the time-stamp of the sample it points to.</p><p>最终output的构成['box3d_lidar']：shape（物体数，9），['scores']：（物体数），['label_preds']：（物体数）</p><p>修改只使用部分数据集</p><p>代码修改</p><p>文件：==mmdetection3d/tools/data_converter/nuscenes_converter.py==</p><p>函数：==_fill_trainval_infos==</p><div class="highlight"><pre><span></span><span class="c1">#update for part1_dataset     </span>
+<span class="c1"># for sample in mmcv.track_iter_progress(nusc.sample):     for sample in mmcv.track_iter_progress(nusc.sample[0:3376]):</span>
+</pre></div>
+<p>数据处理</p><div class="highlight"><pre><span></span><span class="c1"># 官方 </span>
+<span class="n">python</span> <span class="n">tools</span><span class="o">/</span><span class="n">create_data</span><span class="o">.</span><span class="n">py</span> <span class="n">nuscenes</span> <span class="o">--</span><span class="n">root</span><span class="o">-</span><span class="n">path</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">nuscenes</span> <span class="o">--</span><span class="n">out</span><span class="o">-</span><span class="nb">dir</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">nuscenes</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">tag</span> <span class="n">nuscenes</span>
+</pre></div>
+<p>至此，数据处理部分完成</p><p>（三）训练评价</p><p>这里以CenterPoint举例【单GPU】</p><p>训练</p><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">tools</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="n">configs</span><span class="o">/</span><span class="n">centerpoint</span><span class="o">/</span><span class="n">centerpoint_02pillar_second_secfpn_4x8_cyclic_20e_nus</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+<p>评价</p><blockquote>
+<ul>
+<li>out: 存储预测结果  -</li>
+<li>eval: 调用nuscenes官方评价方法NuScenesEval，因此仅包含Part1部分数据集，会导致报错。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">tools</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="n">configs</span><span class="o">/</span><span class="n">centerpoint</span><span class="o">/</span><span class="n">centerpoint_02pillar_second_secfpn_4x8_cyclic_20e_nus</span><span class="o">.</span><span class="n">py</span> <span class="n">work_dir</span><span class="o">/</span><span class="n">centerpoint</span><span class="o">/</span><span class="n">epoch_10</span><span class="o">.</span><span class="n">pth</span> <span class="o">--</span><span class="nb">eval</span> <span class="n">bbox</span> <span class="o">--</span><span class="n">out</span> <span class="o">./</span><span class="n">eval_results</span><span class="o">/</span><span class="n">centerpoint</span><span class="o">.</span><span class="n">pkl</span>
+</pre></div>
+<ol>
+<li><p>报错分析</p><div class="highlight"><pre><span></span><span class="n">File</span> <span class="s2">&quot;/home/ch511/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/nuscenes/eval/detection/evaluate.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">87</span><span class="p">,</span> <span class="ow">in</span> <span class="fm">__init__</span>     
+<span class="s2">&quot;Samples in split doesn&#39;t match samples in predictions.&quot;</span> <span class="ne">AssertionError</span><span class="p">:</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">split</span> <span class="n">doesn</span><span class="s1">&#39;t match samples in predictions.</span>
+</pre></div>
+<p>报错代码：</p><div class="highlight"><pre><span></span><span class="c1"># evaluate.py </span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pred_boxes</span><span class="o">.</span><span class="n">sample_tokens</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_boxes</span><span class="o">.</span><span class="n">sample_tokens</span><span class="p">),</span> \             <span class="s2">&quot;Samples in split doesn&#39;t match samples in predictions.&quot;</span>
+</pre></div>
+<p>报错原因：</p><blockquote>
+<p>self.pred_boxes.sample_tokens = 914，self.gt_boxes.sample_tokens = 6019</p></blockquote>
+<p>真实值包括整个数据集，但我仅使用了part1数据集.</p></li>
+<li><p>代码修改：</p><p>文件：/home/ch511/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/nuscenes/eval/common/loaders.py</p><p>函数：load_gt  sample_tokens_all = [s['token'] for s in nusc.sample[0:3376]]</p><blockquote>
+<p>修改源码并非一个好办法，最好是self.nusc仅包括part1部分，这样加载数据时也会更快一些。【待更新】</p></blockquote>
+<p>（四）其他说明</p><p>nusc = NuScenes(version=self.version, dataroot=self.data_root, verbose=False)</p><p>上述操作较为耗费时间，因此我把它存储为outputs/nusc/data_false_verbose.pkl文件。每次使用时读取即可。</p></li>
+</ol>
+<blockquote>
+<p>tools/single_inference.py is just for single lidar frame inference, got one frame data. output the detection results.</p></blockquote>
+<blockquote>
+<p>tools/multi_sweep_inference.py is for multi_sweep lidar data concat to inference.</p></blockquote>
+<p>notice that it will use ego vehicle odometry infos, because it concat the multi-frame lidar into one frame, just like the training process doing, it will get better performance if the DL model are trained on multi-sweeps (e.g. Nuscesnes dataset devekit usually using 10sweeps concate on training)</p><p>nuScenes lidar is 32 lanes and Waymo is 64 lanes. As nuScenes produces really sparse pointcloud, we use more frames to aggregate data. For Waymo, we can also do 5 or ten but it is slower.</p><ol>
+<li>Waymo has larger scene (150x150 vs. 100 x 100meter).</li>
+<li>The Waymo model's output stride is 1 compared to 4 in nuScenes. (Waymo with output stride 4 doesn't perform well)</li>
+</ol>
+<p>centerpoint+pointpainted将图片信息融合到点云中</p>
             </div>
         </article>
         <div id="ga-tags">
