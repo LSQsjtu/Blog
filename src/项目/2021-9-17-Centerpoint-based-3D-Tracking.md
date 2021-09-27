@@ -40,15 +40,15 @@ bbox_head：type="CenterHead"
 
 **[**
 
-**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},** 
+**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 1, 180, 180])},** 
 
-**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},** 
+**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},** 
 
-**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},**
+**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},**
 
- **{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},** 
+ **{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 1, 180, 180])},** 
 
-**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor()},** 
+**{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])},** 
 
 **{'reg': tensor([1, 2, 180, 180]), 'height': tensor([1, 1, 180, 180]), 'dim': tensor([1, 3, 180, 180]), 'rot': tensor([1, 2, 180, 180]), 'vel': tensor([1, 2, 180, 180]), 'hm': tensor([1, 2, 180, 180])}**
 
@@ -197,3 +197,117 @@ detect到的物体数
 142
 ```
 
+sample中为key_frame， A keyframe is a frame where the time-stamps of data from all the sensors should be very close to the time-stamp of the sample it points to.
+
+
+
+最终output的构成['box3d_lidar']：shape（物体数，9），['scores']：（物体数），['label_preds']：（物体数）
+
+
+
+修改只使用部分数据集
+
+ 代码修改 
+
+文件：==mmdetection3d/tools/data_converter/nuscenes_converter.py==
+
+函数：==_fill_trainval_infos==      
+
+```python
+#update for part1_dataset     
+# for sample in mmcv.track_iter_progress(nusc.sample):     for sample in mmcv.track_iter_progress(nusc.sample[0:3376]): 
+```
+
+
+
+数据处理 
+
+```python
+# 官方 
+python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag nuscenes 
+```
+
+至此，数据处理部分完成
+
+
+
+ （三）训练评价 
+
+这里以CenterPoint举例【单GPU】  
+
+训练 
+
+```python
+python tools/train.py configs/centerpoint/centerpoint_02pillar_second_secfpn_4x8_cyclic_20e_nus.py
+```
+
+
+
+评价 
+
+> - out: 存储预测结果  - 
+> - eval: 调用nuscenes官方评价方法NuScenesEval，因此仅包含Part1部分数据集，会导致报错。
+
+```python
+python tools/test.py configs/centerpoint/centerpoint_02pillar_second_secfpn_4x8_cyclic_20e_nus.py work_dir/centerpoint/epoch_10.pth --eval bbox --out ./eval_results/centerpoint.pkl 
+```
+
+
+
+1. 报错分析
+
+   ```python
+   File "/home/ch511/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/nuscenes/eval/detection/evaluate.py", line 87, in __init__     
+   "Samples in split doesn't match samples in predictions." AssertionError: Samples in split doesn't match samples in predictions.
+   ```
+
+
+   报错代码：  
+
+   ```python
+   # evaluate.py 
+   assert set(self.pred_boxes.sample_tokens) == set(self.gt_boxes.sample_tokens), \             "Samples in split doesn't match samples in predictions."
+   ```
+
+    报错原因： 
+
+   > self.pred_boxes.sample_tokens = 914，self.gt_boxes.sample_tokens = 6019  
+
+   真实值包括整个数据集，但我仅使用了part1数据集.
+
+ 2. 代码修改： 
+
+    文件：/home/ch511/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/nuscenes/eval/common/loaders.py 
+
+    函数：load_gt  sample_tokens_all = [s['token'] for s in nusc.sample[0:3376]] 
+
+    > 修改源码并非一个好办法，最好是self.nusc仅包括part1部分，这样加载数据时也会更快一些。【待更新】  
+
+    （四）其他说明 
+
+    nusc = NuScenes(version=self.version, dataroot=self.data_root, verbose=False) 
+
+    上述操作较为耗费时间，因此我把它存储为outputs/nusc/data_false_verbose.pkl文件。每次使用时读取即可。
+
+
+
+> tools/single_inference.py is just for single lidar frame inference, got one frame data. output the detection results.
+
+
+
+> tools/multi_sweep_inference.py is for multi_sweep lidar data concat to inference.
+
+notice that it will use ego vehicle odometry infos, because it concat the multi-frame lidar into one frame, just like the training process doing, it will get better performance if the DL model are trained on multi-sweeps (e.g. Nuscesnes dataset devekit usually using 10sweeps concate on training)
+
+
+
+nuScenes lidar is 32 lanes and Waymo is 64 lanes. As nuScenes produces really sparse pointcloud, we use more frames to aggregate data. For Waymo, we can also do 5 or ten but it is slower. 
+
+
+
+1. Waymo has larger scene (150x150 vs. 100 x 100meter). 
+2.  The Waymo model's output stride is 1 compared to 4 in nuScenes. (Waymo with output stride 4 doesn't perform well)
+
+
+
+centerpoint+pointpainted将图片信息融合到点云中
