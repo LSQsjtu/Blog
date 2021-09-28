@@ -1,40 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Mon, 27 Sep 2021 13:07:26 +0806</lastBuildDate><pubDate>Mon, 27 Sep 2021 13:07:26 +0806</pubDate><item><title>CNN理解</title><link>/Blog/archives/CNN/</link><description>&lt;p&gt;&lt;strong&gt;CNN&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;卷积时channel 的意义：每个卷积核提取一个特征，多个卷积核提取多层特征&lt;/p&gt;&lt;hr /&gt;
-&lt;p&gt;事实上，当输入为图片或者feature map 时，池化层、非线性激活层、Batch Normalization 等层的输出也可以称作feature map 。卷积神经网络中，非全连接层、输出层以外的几乎所有层的输出都可以称作feature map 。&lt;/p&gt;&lt;hr /&gt;
-&lt;p&gt;填充：为了让输入尺寸不变，填充，卷积核大小减一&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;valid 填充：&lt;/p&gt;&lt;p&gt;不使用零来填充输入，卷积核只允许访问那些图像中能完全包含整个核的位置。
- 在valid 填充模式中，输出的大小在每一层都缩减。假设核的宽度是 k，则每经过一层，输出的宽度减少了 k-1。
- 如果输入图像的宽度是m ，则网络经过了d 层之后，输出的宽度变成 m- d*（k-1） 。如果核的宽度 k非常大时，缩减非常明显。最终网络会缩减到 1 。&lt;/p&gt;&lt;figure style="flex: 87.5" &gt;&lt;img width="420" height="240" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/8b6e80ce37493c55e3ec94d93db836d9.png" /&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;same 填充：&lt;/p&gt;&lt;p&gt;使用足够的零来填充，使得输出和输入保持相同的大小。这是最常见的填充方式。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;在same填充模式中，网络可以包含任意多的卷积层，因为它不存在网络输出宽度缩减的问题。&lt;/li&gt;
-&lt;li&gt;same 填充模式的一个问题是：输入的边缘单元可能存在一定程度上的欠表达。
-因为==输入的中间区域的单元的影响域为全部的输出单元==，这意味着这些输入单元的信息会被很多输出单元所编码。而输入的边缘区域的单元的影响域只是输出单元的一部分，这意味着这些输入单元的信息仅仅被少量输出单元所编码。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure style="flex: 86.76470588235294" &gt;&lt;img width="590" height="340" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5fff5357026356e9a1415c3af7968767.png" /&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;full 填充：&lt;/p&gt;&lt;p&gt;在输入的两端各填充K-1个零，使得每个输入单元都恰好被卷积核访问k次。其中k为卷积核的宽度。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;它将从卷积核和输入开始相交的时候开始做卷积。&lt;/li&gt;
-&lt;li&gt;假设核的宽度是k  ，则每经过一层，输出的宽度增加了 k-1 。
-如果输入图像的宽度是 m ，则网络经过了 d 层之后，输出的宽度变成 m+d*(k-1) 。&lt;/li&gt;
-&lt;li&gt;它使得输入的边缘单元也能够得到充分表达。&lt;/li&gt;
-&lt;li&gt;full 填充的一个问题是：输出的边界单元依赖于更少的输入单元。
-这使得学习到的结果在输出的中间部分表现较好，边缘部分的表现较差。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure style="flex: 125.0" &gt;&lt;img width="900" height="360" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/850cc76eb7f422bd1d237e696d3d8f73.png" /&gt;&lt;/figure&gt;&lt;p&gt;每个图像的像素位置当作一个输入单元，只影响3个输出单元（核尺寸为3时）&lt;/p&gt;&lt;figure style="flex: 181.0" &gt;&lt;img width="905" height="250" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/cd93b7c4653c12a861afa1a7cbddc137.png" /&gt;&lt;/figure&gt;&lt;p&gt;池化对结果的影响：如果不关注特征出现的位置，采用具有平移特性的池化，只要出现这个特征就可以了，像人脸识别，而对于直线相交，需要判断位置&lt;/p&gt;&lt;p&gt;下图中，使用多个滤波器和一个最大池化单元可以学得旋转不变性。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;当输入旋转某个角度时，对应的滤波器被激活。&lt;/li&gt;
-&lt;li&gt;只要任意一个过滤器被激活，最大池化单元也相应被激活。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure style="flex: 176.58450704225353" &gt;&lt;img width="1003" height="284" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/782eefbf5954de5c6d1b763106a1572d.png" /&gt;&lt;/figure&gt;&lt;p&gt;全连接层转卷积层的优点：可以适应尺寸多变的输入图像。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;如果是全连接层，则全连接层的输入大小是固定的。&lt;/li&gt;
-&lt;li&gt;如果网络的输入尺寸发生变化，则该变化会传递到全连接层，而全连接层无法处理可变的输入。&lt;/li&gt;
-&lt;li&gt;如果是卷积层，则它对输入大小没有限制。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure style="flex: 119.31818181818181" &gt;&lt;img width="1050" height="440" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/9af77b8d628e228135af82a14593fc86.png" /&gt;&lt;/figure&gt;&lt;p&gt;全卷积网络&lt;code&gt;FCN&lt;/code&gt; 就是将&lt;code&gt;CNN&lt;/code&gt; 网络后面的几个全连接层替换为卷积层，它可以高效的对测试图像做滑动窗口式的预测。&lt;/p&gt;&lt;p&gt;小卷积层堆叠的缺点是：加深了网络的深度，容易引发梯度消失等问题，从而使得网络的训练难度加大。&lt;/p&gt;&lt;p&gt;​	图像中目标对象的大小可能差别很大。如下图所示，每张图像中狗占据区域都是不同的。由于信息区域的巨大差异，为卷积操作选择合适的卷积核尺寸就非常困难。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;信息分布更具有全局性的图像中，更倾向于使用较大的卷积核。如最最侧的图片所示。&lt;/li&gt;
-&lt;li&gt;信息分布更具有局部性的图像中，更倾向于使用较小的卷积核。如最右侧的图片所示。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure style="flex: 148.14814814814815" &gt;&lt;img width="720" height="243" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/1f685a29808dc8adc34faca390129c09.jpg" /&gt;&lt;/figure&gt;&lt;p&gt;Inception网络中大量使用多尺寸卷积核拼接在一起无论感兴趣的信息区域尺寸多大，总有一种尺度的卷积核与之匹配。这样总可以提取到合适的特征。&lt;/p&gt;&lt;figure style="flex: 77.5" &gt;&lt;img width="1147" height="740" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5d5e3f88ec5703de49d11742da4cb048.png" /&gt;&lt;/figure&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/CNN/</guid><pubDate>Fri, 06 Aug 2021 00:00:00 +0806</pubDate></item><item><title>MOT学习</title><link>/Blog/archives/MOT/</link><description>&lt;p&gt;&lt;strong&gt;log&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;val set的结果&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Loaded&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;work_dirs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tracking_result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Found&lt;/span&gt; &lt;span class="n"&gt;detections&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;6019&lt;/span&gt; &lt;span class="n"&gt;samples&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Tue, 28 Sep 2021 09:14:18 +0806</lastBuildDate><pubDate>Tue, 28 Sep 2021 09:14:18 +0806</pubDate><item><title>MOT学习</title><link>/Blog/archives/MOT/</link><description>&lt;p&gt;&lt;strong&gt;log&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;val set的结果&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Loaded&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;work_dirs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tracking_result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Found&lt;/span&gt; &lt;span class="n"&gt;detections&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;6019&lt;/span&gt; &lt;span class="n"&gt;samples&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;Loading&lt;/span&gt; &lt;span class="n"&gt;annotations&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nuScenes&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;trainval&lt;/span&gt;
 &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%|&lt;/span&gt;&lt;span class="err"&gt;██████████████████████████████████████████████████████████████████████████████████████████████████████&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;6019&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6019&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;409.08&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;Loaded&lt;/span&gt; &lt;span class="n"&gt;ground&lt;/span&gt; &lt;span class="n"&gt;truth&lt;/span&gt; &lt;span class="n"&gt;annotations&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;6019&lt;/span&gt; &lt;span class="n"&gt;samples&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
@@ -1254,4 +1219,13 @@ $ tmux source-file ~/.tmux.conf
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E5%90%8E%E5%8F%B0/</guid><pubDate>Sat, 25 Sep 2021 00:00:00 +0806</pubDate></item></channel></rss>
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E5%90%8E%E5%8F%B0/</guid><pubDate>Sat, 25 Sep 2021 00:00:00 +0806</pubDate></item><item><title>电类重点行业专场招聘会</title><link>/Blog/archives/%E7%94%B5%E7%B1%BB%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E4%B8%93%E5%9C%BA%E6%8B%9B%E8%81%98%E4%BC%9A/</link><description>&lt;p&gt;&lt;strong&gt;重点行业专场招聘会&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 109.96563573883161" &gt;&lt;img width="1920" height="873" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b23a218246009b9e64eed46b779b0ac2.png" /&gt;&lt;/figure&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;中国科学院沈阳自动化研究所&lt;/p&gt;&lt;p&gt;想了解的研究所的生活：分团队，分项目，分各种各样的方向。一种是基础的理论研究（&lt;strong&gt;发论文&lt;/strong&gt;），另外一个方向是国家重点工程项目（&lt;strong&gt;会有实地的项目测试&lt;/strong&gt;）&lt;/p&gt;&lt;p&gt;读研在国科大读半年学，读博的在中科大读一年，之后参与项目，项目时间相对和职工一样，有对应的节假日，论文要求发表数量比高校少，日常生活补贴多（国家+研究所+导师）博士能够有5、6千每个月&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;广州海格通信集团股份有限公司&lt;/p&gt;&lt;p&gt;算法岗硕士起招，其他岗位本科（知乎风评不好），主要岗位多在广州，压抑性的体验&lt;/p&gt;&lt;figure style="flex: 37.5" &gt;&lt;img width="3000" height="4000" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/6ca08501a33481588d82b20e2b4556b8.png" /&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;浪潮集团&lt;/p&gt;&lt;blockquote&gt;
+&lt;p&gt;AI岗的话还是要自己多积累项目经验，建议考研之后再就业
+问的问题更专业一点，CNN，RNN，DNN（从来没有接触过）。有的公司使用的是tensorflow，问你卷积层常使用多大3&lt;em&gt;3还是什么的，基础知识还是要多了解研究，关注代码技术和经验（&lt;/em&gt;&lt;em&gt;对于letcode和计算机体系结构要求基础&lt;/em&gt;*）&lt;/p&gt;&lt;p&gt;先去大厂实习，京东和字节&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上海航天八院808研究所&lt;/p&gt;&lt;p&gt;工作和高校类似，但压力会更大一点，时间节点压力大。晋升公平，看你的贡献程度。上面就看你的机遇和国家体制的固化限制&lt;/p&gt;&lt;p&gt;能否参与项目看你以前的研究背景，通过了就可以前往参与研究&lt;/p&gt;&lt;p&gt;研究生起招。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E7%94%B5%E7%B1%BB%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E4%B8%93%E5%9C%BA%E6%8B%9B%E8%81%98%E4%BC%9A/</guid><pubDate>Tue, 28 Sep 2021 00:00:00 +0806</pubDate></item></channel></rss>
