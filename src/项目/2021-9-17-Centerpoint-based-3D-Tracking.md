@@ -311,3 +311,9 @@ nuScenes lidar is 32 lanes and Waymo is 64 lanes. As nuScenes produces really sp
 
 
 centerpoint+pointpainted将图片信息融合到点云中
+
+选择nsweep=1可以只使用samples中的图片
+
+
+
+只使用trainval01的数据集时容易因为token找不到无法寻找数据（不建议修改json文件）
