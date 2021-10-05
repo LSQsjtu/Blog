@@ -363,3 +363,6 @@ centerpoint+pointpainted将图片信息融合到点云中
 
 ![](2021-9-17-Centerpoint-based-3D-Tracking.assets/image-20211002152538601-16331595402201.png)
 
+
+
+Linear一般初始化为正态分布，bias初始化为0
