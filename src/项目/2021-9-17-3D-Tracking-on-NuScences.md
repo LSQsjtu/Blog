@@ -21,3 +21,7 @@ Focal Loss 就是一个解决**分类问题中类别不平衡、分类难度差�
 
 
 ​	Cameras provide a dense and rich visual signal that helps to localize even distant objects. LiDAR provide a sparse signal in 3D space.
+
+
+
+给跟踪结果打上ID标签，后通过坐标获取相对应的真值
