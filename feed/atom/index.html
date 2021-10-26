@@ -1,216 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2021-10-26T11:47:11.298875+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/tmux/</id><title>TMUX</title><updated>2021-10-26T11:47:11.299391+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;Tmux 是一个终端复用器（terminal multiplexer），非常有用，属于常用的开发工具。&lt;/p&gt;&lt;p&gt;本文介绍如何使用 Tmux。&lt;/p&gt;&lt;figure style="flex: 189.5734597156398" &gt;&lt;img width="800" height="211" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/972e868f94a5b045caa03b39b3afc524.png" /&gt;&lt;/figure&gt;&lt;h2&gt;一、Tmux 是什么？&lt;/h2&gt;
-&lt;h3&gt;1.1 会话与进程&lt;/h3&gt;
-&lt;p&gt;命令行的典型使用方式是，打开一个终端窗口（terminal window，以下简称&amp;quot;窗口&amp;quot;），在里面输入命令。&lt;strong&gt;用户与计算机的这种临时的交互，称为一次&amp;quot;会话&amp;quot;（session）&lt;/strong&gt; 。&lt;/p&gt;&lt;p&gt;会话的一个重要特点是，窗口与其中启动的进程是&lt;a href="https://www.ruanyifeng.com/blog/2016/02/linux-daemon.html"&gt;连在一起&lt;/a&gt;的。打开窗口，会话开始；关闭窗口，会话结束，会话内部的进程也会随之终止，不管有没有运行完。&lt;/p&gt;&lt;p&gt;一个典型的例子就是，&lt;a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html"&gt;SSH 登录&lt;/a&gt;远程计算机，打开一个远程窗口执行命令。这时，网络突然断线，再次登录的时候，是找不回上一次执行的命令的。因为上一次 SSH 会话已经终止了，里面的进程也随之消失了。&lt;/p&gt;&lt;p&gt;为了解决这个问题，会话与窗口可以&amp;quot;解绑&amp;quot;：窗口关闭时，会话并不终止，而是继续运行，等到以后需要的时候，再让会话&amp;quot;绑定&amp;quot;其他窗口。&lt;/p&gt;&lt;h3&gt;1.2 Tmux 的作用&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Tmux 就是会话与窗口的&amp;quot;解绑&amp;quot;工具，将它们彻底分离。&lt;/strong&gt;&lt;/p&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）它允许在单个窗口中，同时访问多个会话。这对于同时运行多个命令行程序很有用。&lt;/p&gt;&lt;p&gt;（2） 它可以让新窗口&amp;quot;接入&amp;quot;已经存在的会话。&lt;/p&gt;&lt;p&gt;（3）它允许每个会话有多个连接窗口，因此可以多人实时共享会话。&lt;/p&gt;&lt;p&gt;（4）它还支持窗口任意的垂直和水平拆分。&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;类似的终端复用器还有 GNU Screen。Tmux 与它功能相似，但是更易用，也更强大。&lt;/p&gt;&lt;h2&gt;二、基本用法&lt;/h2&gt;
-&lt;h3&gt;2.1 安装&lt;/h3&gt;
-&lt;p&gt;Tmux 一般需要自己安装。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Ubuntu 或 Debian&lt;/span&gt;
-$ sudo apt-get install tmux
-
-&lt;span class="c1"&gt;# CentOS 或 Fedora&lt;/span&gt;
-$ sudo yum install tmux
-
-&lt;span class="c1"&gt;# Mac&lt;/span&gt;
-$ brew install tmux
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;2.2 启动与退出&lt;/h3&gt;
-&lt;p&gt;安装完成后，键入&lt;code&gt;tmux&lt;/code&gt;命令，就进入了 Tmux 窗口。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。&lt;/p&gt;&lt;figure style="flex: 73.54709418837675" &gt;&lt;img width="734" height="499" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f0e37423c3e6dca5e272d768d23b039d.png" /&gt;&lt;/figure&gt;&lt;p&gt;按下&lt;code&gt;Ctrl+d&lt;/code&gt;或者显式输入&lt;code&gt;exit&lt;/code&gt;命令，就可以退出 Tmux 窗口。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;exit&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;2.3 前缀键&lt;/h3&gt;
-&lt;p&gt;Tmux 窗口有大量的快捷键。所有快捷键都要通过前缀键唤起。默认的前缀键是&lt;code&gt;Ctrl+b&lt;/code&gt;，即先按下&lt;code&gt;Ctrl+b&lt;/code&gt;，快捷键才会生效。&lt;/p&gt;&lt;p&gt;举例来说，帮助命令的快捷键是&lt;code&gt;Ctrl+b ?&lt;/code&gt;。它的用法是，在 Tmux 窗口中，先按下&lt;code&gt;Ctrl+b&lt;/code&gt;，再按下&lt;code&gt;?&lt;/code&gt;，就会显示帮助信息。&lt;/p&gt;&lt;p&gt;然后，按下 ESC 键或&lt;code&gt;q&lt;/code&gt;键，就可以退出帮助。&lt;/p&gt;&lt;h2&gt;三、会话管理&lt;/h2&gt;
-&lt;h3&gt;3.1 新建会话&lt;/h3&gt;
-&lt;p&gt;第一个启动的 Tmux 窗口，编号是&lt;code&gt;0&lt;/code&gt;，第二个窗口的编号是&lt;code&gt;1&lt;/code&gt;，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。&lt;/p&gt;&lt;p&gt;使用编号区分会话，不太直观，更好的方法是为会话起名。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux new -s &amp;lt;session-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面命令新建一个指定名称的会话。&lt;/p&gt;&lt;h3&gt;3.2 分离会话&lt;/h3&gt;
-&lt;p&gt;在 Tmux 窗口中，按下&lt;code&gt;Ctrl+b d&lt;/code&gt;或者输入&lt;code&gt;tmux detach&lt;/code&gt;命令，就会将当前会话与窗口分离。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux detach
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。&lt;/p&gt;&lt;p&gt;&lt;code&gt;tmux ls&lt;/code&gt;命令可以查看当前所有的 Tmux 会话。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux ls
-&lt;span class="c1"&gt;# or&lt;/span&gt;
-$ tmux list-session
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;3.3 接入会话&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux attach&lt;/code&gt;命令用于重新接入某个已存在的会话。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
-$ tmux attach -t &lt;span class="m"&gt;0&lt;/span&gt;
-
-&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
-$ tmux attach -t &amp;lt;session-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;3.4 杀死会话&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux kill-session&lt;/code&gt;命令用于杀死某个会话。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
-$ tmux kill-session -t &lt;span class="m"&gt;0&lt;/span&gt;
-
-&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
-$ tmux kill-session -t &amp;lt;session-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;3.5 切换会话&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux switch&lt;/code&gt;命令用于切换会话。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 使用会话编号&lt;/span&gt;
-$ tmux switch -t &lt;span class="m"&gt;0&lt;/span&gt;
-
-&lt;span class="c1"&gt;# 使用会话名称&lt;/span&gt;
-$ tmux switch -t &amp;lt;session-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;3.6 重命名会话&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux rename-session&lt;/code&gt;命令用于重命名会话。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux rename-session -t &lt;span class="m"&gt;0&lt;/span&gt; &amp;lt;new-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面命令将0号会话重命名。&lt;/p&gt;&lt;h3&gt;3.7 会话快捷键&lt;/h3&gt;
-&lt;p&gt;下面是一些会话相关的快捷键。&lt;/p&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b d&lt;/code&gt;：分离当前会话。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b s&lt;/code&gt;：列出所有会话。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b $&lt;/code&gt;：重命名当前会话。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;四、最简操作流程&lt;/h2&gt;
-&lt;p&gt;综上所述，以下是 Tmux 的最简操作流程。&lt;/p&gt;&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;新建会话&lt;code&gt;tmux new -s my_session&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;在 Tmux 窗口运行所需的程序。&lt;/li&gt;
-&lt;li&gt;按下快捷键&lt;code&gt;Ctrl+b d&lt;/code&gt;将会话分离。&lt;/li&gt;
-&lt;li&gt;下次使用时，重新连接到会话&lt;code&gt;tmux attach-session -t my_session&lt;/code&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;五、窗格操作&lt;/h2&gt;
-&lt;p&gt;Tmux 可以将窗口分成多个窗格（pane），每个窗格运行不同的命令。以下命令都是在 Tmux 窗口中执行。&lt;/p&gt;&lt;h3&gt;5.1 划分窗格&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux split-window&lt;/code&gt;命令用来划分窗格。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 划分上下两个窗格&lt;/span&gt;
-$ tmux split-window
-
-&lt;span class="c1"&gt;# 划分左右两个窗格&lt;/span&gt;
-$ tmux split-window -h
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;figure style="flex: 80.74245939675174" &gt;&lt;img width="696" height="431" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/96766a56a4f500583b4be7b348b93fbb.jpg" /&gt;&lt;/figure&gt;&lt;h3&gt;5.2 移动光标&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux select-pane&lt;/code&gt;命令用来移动光标位置。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 光标切换到上方窗格&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -U
-
-&lt;span class="c1"&gt;# 光标切换到下方窗格&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -D
-
-&lt;span class="c1"&gt;# 光标切换到左边窗格&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -L
-
-&lt;span class="c1"&gt;# 光标切换到右边窗格&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-pane -R
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;5.3 交换窗格位置&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux swap-pane&lt;/code&gt;命令用来交换窗格位置。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 当前窗格上移&lt;/span&gt;
-$ tmux swap-pane -U
-
-&lt;span class="c1"&gt;# 当前窗格下移&lt;/span&gt;
-$ tmux swap-pane -D
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;5.4 窗格快捷键&lt;/h3&gt;
-&lt;p&gt;下面是一些窗格操作的快捷键。&lt;/p&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b %&lt;/code&gt;：划分左右两个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b &amp;quot;&lt;/code&gt;：划分上下两个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b &amp;lt;arrow key&amp;gt;&lt;/code&gt;：光标切换到其他窗格。&lt;code&gt;&amp;lt;arrow key&amp;gt;&lt;/code&gt;是指向要切换到的窗格的方向键，比如切换到下方窗格，就按方向键&lt;code&gt;↓&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b ;&lt;/code&gt;：光标切换到上一个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b o&lt;/code&gt;：光标切换到下一个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b {&lt;/code&gt;：当前窗格与上一个窗格交换位置。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b }&lt;/code&gt;：当前窗格与下一个窗格交换位置。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b Ctrl+o&lt;/code&gt;：所有窗格向前移动一个位置，第一个窗格变成最后一个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b Alt+o&lt;/code&gt;：所有窗格向后移动一个位置，最后一个窗格变成第一个窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b x&lt;/code&gt;：关闭当前窗格。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b !&lt;/code&gt;：将当前窗格拆分为一个独立窗口。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b z&lt;/code&gt;：当前窗格全屏显示，再使用一次会变回原来大小。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b Ctrl+&amp;lt;arrow key&amp;gt;&lt;/code&gt;：按箭头方向调整窗格大小。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b q&lt;/code&gt;：显示窗格编号。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;六、窗口管理&lt;/h2&gt;
-&lt;p&gt;除了将一个窗口划分成多个窗格，Tmux 也允许新建多个窗口。&lt;/p&gt;&lt;h3&gt;6.1 新建窗口&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux new-window&lt;/code&gt;命令用来创建新窗口。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux new-window
-
-&lt;span class="c1"&gt;# 新建一个指定名称的窗口&lt;/span&gt;
-$ tmux new-window -n &amp;lt;window-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;6.2 切换窗口&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux select-window&lt;/code&gt;命令用来切换窗口。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 切换到指定编号的窗口&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-window -t &amp;lt;window-number&amp;gt;
-
-&lt;span class="c1"&gt;# 切换到指定名称的窗口&lt;/span&gt;
-$ tmux &lt;span class="k"&gt;select&lt;/span&gt;-window -t &amp;lt;window-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;6.3 重命名窗口&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;tmux rename-window&lt;/code&gt;命令用于为当前窗口起名（或重命名）。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ tmux rename-window &amp;lt;new-name&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;6.4 窗口快捷键&lt;/h3&gt;
-&lt;p&gt;下面是一些窗口操作的快捷键。&lt;/p&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b c&lt;/code&gt;：创建一个新窗口，状态栏会显示多个窗口的信息。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b p&lt;/code&gt;：切换到上一个窗口（按照状态栏上的顺序）。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b n&lt;/code&gt;：切换到下一个窗口。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b &amp;lt;number&amp;gt;&lt;/code&gt;：切换到指定编号的窗口，其中的&lt;code&gt;&amp;lt;number&amp;gt;&lt;/code&gt;是状态栏上的窗口编号。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b w&lt;/code&gt;：从列表中选择窗口。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+b ,&lt;/code&gt;：窗口重命名。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;七、其他命令&lt;/h2&gt;
-&lt;p&gt;下面是一些其他命令。&lt;/p&gt;&lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 列出所有快捷键，及其对应的 Tmux 命令&lt;/span&gt;
-$ tmux list-keys
-
-&lt;span class="c1"&gt;# 列出所有 Tmux 命令及其参数&lt;/span&gt;
-$ tmux list-commands
-
-&lt;span class="c1"&gt;# 列出当前所有 Tmux 会话的信息&lt;/span&gt;
-$ tmux info
-
-&lt;span class="c1"&gt;# 重新加载当前的 Tmux 配置&lt;/span&gt;
-$ tmux source-file ~/.tmux.conf
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;八、参考链接&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"&gt;A Quick and Easy Guide to tmux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://danielmiessler.com/study/tmux/"&gt;Tactical tmux: The 10 Most Important Commands&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://linuxize.com/post/getting-started-with-tmux/"&gt;Getting started with Tmux&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content><link href="/Blog/archives/tmux/" rel="alternate"/><published>2021-09-25T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E7%94%B5%E7%B1%BB%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E4%B8%93%E5%9C%BA%E6%8B%9B%E8%81%98%E4%BC%9A/</id><title>电类重点行业专场招聘会</title><updated>2021-10-26T11:47:11.299343+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;重点行业专场招聘会&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 109.96563573883161" &gt;&lt;img width="1920" height="873" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b23a218246009b9e64eed46b779b0ac2.png" /&gt;&lt;/figure&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;中国科学院沈阳自动化研究所&lt;/p&gt;&lt;p&gt;想了解的研究所的生活：分团队，分项目，分各种各样的方向。一种是基础的理论研究（&lt;strong&gt;发论文&lt;/strong&gt;），另外一个方向是国家重点工程项目（&lt;strong&gt;会有实地的项目测试&lt;/strong&gt;）&lt;/p&gt;&lt;p&gt;读研在国科大读半年学，读博的在中科大读一年，之后参与项目，项目时间相对和职工一样，有对应的节假日，论文要求发表数量比高校少，日常生活补贴多（国家+研究所+导师）博士能够有5、6千每个月&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;广州海格通信集团股份有限公司&lt;/p&gt;&lt;p&gt;算法岗硕士起招，其他岗位本科（知乎风评不好），主要岗位多在广州，压抑性的体验&lt;/p&gt;&lt;figure style="flex: 37.5" &gt;&lt;img width="3000" height="4000" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/6ca08501a33481588d82b20e2b4556b8.png" /&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;浪潮集团&lt;/p&gt;&lt;blockquote&gt;
-&lt;p&gt;AI岗的话还是要自己多积累项目经验，建议考研之后再就业
-问的问题更专业一点，CNN，RNN，DNN（从来没有接触过）。有的公司使用的是tensorflow，问你卷积层常使用多大3&lt;em&gt;3还是什么的，基础知识还是要多了解研究，关注代码技术和经验（&lt;/em&gt;&lt;em&gt;对于letcode和计算机体系结构要求基础&lt;/em&gt;*）&lt;/p&gt;&lt;p&gt;先去大厂实习，京东和字节&lt;/p&gt;&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;上海航天八院808研究所&lt;/p&gt;&lt;p&gt;工作和高校类似，但压力会更大一点，时间节点压力大。晋升公平，看你的贡献程度。上面就看你的机遇和国家体制的固化限制&lt;/p&gt;&lt;p&gt;能否参与项目看你以前的研究背景，通过了就可以前往参与研究&lt;/p&gt;&lt;p&gt;研究生起招。&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content><link href="/Blog/archives/%E7%94%B5%E7%B1%BB%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E4%B8%93%E5%9C%BA%E6%8B%9B%E8%81%98%E4%BC%9A/" rel="alternate"/><published>2021-09-28T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E8%B6%85%E7%AE%97%E5%B9%B3%E5%8F%B0/</id><title>超算平台使用</title><updated>2021-10-26T11:47:11.299300+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;超算平台&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 35.45688545688546" &gt;&lt;img width="551" height="777" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0c38935ddf710089cd795b7042de8e9d.png" /&gt;&lt;/figure&gt;&lt;p&gt;记得注释掉#JSUB后的注释&lt;/p&gt;&lt;p&gt;source activate要在base环境下执行&lt;/p&gt;&lt;h1&gt;测试 分配 GPU&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2021-10-26T14:22:10.043903+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/%E8%B6%85%E7%AE%97%E5%B9%B3%E5%8F%B0/</id><title>超算平台使用</title><updated>2021-10-26T14:22:10.044379+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;超算平台&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 35.45688545688546" &gt;&lt;img width="551" height="777" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0c38935ddf710089cd795b7042de8e9d.png" /&gt;&lt;/figure&gt;&lt;p&gt;记得注释掉#JSUB后的注释&lt;/p&gt;&lt;p&gt;source activate要在base环境下执行&lt;/p&gt;&lt;h1&gt;测试 分配 GPU&lt;/h1&gt;
 &lt;h3&gt;测试脚本如下， 使用 torch.device('cuda+str(gpu_index)') 即可&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -262,7 +51,7 @@ cur_gpu:  NVIDIA A100-PCIE-40GB
 cur_gpu:  NVIDIA A100-PCIE-40GB
 cur_gpu:  NVIDIA A100-PCIE-40GB
 cuda:2
-tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.], device='cuda:2')&lt;/p&gt;&lt;p&gt;jhosts查看节点剩余数量&lt;/p&gt;&lt;figure style="flex: 138.3084577114428" &gt;&lt;img width="1112" height="402" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5443662137d44cd29357efc46e1cdf04.png" /&gt;&lt;/figure&gt;</content><link href="/Blog/archives/%E8%B6%85%E7%AE%97%E5%B9%B3%E5%8F%B0/" rel="alternate"/><published>2021-10-01T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E7%AE%97%E5%AD%90%E7%BC%96%E8%AF%91/</id><title>算子编译</title><updated>2021-10-26T11:47:11.299258+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;算子编译&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 158.61423220973782" &gt;&lt;img width="847" height="267" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/8a8da5282cc8e2f6eb39c83bf48c7a52.png" /&gt;&lt;/figure&gt;&lt;p&gt;高低版本的问题&lt;/p&gt;</content><link href="/Blog/archives/%E7%AE%97%E5%AD%90%E7%BC%96%E8%AF%91/" rel="alternate"/><published>2021-10-02T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Doctor%20of%20China/</id><title>中国医生</title><updated>2021-10-26T11:47:11.299216+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;中国医生&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;讲诉的武汉疫情从发生到最后抗击成功的一系列故事。&lt;/p&gt;&lt;p&gt;最初不顾一切接收病人，每个医生都拼尽全力去救治病人。&lt;/p&gt;&lt;p&gt;但面对家人的困难，面对亲情的难以守护，内心会有不断的煎熬，往往崩溃就在那么一瞬间，自己对于感情往往非常在意，对于人们的反应，对于关心和呵护会有很大的情绪波动。生而为人，这是独一无二的魅力。&lt;/p&gt;&lt;p&gt;面对孕妇，从一开始的难以接待，到最后因为医生责任，背锅等原因，却义无反顾得去救治这一条人命。&lt;/p&gt;&lt;p&gt;面对冲入医院的人们，医护人员难以维持秩序，大部分普通民众面对恐慌只是一味的去争抢资源，也许就这样增加了感染，减少了医药物资。&lt;/p&gt;&lt;p&gt;面对重病患者，从插管到拔管，每一个人的突发状况，面对多器官功能衰竭，医务人员在病毒面前显得无能为力时，只能等着一个个病人慢慢离世。在ICU重症病室中每一个人都在争分夺秒，切换镜头的使用太多，部分情节故事没有很好得展现，就匆匆结尾。&lt;/p&gt;&lt;p&gt;面对亲人的去世，病患家属的悲伤情绪是难以言诉的，变成了孤儿，失去了过去时光中最亲爱的人。&lt;/p&gt;&lt;p&gt;剧中那个广东人刻画的格外开放，喜欢去做自己心中的大佬，利用自己的才华去展现著名医院的强大知识。&lt;/p&gt;&lt;p&gt;作为最高的行政人员，在喊着增加物资，增加人员，最高者要有大局观，坚持自己心中所想去不断努力，以后面对灾难，一切资源要跟上，医疗卫生条件，无菌室的建立一定要认真搭建。&lt;/p&gt;</content><link href="/Blog/archives/Doctor%20of%20China/" rel="alternate"/><published>2021-10-03T00:00:00+08:06</published></entry><entry><id>/Blog/archives/camera-shooting/</id><title>摄影构图</title><updated>2021-10-26T11:47:11.299179+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;摄影&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;两边阴影，中间光亮突出重点，突出图片主体。&lt;/p&gt;&lt;p&gt;be open-minded&lt;/p&gt;</content><link href="/Blog/archives/camera-shooting/" rel="alternate"/><published>2021-10-06T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Out%20of%20Control/</id><title>失控玩家</title><updated>2021-10-26T11:47:11.299134+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;失控玩家&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;欢快搞笑的快节奏电影，引入游戏视角，思考人存在的意义。&lt;/p&gt;&lt;p&gt;主要围绕游戏中的世界线，反思什么是存在的，什么是活着的。“我思故我在”，个体意识被强烈地放大，不在意是否自己的世界是不是存在的。电影中运用了大量特效场景，非常壮观宏大的场面，夹杂了一点点的人物感情，最后便是一个happy ending。不是特别深沉的题材，更偏向于科幻风，但想表达和反思的内容过多，是励志但却并没有真正振聋发聩的效果。&lt;/p&gt;</content><link href="/Blog/archives/Out%20of%20Control/" rel="alternate"/><published>2021-10-08T00:00:00+08:06</published></entry><entry><id>/Blog/archives/3DtrackingOnNuScences/</id><title>Tracking 实验结果</title><updated>2021-10-26T11:47:11.299093+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;hr /&gt;
+tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.], device='cuda:2')&lt;/p&gt;&lt;p&gt;jhosts查看节点剩余数量&lt;/p&gt;&lt;figure style="flex: 138.3084577114428" &gt;&lt;img width="1112" height="402" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5443662137d44cd29357efc46e1cdf04.png" /&gt;&lt;/figure&gt;</content><link href="/Blog/archives/%E8%B6%85%E7%AE%97%E5%B9%B3%E5%8F%B0/" rel="alternate"/><published>2021-10-01T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E7%AE%97%E5%AD%90%E7%BC%96%E8%AF%91/</id><title>算子编译</title><updated>2021-10-26T14:22:10.044340+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;算子编译&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 158.61423220973782" &gt;&lt;img width="847" height="267" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/8a8da5282cc8e2f6eb39c83bf48c7a52.png" /&gt;&lt;/figure&gt;&lt;p&gt;高低版本的问题&lt;/p&gt;</content><link href="/Blog/archives/%E7%AE%97%E5%AD%90%E7%BC%96%E8%AF%91/" rel="alternate"/><published>2021-10-02T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Doctor%20of%20China/</id><title>中国医生</title><updated>2021-10-26T14:22:10.044301+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;中国医生&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;讲诉的武汉疫情从发生到最后抗击成功的一系列故事。&lt;/p&gt;&lt;p&gt;最初不顾一切接收病人，每个医生都拼尽全力去救治病人。&lt;/p&gt;&lt;p&gt;但面对家人的困难，面对亲情的难以守护，内心会有不断的煎熬，往往崩溃就在那么一瞬间，自己对于感情往往非常在意，对于人们的反应，对于关心和呵护会有很大的情绪波动。生而为人，这是独一无二的魅力。&lt;/p&gt;&lt;p&gt;面对孕妇，从一开始的难以接待，到最后因为医生责任，背锅等原因，却义无反顾得去救治这一条人命。&lt;/p&gt;&lt;p&gt;面对冲入医院的人们，医护人员难以维持秩序，大部分普通民众面对恐慌只是一味的去争抢资源，也许就这样增加了感染，减少了医药物资。&lt;/p&gt;&lt;p&gt;面对重病患者，从插管到拔管，每一个人的突发状况，面对多器官功能衰竭，医务人员在病毒面前显得无能为力时，只能等着一个个病人慢慢离世。在ICU重症病室中每一个人都在争分夺秒，切换镜头的使用太多，部分情节故事没有很好得展现，就匆匆结尾。&lt;/p&gt;&lt;p&gt;面对亲人的去世，病患家属的悲伤情绪是难以言诉的，变成了孤儿，失去了过去时光中最亲爱的人。&lt;/p&gt;&lt;p&gt;剧中那个广东人刻画的格外开放，喜欢去做自己心中的大佬，利用自己的才华去展现著名医院的强大知识。&lt;/p&gt;&lt;p&gt;作为最高的行政人员，在喊着增加物资，增加人员，最高者要有大局观，坚持自己心中所想去不断努力，以后面对灾难，一切资源要跟上，医疗卫生条件，无菌室的建立一定要认真搭建。&lt;/p&gt;</content><link href="/Blog/archives/Doctor%20of%20China/" rel="alternate"/><published>2021-10-03T00:00:00+08:06</published></entry><entry><id>/Blog/archives/camera-shooting/</id><title>摄影构图</title><updated>2021-10-26T14:22:10.044270+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;摄影&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;两边阴影，中间光亮突出重点，突出图片主体。&lt;/p&gt;&lt;p&gt;be open-minded&lt;/p&gt;</content><link href="/Blog/archives/camera-shooting/" rel="alternate"/><published>2021-10-06T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Out%20of%20Control/</id><title>失控玩家</title><updated>2021-10-26T14:22:10.044230+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;失控玩家&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;欢快搞笑的快节奏电影，引入游戏视角，思考人存在的意义。&lt;/p&gt;&lt;p&gt;主要围绕游戏中的世界线，反思什么是存在的，什么是活着的。“我思故我在”，个体意识被强烈地放大，不在意是否自己的世界是不是存在的。电影中运用了大量特效场景，非常壮观宏大的场面，夹杂了一点点的人物感情，最后便是一个happy ending。不是特别深沉的题材，更偏向于科幻风，但想表达和反思的内容过多，是励志但却并没有真正振聋发聩的效果。&lt;/p&gt;</content><link href="/Blog/archives/Out%20of%20Control/" rel="alternate"/><published>2021-10-08T00:00:00+08:06</published></entry><entry><id>/Blog/archives/3DtrackingOnNuScences/</id><title>Tracking 实验结果</title><updated>2021-10-26T14:22:10.044197+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Tracking 实验结果&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;mini dataset上&lt;/p&gt;&lt;p&gt;==detection结果==&lt;/p&gt;&lt;p&gt;Saving metrics to: work_dirs/nusc_nsweep_10
 mAP: 0.6720
 mATE: 0.2821
@@ -402,10 +191,114 @@ Eval time: 104.7s&lt;/p&gt;&lt;p&gt;Rendering curves&lt;/p&gt;&lt;ol start="2"&g
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</content><link href="/Blog/archives/3DtrackingOnNuScences/" rel="alternate"/><published>2021-10-17T00:00:00+08:06</published></entry><entry><id>/Blog/archives/blender_script/</id><title>blender script使用</title><updated>2021-10-26T11:47:11.299047+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;blender script&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;将blender中所有的button转换为代码接口，操纵物体&lt;/p&gt;&lt;p&gt;重要学习数据类型：bpy&lt;/p&gt;&lt;p&gt;bpy.data.object：打开的模型物体&lt;/p&gt;&lt;p&gt;Data is added and removed via methods on the collections in &lt;a href="https://docs.blender.org/api/current/bpy.data.html#module-bpy.data"&gt;&lt;code&gt;bpy.data&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;“poll” function which checks if the cursor is in a valid area or if the object is in the correct mode ：判断是否选择正确的操作方式&lt;/p&gt;&lt;p&gt;blender文件夹下scripts/startup/中有python的环境&lt;/p&gt;&lt;p&gt;When a script is imported as a module, its class instances will remain inside the module and can be accessed later on by importing that module again.&lt;/p&gt;&lt;p&gt;run the script：&lt;/p&gt;&lt;blockquote&gt;
+</content><link href="/Blog/archives/3DtrackingOnNuScences/" rel="alternate"/><published>2021-10-17T00:00:00+08:06</published></entry><entry><id>/Blog/archives/blender_script/</id><title>blender script使用</title><updated>2021-10-26T14:22:10.044161+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;blender script&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;将blender中所有的button转换为代码接口，操纵物体&lt;/p&gt;&lt;p&gt;重要学习数据类型：bpy&lt;/p&gt;&lt;p&gt;bpy.data.object：打开的模型物体&lt;/p&gt;&lt;p&gt;Data is added and removed via methods on the collections in &lt;a href="https://docs.blender.org/api/current/bpy.data.html#module-bpy.data"&gt;&lt;code&gt;bpy.data&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;“poll” function which checks if the cursor is in a valid area or if the object is in the correct mode ：判断是否选择正确的操作方式&lt;/p&gt;&lt;p&gt;blender文件夹下scripts/startup/中有python的环境&lt;/p&gt;&lt;p&gt;When a script is imported as a module, its class instances will remain inside the module and can be accessed later on by importing that module again.&lt;/p&gt;&lt;p&gt;run the script：&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;blender --python /home/me/my_script.py&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;While &lt;code&gt;__init__()&lt;/code&gt; and &lt;code&gt;__del__()&lt;/code&gt; will be called if defined, the class instances lifetime only spans the execution.&lt;/p&gt;&lt;p&gt;数据保存为blender.data的格式，下次开启不会丢失&lt;/p&gt;&lt;p&gt;The register/unregister calls are used so it’s possible to toggle add-ons and reload scripts while Blender runs&lt;/p&gt;&lt;p&gt;每次重新跑，估计得重新加载选项&lt;/p&gt;</content><link href="/Blog/archives/blender_script/" rel="alternate"/><published>2021-10-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</id><title>Matlab学习</title><updated>2021-10-26T11:47:11.298947+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;matlab学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;clc：清除命令窗口的内容，对工作环境中的全部变量无任何影响
+&lt;p&gt;While &lt;code&gt;__init__()&lt;/code&gt; and &lt;code&gt;__del__()&lt;/code&gt; will be called if defined, the class instances lifetime only spans the execution.&lt;/p&gt;&lt;p&gt;数据保存为blender.data的格式，下次开启不会丢失&lt;/p&gt;&lt;p&gt;The register/unregister calls are used so it’s possible to toggle add-ons and reload scripts while Blender runs&lt;/p&gt;&lt;p&gt;每次重新跑，估计得重新加载选项&lt;/p&gt;</content><link href="/Blog/archives/blender_script/" rel="alternate"/><published>2021-10-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</id><title>Matlab学习</title><updated>2021-10-26T14:22:10.044116+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;matlab学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;clc：清除命令窗口的内容，对工作环境中的全部变量无任何影响
 close：关闭当前的Figure窗口
 close all:关闭所有的Figure窗口
 clear：清除工作空间的所有变量
-clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&lt;p&gt;grid on；写一次就可以打开网格&lt;/p&gt;&lt;p&gt;%.*对应元素相乘， *是矩阵相乘&lt;/p&gt;</content><link href="/Blog/archives/matlab%E8%AF%AD%E6%B3%95/" rel="alternate"/><published>2021-10-19T00:00:00+08:06</published></entry></feed>
+clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&lt;p&gt;grid on；写一次就可以打开网格&lt;/p&gt;&lt;p&gt;%.*对应元素相乘， *是矩阵相乘&lt;/p&gt;</content><link href="/Blog/archives/matlab%E8%AF%AD%E6%B3%95/" rel="alternate"/><published>2021-10-19T00:00:00+08:06</published></entry><entry><id>/Blog/archives/base%20pytorch/</id><title>pytorch基础教程</title><updated>2021-10-26T14:22:10.044069+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;pytorch基础教程&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;tensors是一种特殊的数据类型和arrays，matrices类似。用tensors编码代替input和output，还有模型参数。&lt;/p&gt;&lt;h1&gt;创建初始化方式&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;通过data生成torch.tensor(data)，这时类型自动推断，和data中类型一致&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;从numpy array&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;np_array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;x_np&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_numpy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np_array&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;p&gt;从另一个tensor&lt;/p&gt;&lt;p&gt;隐式地保持类型一致&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x_ones&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones_like&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# retains the properties of x_data&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ones Tensor: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;x_ones&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;x_rand&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rand_like&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# overrides the datatype of x_data&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Random Tensor: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;x_rand&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;调用函数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;shape要是tensor维度的tuple&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,)&lt;/span&gt;
+&lt;span class="n"&gt;rand_tensor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ones_tensor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;zeros_tensor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Random Tensor: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;rand_tensor&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ones Tensor: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;ones_tensor&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Zeros Tensor: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;zeros_tensor&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;tensor属性&lt;/h1&gt;
+&lt;p&gt;tensor.shape,tensor.dtype（datatype的缩写）,torch.device&lt;/p&gt;&lt;h1&gt;tensor数学运算&lt;/h1&gt;
+&lt;p&gt;transposing, indexing, slicing, mathematical operations, linear algebra, random sampling, and more are comprehensively described &lt;a href="https://pytorch.org/docs/stable/torch.html"&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;tensor.to(‘cuda’)还可以显式在定义时指定device=torch.device(“cuda”)&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;和numpy一样的切片操作&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用torch.cat拼接tensor（torch.stack用的较少），torch.cat可以指定维度&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;乘法，对应位置相乘&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# This computes the element-wise product&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tensor.mul(tensor) &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Alternative syntax:&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tensor * tensor &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;矩阵乘法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tensor.matmul(tensor.T) &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;matmul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Alternative syntax:&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tensor @ tensor.T &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;替代修改操作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Operations that have a &lt;code&gt;_&lt;/code&gt; suffix are in-place. For example: &lt;code&gt;x.copy_(y)&lt;/code&gt;, &lt;code&gt;x.t_()&lt;/code&gt;, will change &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+
+&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;in_place操作会节省内存，但是求导时会报错，故不鼓励使用&lt;/p&gt;&lt;h2&gt;Bridge with NumPy&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;t: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;n: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;t: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;n: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;两者会同时修改，潜在的空间一样&lt;/p&gt;&lt;h1&gt;&lt;code&gt;TORCH.AUTOGRAD&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Forward Propagation&lt;/strong&gt;: 产生最佳最正确的输出&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Backward Propagation&lt;/strong&gt;: 调整它的参数根据生成的error&lt;/p&gt;&lt;p&gt;i.e.:&lt;strong&gt;abbr.&lt;/strong&gt;亦即（源自拉丁文 id est）&lt;/p&gt;&lt;p&gt;w.r.t. :with respect to，相对某一方面而言&lt;/p&gt;&lt;p&gt;backward后会把loss值free，如果loss不是标量，需要指定gradient&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;3.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;requires_grad&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;4.&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;requires_grad&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+
+&lt;span class="n"&gt;external_grad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;backward&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gradient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;external_grad&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;directed acyclic graph (DAG)有向无环图，leaves are the input tensors, roots are the output tensors.倒过来的树，从root跟踪到leaves自动计算梯度&lt;/p&gt;&lt;p&gt;&lt;strong&gt;frozen parameters&lt;/strong&gt;：用来微调模型参数&lt;/p&gt;&lt;h1&gt;NEURAL NETWORKS&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Define the neural network that has some learnable parameters (or weights)&lt;/li&gt;
+&lt;li&gt;Iterate over a dataset of inputs&lt;/li&gt;
+&lt;li&gt;Process input through the network&lt;/li&gt;
+&lt;li&gt;Compute the loss (how far is the output from being correct)&lt;/li&gt;
+&lt;li&gt;Propagate gradients back into the network’s parameters&lt;/li&gt;
+&lt;li&gt;Update the weights of the network, typically using a simple update rule: &lt;code&gt;weight = weight - learning_rate * gradient&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;torch.Tensor&lt;/code&gt; - A &lt;em&gt;multi-dimensional array&lt;/em&gt; with support for autograd operations like &lt;code&gt;backward()&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;&lt;code&gt;nn.Module&lt;/code&gt;-封装好的类，方便move到GPU上&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grad_fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# MSELoss&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grad_fn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next_functions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  &lt;span class="c1"&gt;# Linear&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grad_fn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next_functions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next_functions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  &lt;span class="c1"&gt;# ReLU&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这样可以观察计算图&lt;/p&gt;&lt;p&gt;每次backward前，把计算图梯度清零，否则每次会积累&lt;/p&gt;&lt;h1&gt;数据处理&lt;/h1&gt;
+&lt;p&gt;首先导入为ndarray，然后转换为torch.*Tensor&lt;/p&gt;</content><link href="/Blog/archives/base%20pytorch/" rel="alternate"/><published>2021-10-26T00:00:00+08:06</published></entry><entry><id>/Blog/archives/Teddy%20Bear/</id><title>泰迪熊</title><updated>2021-10-26T14:22:10.043973+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;Teddy Bear&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;从小陪伴到大的朋友，却一起养成了坏习惯，这让自己一事无成，没有办法去承担自己应该承担的东西，最后还差一点无法守护自己的朋友。&lt;/p&gt;&lt;p&gt;面对爱情一味的去改变自己的生活，却不是自己真正的想要去改变，只是自己认为自己爱对方，所以就可以为了对方改变自己的一切行为。&lt;/p&gt;&lt;p&gt;我认为你应该有足够的能力去承担这个角色所应该有的责任，在困苦时，找到属于两个人共同的解决方法，不顾一切的去勇往直前（这是我想象的未来的相处方式）。&lt;/p&gt;&lt;p&gt;你可以同时是大人和小孩，有大人的成熟和小孩内心最坚强的陪伴。&lt;/p&gt;</content><link href="/Blog/archives/Teddy%20Bear/" rel="alternate"/><published>2021-10-26T00:00:00+08:06</published></entry></feed>
