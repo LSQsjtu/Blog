@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/5451c74e1c6a4440c647c4f6df3cc4cc.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/84a60172200b4be7f86937b3a2ef3edf.json"
         }
     </script>
     
@@ -117,7 +117,48 @@ var _hmt = _hmt || [];
             <div class="ga-content_body">
                 <p><strong>blender script</strong></p><p>将blender中所有的button转换为代码接口，操纵物体</p><p>重要学习数据类型：bpy</p><p>bpy.data.object：打开的模型物体</p><p>Data is added and removed via methods on the collections in <a href="https://docs.blender.org/api/current/bpy.data.html#module-bpy.data"><code>bpy.data</code></a></p><p>“poll” function which checks if the cursor is in a valid area or if the object is in the correct mode ：判断是否选择正确的操作方式</p><p>blender文件夹下scripts/startup/中有python的环境</p><p>When a script is imported as a module, its class instances will remain inside the module and can be accessed later on by importing that module again.</p><p>run the script：</p><blockquote>
 <p>blender --python /home/me/my_script.py</p></blockquote>
-<p>While <code>__init__()</code> and <code>__del__()</code> will be called if defined, the class instances lifetime only spans the execution.</p><p>数据保存为blender.data的格式，下次开启不会丢失</p><p>The register/unregister calls are used so it’s possible to toggle add-ons and reload scripts while Blender runs</p><p>每次重新跑，估计得重新加载选项</p>
+<p>While <code>__init__()</code> and <code>__del__()</code> will be called if defined, the class instances lifetime only spans the execution.</p><p>数据保存为blender.data的格式，下次开启不会丢失</p><p>The register/unregister calls are used so it’s possible to toggle add-ons and reload scripts while Blender runs</p><p>每次重新跑，估计得重新加载选项</p><p>run script</p><ul>
+<li><p>Loaded in the text editor and press <em>Run Script</em>.</p></li>
+<li><p>Typed or pasted into the interactive console.</p></li>
+<li><p>Execute a Python file from the command line with Blender, e.g:</p><div class="highlight"><pre><span></span>blender --python /home/me/my_script.py
+</pre></div>
+</li>
+</ul>
+<p>建立子类，元素命名一般以bl_开头表示自己添加的</p><p>Notice these classes don’t define an <code>__init__(self)</code> function. While <code>__init__()</code> and <code>__del__()</code> will be called if defined, the class instances lifetime only spans the execution</p><p><strong>步骤</strong></p><h2>定义Panel面板</h2>
+<p>创建类</p><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestPanel</span><span class="p">(</span><span class="n">bpy</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Panel</span><span class="p">)</span> <span class="c1">#创建Panel的实例</span>
+</pre></div>
+<h3>定义Panel类的属性</h3>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestPanel</span><span class="p">(</span><span class="n">bpy</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Panel</span><span class="p">):</span>
+    <span class="n">bl_label</span><span class="o">=</span><span class="s2">&quot;LuoZhiXiang&quot;</span>
+    <span class="n">bl_idname</span><span class="o">=</span><span class="s2">&quot;PT_Test Panel&quot;</span>
+    <span class="n">bl_space_type</span><span class="o">=</span><span class="s2">&quot;VIEW_3D&quot;</span>
+    <span class="n">bl_region_type</span><span class="o">=</span><span class="s2">&quot;UI&quot;</span>
+    <span class="n">bl_category</span><span class="o">=</span><span class="s2">&quot;BadGuy&quot;</span>
+
+<span class="c1">#注意前面一定要带有bl_的前缀，否则是会报错的</span>
+</pre></div>
+<p><strong>创建Space Type （插件在哪种工作空间使用）</strong></p><p>注意全部要大写！它的作用就是定义这个插件是作用于哪个工作区域Workspace内。</p><p>可以切换测试，日志会输出相关type。</p><figure style="flex: 127.63157894736842" ><img width="291" height="114" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b4ecbc125d6216fc415bd62a91305102.jpg" /><figcaption>img</figcaption></figure><div class="highlight"><pre><span></span>bl_space_type=&quot;VIEW_3D&quot;
+</pre></div>
+<figure style="flex: 60.301507537688444" ><img width="720" height="597" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f0a3975b5c50d3ceecb0d6e7f3ae1f78.jpg" /><figcaption>img</figcaption></figure><p><strong>设置使用区域，设置为UI即可</strong></p><div class="highlight"><pre><span></span><span class="n">bl_region_type</span><span class="o">=</span><span class="s2">&quot;UI&quot;</span>
+</pre></div>
+<p>其他种类：</p><figure style="flex: 63.45609065155807" ><img width="448" height="353" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5b20d1e58bc9c39cc00db43fd5941a14.jpg" /><figcaption>img</figcaption></figure><p>设置<strong>归属类别</strong>（将此Panel实例归到哪一类里面）</p><div class="highlight"><pre><span></span><span class="n">bl_category</span><span class="o">=</span><span class="s2">&quot;BadGuy&quot;</span> <span class="c1">#SideBar Name</span>
+</pre></div>
+<figure style="flex: 60.0" ><img width="720" height="600" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/3637e44f4b800e75bee53cac4372ac07.jpg" /><figcaption>img</figcaption></figure><h1>加载更新</h1>
+<ul>
+<li>register() 注册/登记/加载</li>
+<li>unregister() 不加载</li>
+<li>utils——utilities（实用工具）</li>
+</ul>
+<div class="highlight"><pre><span></span>def register():
+    bpy.utils.register_class(TestPanel)
+
+def unregister():
+    bpy.utils.unregister_class(TestPanel）
+
+if __name__==&quot;__main__&quot;:
+    register()
+</pre></div>
+<p>通过直接执行脚本来扩展Blender意味着脚本完成执行后脚本定义的类在Blender中保持可用。与将脚本作为模块导入相比，以这种方式使用脚本使得将来访问其类（例如取消注册它们）变得更加困难。将脚本作为模块导入时，其类实例将保留在模块中，稍后可以通过再次导入该模块来访问。</p>
             </div>
         </article>
         <div id="ga-tags">
