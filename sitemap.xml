@@ -12,6 +12,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/%E5%BD%92%E4%B8%80%E5%8C%96/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/Teddy%20Bear/</loc>
     <lastmod>2021-10-26</lastmod>
     <changefreq>always</changefreq>

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/8fd8202589f6bcfeb1899df8f6d64ba6.json"
+        }
+    </script>
+    
+<title>归一化 - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="自己需要提升基础代码知识" />
+<meta property="og:title" content="归一化 - 我的个人博客" />
+<meta property="og:description" content="自己需要提升基础代码知识" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/%E5%BD%92%E4%B8%80%E5%8C%96/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-10-31T00:00:00-00.00" />
+<meta name="twitter:title" content="归一化 - 我的个人博客" />
+<meta name="twitter:description" content="自己需要提升基础代码知识" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">归一化</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2021-10-31
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>归一化</strong></p><p>sigmoid和softmax函数区别</p><h2>分类问题</h2>
+<h3><strong>1 Sigmoid函数</strong></h3>
+<p>Sigmoid =<strong>多标签分类问题</strong>=多个正确答案=非独占输出（例如胸部X光检查、住院）。构建分类器，解决有多个正确答案的问题时，用Sigmoid函数分别处理各个原始输出值。</p><p><strong>Sigmoid函数</strong>是一种logistic函数，它将任意的值转换到$[0,1]$之间，如图1所示，函数表达式为：$Sigmoid = \frac{1}{1 + e^{-x}}$ 。</p><p>它的导函数为： $Sigmoid'(x) = Sigmoid(x)*(1-Sigmoid(x))$。</p><figure style="flex: 74.94145199063232" ><img width="640" height="427" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b3c2cbcc5704847d6d9042143cb7401f.jpg" /><figcaption>img</figcaption></figure><p>​																									图1：Sigmoid函数</p><p><strong>优点</strong>：1. Sigmoid函数的输出在(0,1)之间，输出范围有限，优化稳定，可以用作输出层。2. 连续函数，便于求导。</p><p><strong>缺点</strong>：1. 最明显的就是饱和性，从上图也不难看出其两侧导数逐渐趋近于0，容易造成梯度消失。2.==激活函数的偏移现象==。Sigmoid函数的输出值均大于0，使得输出==不是0的均值==，这会导致后一层的神经元将得到上一层非0均值的信号作为输入，这会对梯度产生影响。 3. 计算复杂度高，因为Sigmoid函数是指数形式。</p><h3>2 Softmax函数</h3>
+<p>Softmax =<strong>多类别分类问题</strong>=只有一个正确答案=互斥输出（例如手写数字，鸢尾花）。构建分类器，解决只有唯一正确答案的问题时，用Softmax函数处理各个原始输出值。Softmax函数的分母综合了原始输出值的所有因素，这意味着，Softmax函数得到的不同概率之间相互关联。</p><p><strong>Softmax函数</strong>，又称归一化指数函数，函数表达式为：$Softmax = \frac{e^{x_i}}{\sum_{j=1}^{n}e^{x_j}}$。</p><figure style="flex: 89.33002481389578" ><img width="720" height="403" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/dc924cfae91bbe8d50b7de43d9d5dfed.jpg" /><figcaption>img</figcaption></figure><p>​																				图2：Softmax函数计算过程</p><p><strong>Softmax函数是二分类函数Sigmoid在多分类上的推广，目的是将多分类的结果以概率的形式展现出来。</strong>如图2所示，Softmax直白来说就是将原来输出是3,1,-3通过Softmax函数一作用，就映射成为(0,1)的值，而这些值的累和为1（满足概率的性质），那么我们就可以将它理解成概率，在最后选取输出结点的时候，我们就可以选取概率最大（也就是值对应最大的）结点，作为我们的预测目标。</p><p>由于Softmax函数先拉大了输入向量元素之间的差异（通过指数函数），然后才归一化为一个概率分布，在应用到分类问题时，它使得各个类别的概率差异比较显著，最大值产生的概率更接近1，这样输出分布的形式更接近真实分布。</p><p><strong>Softmax可以由三个不同的角度来解释。从不同角度来看softmax函数，可以对其应用场景有更深刻的理解：</strong></p><ol>
+<li>softmax可以当作arg max的一种平滑近似，与arg max操作中暴力地选出一个最大值（产生一个one-hot向量）不同，softmax将这种输出作了一定的平滑，即将one-hot输出中最大值对应的1按输入元素值的大小分配给其他位置。</li>
+<li>softmax将输入向量归一化映射到一个类别概率分布，即 个类别上的概率分布（前文也有提到）。这也是为什么在深度学习中常常将softmax作为MLP的最后一层，并配合以交叉熵损失函数（对分布间差异的一种度量)。</li>
+<li>从概率图模型的角度来看，softmax的这种形式可以理解为一个概率无向图上的联合概率。因此你会发现，条件最大熵模型与softmax回归模型实际上是一致的，诸如这样的例子还有很多。由于概率图模型很大程度上借用了一些热力学系统的理论，因此也可以从物理系统的角度赋予softmax一定的内涵。</li>
+</ol>
+<h3>3 总结</h3>
+<ol>
+<li>如果模型输出为非互斥类别，且可以同时选择多个类别，则采用Sigmoid函数计算该网络的原始输出值。</li>
+<li>如果模型输出为互斥类别，且只能选择一个类别，则采用Softmax函数计算该网络的原始输出值。</li>
+<li>Sigmoid函数可以用来解决多标签问题，Softmax函数用来解决单标签问题。<a href="https://zhuanlan.zhihu.com/p/356976844#ref_1">[1]</a></li>
+<li>对于某个分类场景，当Softmax函数能用时，Sigmoid函数一定可以用。</li>
+</ol>
+<h3>4. 二分类任务</h3>
+<p>对于二分类问题来说，<strong>理论上，两者是没有任何区别的。</strong>由于我们现在用的Pytorch、TensorFlow等框架计算矩阵方式的问题，导致两者在反向传播的过程中还是有区别的。实验结果表明，两者还是存在差异的，对于不同的分类模型，可能Sigmoid函数效果好，也可能是Softmax函数效果。</p><p><strong>首先我们先理论上证明一下二者没有本质上的区别</strong>，对于二分类而言（以输入$x_1$为例)：</p><p>Sigmoid函数： $output(x_1)=\frac{1}{1+e^{-x_1}} (1)$</p><p>Softmax函数： $output(x_2)=\frac{e^{-x_1}}{e^{-x_1}+e^{-x_2}} (2)$</p><p>由公式（2）我们可知， $x_1-x_2$可以用$z_1$代替，即Softmax函数可以写成：  $output(z_1)=\frac{1}{1+e^{-z_1}} $，和公式（1)完全相同，所以理论上来说两者是没有任何区别的。</p><p><strong>然后我们再分析为什么两者之间还存着差异（以Pytorch为例）：</strong></p><p>首先我们要明白，当你用Sigmoid函数的时候，你的最后一层全连接层的神经元个数为1，而当你用Softmax函数的时候，你的最后一层全连接层的神经元个数是2。这个很好理解，因为Sigmoid函数只有是目标和不是目标之分，实际上只存在一类目标类，另外一个是背景类。而Softmax函数将目标分类为了二类，所以有两个神经元。这也是导致两者存在差异的主要原因。</p><p><strong>Sigmoid函数</strong>针对两点分布提出。神经网络的输出经过它的转换，可以将数值压缩到(0,1)之间，得到的结果可以理解成<strong>分类成目标类别的概率P，而不分类到该类别的概率是(1 - P)</strong>，这也是典型的两点分布的形式。</p><p><strong>Softmax函数</strong>本身针对多项分布提出，当类别数是2时，它退化为二项分布。而它和Sigmoid函数真正的区别就在——二项分布包含两个分类类别（姑且分别称为A和B），而两点分布其实是针对一个类别的概率分布，其对应的那个类别的分布直接由1-P得出。</p><p>简单点理解就是，<strong>Sigmoid函数，我们可以当作成它是对一个类别的“建模”</strong>，将该类别建模完成，另一个相对的类别就直接通过1减去得到。<strong>而softmax函数，是对两个类别建模</strong>，同样的，得到两个类别的概率之和是1。</p><p>神经网络在做二分类时，使用Softmax还是Sigmoid，做法其实有明显差别。由于Softmax是对两个类别（正反两类，通常定义为0/1的label）建模，所以对于NLP模型而言（比如泛BERT模型），Bert输出层需要通过一个nn.Linear()全连接层压缩至2维，然后接Softmax（Pytorch的做法，就是直接接上torch.nn.CrossEntropyLoss）；而Sigmoid只对一个类别建模（通常就是正确的那个类别），所以Bert输出层需要通过一个nn.Linear()全连接层压缩至1维，然后接Sigmoid（torch就是接torch.nn.BCEWithLogitsLoss）。</p><p>总而言之，Sotfmax和Sigmoid确实在二分类的情况下可以化为相同的数学表达形式，但并不意味着二者有一样的含义，而且二者的输入输出都是不同的。Sigmoid得到的结果是“分到正确类别的概率和未分到正确类别的概率”，Softmax得到的是“分到正确类别的概率和分到错误类别的概率”。</p><p><strong>一种常见的错法（NLP中）：</strong>即错误地将Softmax和Sigmoid混为一谈，再把BERT输出层压缩至2维的情况下，却用Sigmoid对结果进行计算。这样我们得到的结果其意义是什么呢？</p><p>假设我们现在BERT输出层经nn.Linear()压缩后，得到一个二维的向量：</p><div class="highlight"><pre><span></span>[-0.9419267177581787, 1.944047451019287]
+</pre></div>
+<p>对应类别分别是(0,1)。我们经过Sigmoid运算得到：</p><div class="highlight"><pre><span></span>tensor([0.2805, 0.8748])
+</pre></div>
+<p>前者0.2805指的是分类类别为0的概率，0.8748指的是分类类别为1的概率。二者相互独立，可看作两次独立的实验（显然在这里不适用，因为0-1类别之间显然不是相互独立的两次伯努利事件）。所以显而易见的，二者加和并不等于1。</p><p>若用softmax进行计算，可得：</p><div class="highlight"><pre><span></span>tensor([0.0529, 0.9471])
+</pre></div>
+<p>这里两者加和是1，才是正确的选择。</p><p><strong>经验：</strong></p><p><strong>对于NLP而言</strong>，这两者之间确实有差别，Softmax的处理方式有时候会比Sigmoid的处理方式好一点。</p><p><strong>对于CV而言</strong>，这两者之间也是有差别的，Sigmoid的处理方式有时候会比Softmax的处理方式好一点。</p><p>两者正好相反，这只是笔者的实验经验，建议大家两者都试试。</p>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/Teddy%20Bear/">泰迪熊</a>
+        <p class="yue">emotion</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
