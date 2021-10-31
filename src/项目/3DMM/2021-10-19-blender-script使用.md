@@ -131,3 +131,15 @@ if __name__=="__main__":
 ```
 
 通过直接执行脚本来扩展Blender意味着脚本完成执行后脚本定义的类在Blender中保持可用。与将脚本作为模块导入相比，以这种方式使用脚本使得将来访问其类（例如取消注册它们）变得更加困难。将脚本作为模块导入时，其类实例将保留在模块中，稍后可以通过再次导入该模块来访问。
+
+
+
+bpy.data.objects返回值，第0个默认为camera，注意区别
+
+输入：bpy.data.objects[0]
+
+结果返回：bpy.data.objects['Camera']
+
+输入：bpy.data.objects[1]
+
+结果返回：bpy.data.objects['Cube']
