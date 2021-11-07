@@ -19,13 +19,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/Teddy%20Bear/</loc>
-    <lastmod>2021-10-26</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
     <loc>/Blog/archives/base%20pytorch/</loc>
     <lastmod>2021-10-26</lastmod>
     <changefreq>always</changefreq>
@@ -33,14 +26,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2021-10-19</lastmod>
+    <loc>/Blog/archives/Teddy%20Bear/</loc>
+    <lastmod>2021-10-26</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
     <loc>/Blog/archives/blender_script/</loc>
+    <lastmod>2021-10-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-10-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -152,14 +152,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/MOT/</loc>
+    <loc>/Blog/archives/pickle/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/pickle/</loc>
+    <loc>/Blog/archives/MOT/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -243,14 +243,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/keng/</loc>
+    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
+    <loc>/Blog/archives/keng/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -271,14 +271,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/PHP/</loc>
+    <loc>/Blog/archives/C/C%2B%2B/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/C/C%2B%2B/</loc>
+    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/Android/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -292,7 +299,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/Android/</loc>
+    <loc>/Blog/archives/web/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -313,7 +320,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/web/</loc>
+    <loc>/Blog/archives/PHP/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -321,13 +328,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/Java/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
