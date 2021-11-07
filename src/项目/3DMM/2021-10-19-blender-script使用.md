@@ -143,3 +143,7 @@ bpy.data.objects返回值，第0个默认为camera，注意区别
 输入：bpy.data.objects[1]
 
 结果返回：bpy.data.objects['Cube']
+
+
+
+blender中shapekey类似于material，是指向某个值，感觉跟指针一样，注意copy
