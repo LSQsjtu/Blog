@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/b9598a25bc0ca007ee924a9aa4011ee2.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/6a06de2e60a0f54a55db46c292c983bb.json"
         }
     </script>
     
@@ -158,7 +158,7 @@ def unregister():
 if __name__==&quot;__main__&quot;:
     register()
 </pre></div>
-<p>通过直接执行脚本来扩展Blender意味着脚本完成执行后脚本定义的类在Blender中保持可用。与将脚本作为模块导入相比，以这种方式使用脚本使得将来访问其类（例如取消注册它们）变得更加困难。将脚本作为模块导入时，其类实例将保留在模块中，稍后可以通过再次导入该模块来访问。</p><p>bpy.data.objects返回值，第0个默认为camera，注意区别</p><p>输入：bpy.data.objects[0]</p><p>结果返回：bpy.data.objects['Camera']</p><p>输入：bpy.data.objects[1]</p><p>结果返回：bpy.data.objects['Cube']</p><p>blender中shapekey类似于material，是指向某个值，感觉跟指针一样，注意copy</p>
+<p>通过直接执行脚本来扩展Blender意味着脚本完成执行后脚本定义的类在Blender中保持可用。与将脚本作为模块导入相比，以这种方式使用脚本使得将来访问其类（例如取消注册它们）变得更加困难。将脚本作为模块导入时，其类实例将保留在模块中，稍后可以通过再次导入该模块来访问。</p><p>bpy.data.objects返回值，第0个默认为camera，注意区别</p><p>输入：bpy.data.objects[0]</p><p>结果返回：bpy.data.objects['Camera']</p><p>输入：bpy.data.objects[1]</p><p>结果返回：bpy.data.objects['Cube']</p><p>blender中shapekey类似于material，是指向某个值，感觉跟指针一样，注意copy</p><p>所以copy obj的同时也应该copy shapekey</p>
             </div>
         </article>
         <div id="ga-tags">
