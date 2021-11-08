@@ -147,3 +147,5 @@ bpy.data.objects返回值，第0个默认为camera，注意区别
 
 
 blender中shapekey类似于material，是指向某个值，感觉跟指针一样，注意copy
+
+所以copy obj的同时也应该copy shapekey
