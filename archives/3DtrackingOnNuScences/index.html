@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/ee167cb90d97fa6266744e640e41a352.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/313f26add36d5f1bb18771ec808f67d9.json"
         }
     </script>
     
@@ -125,7 +125,73 @@ var _hmt = _hmt || [];
 <li><p>[ ] 不加速度</p></li>
 <li><p>[x] sigmoid归一化0-1</p></li>
 </ul>
-<p>更改为新的数据dict输入新的网络</p><p>给detection score设置一个阈值</p><p>data[&quot;coors&quot;]还是有问题多出来的一个维度信息</p>
+<p>更改为新的数据dict输入新的网络</p><p>给detection score设置一个阈值</p><p>data[&quot;coors&quot;]还是有问题多出来的一个维度信息</p><p>numba报错原因：trainpipline对数据的操作影响</p><div class="highlight"><pre><span></span>/data/CenterPoint/det3d/core/bbox/geometry.py:279: NumbaWarning: 
+Compilation is falling back to object mode WITH looplifting enabled because Function <span class="s2">&quot;points_in_convex_polygon_jit&quot;</span> failed <span class="nb">type</span> inference due to: No implementation of <span class="k">function</span> Function<span class="o">(</span>&lt;built-in <span class="k">function</span> getitem&gt;<span class="o">)</span> found <span class="k">for</span> signature:
+
+ &gt;&gt;&gt; getitem<span class="o">(</span>array<span class="o">(</span>float32, 3d, C<span class="o">)</span>, Tuple<span class="o">(</span>slice&lt;a:b&gt;, list<span class="o">(</span>int64<span class="o">)</span>&lt;<span class="nv">iv</span><span class="o">=</span>None&gt;, slice&lt;a:b&gt;<span class="o">))</span>
+
+There are <span class="m">22</span> candidate implementations:
+   - Of which <span class="m">20</span> did not match due to:
+   Overload of <span class="k">function</span> <span class="s1">&#39;getitem&#39;</span>: File: &lt;numerous&gt;: Line N/A.
+     With argument<span class="o">(</span>s<span class="o">)</span>: <span class="s1">&#39;(array(float32, 3d, C), Tuple(slice&lt;a:b&gt;, list(int64)&lt;iv=None&gt;, slice&lt;a:b&gt;))&#39;</span>:
+    No match.
+   - Of which <span class="m">2</span> did not match due to:
+   Overload <span class="k">in</span> <span class="k">function</span> <span class="s1">&#39;GetItemBuffer.generic&#39;</span>: File: numba/core/typing/arraydecl.py: Line <span class="m">162</span>.
+     With argument<span class="o">(</span>s<span class="o">)</span>: <span class="s1">&#39;(array(float32, 3d, C), Tuple(slice&lt;a:b&gt;, list(int64)&lt;iv=None&gt;, slice&lt;a:b&gt;))&#39;</span>:
+    Rejected as the implementation raised a specific error:
+      TypeError: unsupported array index <span class="nb">type</span> list<span class="o">(</span>int64<span class="o">)</span>&lt;<span class="nv">iv</span><span class="o">=</span>None&gt; <span class="k">in</span> Tuple<span class="o">(</span>slice&lt;a:b&gt;, list<span class="o">(</span>int64<span class="o">)</span>&lt;<span class="nv">iv</span><span class="o">=</span>None&gt;, slice&lt;a:b&gt;<span class="o">)</span>
+  raised from /root/miniconda3/envs/centerpoint/lib/python3.6/site-packages/numba/core/typing/arraydecl.py:69
+
+During: typing of intrinsic-call at /data/CenterPoint/det3d/core/bbox/geometry.py <span class="o">(</span><span class="m">298</span><span class="o">)</span>
+
+File <span class="s2">&quot;det3d/core/bbox/geometry.py&quot;</span>, line <span class="m">298</span>:
+def points_in_convex_polygon_jit<span class="o">(</span>points, polygon, <span class="nv">clockwise</span><span class="o">=</span>True<span class="o">)</span>:
+    &lt;<span class="nb">source</span> elided&gt;
+                :,
+                <span class="o">[</span>num_points_of_polygon - <span class="m">1</span><span class="o">]</span> + list<span class="o">(</span>range<span class="o">(</span>num_points_of_polygon - <span class="m">1</span><span class="o">))</span>,
+                ^
+
+  @numba.jit
+/data/CenterPoint/det3d/core/bbox/geometry.py:279: NumbaWarning: 
+Compilation is falling back to object mode WITHOUT looplifting enabled because Function <span class="s2">&quot;points_in_convex_polygon_jit&quot;</span> failed <span class="nb">type</span> inference due to: Cannot determine Numba <span class="nb">type</span> of &lt;class <span class="s1">&#39;numba.core.dispatcher.LiftedLoop&#39;</span>&gt;
+
+File <span class="s2">&quot;det3d/core/bbox/geometry.py&quot;</span>, line <span class="m">315</span>:
+def points_in_convex_polygon_jit<span class="o">(</span>points, polygon, <span class="nv">clockwise</span><span class="o">=</span>True<span class="o">)</span>:
+    &lt;<span class="nb">source</span> elided&gt;
+    <span class="nv">cross</span> <span class="o">=</span> <span class="m">0</span>.0
+    <span class="k">for</span> i <span class="k">in</span> range<span class="o">(</span>num_points<span class="o">)</span>:
+    ^
+
+  @numba.jit
+/root/miniconda3/envs/centerpoint/lib/python3.6/site-packages/numba/core/object_mode_passes.py:152: NumbaWarning: Function <span class="s2">&quot;points_in_convex_polygon_jit&quot;</span> was compiled <span class="k">in</span> object mode without <span class="nv">forceobj</span><span class="o">=</span>True, but has lifted loops.
+
+File <span class="s2">&quot;det3d/core/bbox/geometry.py&quot;</span>, line <span class="m">290</span>:
+def points_in_convex_polygon_jit<span class="o">(</span>points, polygon, <span class="nv">clockwise</span><span class="o">=</span>True<span class="o">)</span>:
+    &lt;<span class="nb">source</span> elided&gt;
+    <span class="c1"># first convert polygon to directed lines</span>
+    <span class="nv">num_points_of_polygon</span> <span class="o">=</span> polygon.shape<span class="o">[</span><span class="m">1</span><span class="o">]</span>
+    ^
+
+  state.func_ir.loc<span class="o">))</span>
+/root/miniconda3/envs/centerpoint/lib/python3.6/site-packages/numba/core/object_mode_passes.py:162: NumbaDeprecationWarning: 
+Fall-back from the nopython compilation path to the object mode compilation path has been detected, this is deprecated behaviour.
+
+For more information visit https://numba.pydata.org/numba-doc/latest/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit
+
+File <span class="s2">&quot;det3d/core/bbox/geometry.py&quot;</span>, line <span class="m">290</span>:
+def points_in_convex_polygon_jit<span class="o">(</span>points, polygon, <span class="nv">clockwise</span><span class="o">=</span>True<span class="o">)</span>:
+    &lt;<span class="nb">source</span> elided&gt;
+    <span class="c1"># first convert polygon to directed lines</span>
+    <span class="nv">num_points_of_polygon</span> <span class="o">=</span> polygon.shape<span class="o">[</span><span class="m">1</span><span class="o">]</span>
+    ^
+
+  state.func_ir.loc<span class="o">))</span>
+</pre></div>
+<p>most certainly due to Numba failing to compile the <code>_higuchi_fd</code> function in Nopython mode. In this case, the compiler falls back to &quot;object mode&quot; (which provides no significant speed-up as compared to plain Python code).</p><p>导数部分的报错</p><div class="highlight"><pre><span></span><span class="o">[</span>W accumulate_grad.h:185<span class="o">]</span> Warning: grad and param <span class="k">do</span> not obey the gradient layout contract. This is not an error, but may impair performance.
+grad.sizes<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">512</span>, <span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>, strides<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>
+param.sizes<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">512</span>, <span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>, strides<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">1024</span>, <span class="m">1</span>, <span class="m">1024</span>, <span class="m">1024</span><span class="o">]</span> <span class="o">(</span><span class="k">function</span> operator<span class="o">())</span>
+</pre></div>
+
             </div>
         </article>
         <div id="ga-tags">
