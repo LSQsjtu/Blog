@@ -20,6 +20,16 @@ excerpt: 自己需要提升基础代码知识
 
 输入的数据类型。看名字感觉就像是数据库，C#里面也有dataset类，理论上应该还有下一级的datatable。这应当是原始数据的输入。PyTorch内也有这种数据结构。这里先不管，估计和C#的类似，这里只需要知道是输入数据类型是dataset就可以了。
 
+dataset分为两类：
+
+### Map-style datasets
+
+需要完成\_\_getitem\_\_()` and `\_\_len\_\_()函数，可以通过dataset[idx]调用数据
+
+### Iterable-style datasets
+
+完成\_\_iter\_\_()，这适用于无法shuffle，只可以通过依次调用，确定data的batch_size，可以通过iter(dataset)返回一个数据序列
+
 2、batch_size：（数据类型 int）
 
 每次输入数据的行数，默认为1。PyTorch训练模型时调用数据不是一行一行进行的（这样太没效率），而是一捆一捆来的。这里就是定义每次喂给神经网络多少行数据，如果设置成1，那就是一行一行进行（个人偏好，PyTorch默认设置是1）。
@@ -30,7 +40,9 @@ excerpt: 自己需要提升基础代码知识
 
 4、collate_fn：（数据类型 callable，没见过的类型）
 
-将一小段数据合并成数据列表，默认设置是False。如果设置成True，系统会在返回前会将张量数据（Tensors）复制到CUDA内存中。（不太明白作用是什么，就暂时默认False）
+将一小段数据合并成数据列表，默认设置是False。如果设置成True，系统会在返回前会将张量数据（Tensors）复制到CUDA内存中。自己定义一个函数提前处理数据，做相应处理
+
+`collate_fn` can be used to customize collation, e.g., padding sequential data to max length of a batch. See [this section](https://pytorch.org/docs/1.9.1/data.html?highlight=dataloader#dataloader-collate-fn) on more about `collate_fn`.
 
 5、batch_sampler：（数据类型 Sampler）
 
@@ -39,6 +51,8 @@ excerpt: 自己需要提升基础代码知识
 6、sampler：（数据类型 Sampler）
 
 采样，默认设置为None。根据定义的策略从数据集中采样输入。如果定义采样规则，则洗牌（shuffle）设置必须为False。
+
+定义采样规则，specify the sequence of indices/keys used in data loading，对于Iterable-style datasets则必须自己定义所有的采样顺序
 
 7、num_workers：（数据类型 Int）
 
@@ -60,3 +74,10 @@ excerpt: 自己需要提升基础代码知识
 
 子进程导入模式，默认为Noun。在数据导入前和步长结束后，根据工作子进程的ID逐个按顺序导入数据。
 
+
+
+**When automatic batching is disabled**, the default `collate_fn` simply converts NumPy arrays into PyTorch Tensors, and keeps everything else untouched.
+
+When both `batch_size` and `batch_sampler` are `None` (default value for `batch_sampler` is already `None`), automatic batching is disabled. Each sample obtained from the `dataset` is processed with the function passed as the `collate_fn` argument.
+
+重点是collate_fn参数
