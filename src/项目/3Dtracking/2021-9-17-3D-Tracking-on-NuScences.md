@@ -134,3 +134,4 @@ param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function o
 - [ ] 不归一化
 - [ ] softmax重新测量
 - [ ] 重新训练sigmoid
+- [ ] 只用框内的点
