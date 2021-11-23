@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Sun, 21 Nov 2021 12:00:59 +0806</lastBuildDate><pubDate>Sun, 21 Nov 2021 12:00:59 +0806</pubDate><item><title>失控玩家</title><link>/Blog/archives/Out%20of%20Control/</link><description>&lt;p&gt;&lt;strong&gt;失控玩家&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;欢快搞笑的快节奏电影，引入游戏视角，思考人存在的意义。&lt;/p&gt;&lt;p&gt;主要围绕游戏中的世界线，反思什么是存在的，什么是活着的。“我思故我在”，个体意识被强烈地放大，不在意是否自己的世界是不是存在的。电影中运用了大量特效场景，非常壮观宏大的场面，夹杂了一点点的人物感情，最后便是一个happy ending。不是特别深沉的题材，更偏向于科幻风，但想表达和反思的内容过多，是励志但却并没有真正振聋发聩的效果。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/Out%20of%20Control/</guid><pubDate>Fri, 08 Oct 2021 00:00:00 +0806</pubDate></item><item><title>Tracking 实验结果</title><link>/Blog/archives/3DtrackingOnNuScences/</link><description>&lt;hr /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Tue, 23 Nov 2021 09:09:47 +0806</lastBuildDate><pubDate>Tue, 23 Nov 2021 09:09:47 +0806</pubDate><item><title>Tracking 实验结果</title><link>/Blog/archives/3DtrackingOnNuScences/</link><description>&lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Tracking 实验结果&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;mini dataset上&lt;/p&gt;&lt;p&gt;==detection结果==&lt;/p&gt;&lt;p&gt;Saving metrics to: work_dirs/nusc_nsweep_10
 mAP: 0.6720
 mATE: 0.2821
@@ -496,4 +496,64 @@ clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&
 &lt;p&gt;可以看到最终的绘制效果图如下，实现了不规则的图形。&lt;/p&gt;&lt;figure style="flex: 98.39506172839506" &gt;&lt;img width="1594" height="810" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/5b416b5abb69e399a22a23b2400a1f14.png" /&gt;&lt;figcaption&gt;plot3&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;这个例子中有几个参数要特别说明下，因为一开始会让不少人感到困惑，就是关于创建不规则子图的参数指定，因为这决定了子图的排列规则。例子中4个子图的位置分别是grid[0, 0]、grid[0, 1:]、grid[1, :2]、grid[1, 2]它们到底代表着什么呢，怎么理解呢。&lt;/p&gt;&lt;p&gt;可以这样理解，一开始我们声明创建的是2行3列的一个图像布局网格，我们可以想象成我们创建的是一个二维数组，类似如下这样，如果一行的宽度按100%计算的话，每个元素占据的宽度可以理解为33.33%：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;第一个子图的位置是&lt;code&gt;grid[0, 0]&lt;/code&gt;：按照这个&lt;code&gt;[0, 0]&lt;/code&gt;的下标取值为第1行第1列的元素，得到的是1这个元素位置宽度（大概是33.33%的宽度）。&lt;/p&gt;&lt;p&gt;第二个子图的位置是&lt;code&gt;grid[0, 1:]&lt;/code&gt;：按照这个&lt;code&gt;[0, 1:]&lt;/code&gt;的下标取值为第1行第2列的之后所有的元素，得到的是2, 3这个元素位置宽度。所以你可以从效果图中看到第2个子图占据了第一行一大半的宽度（大概是66.66%的宽度）。&lt;/p&gt;&lt;p&gt;第三个子图的位置是&lt;code&gt;grid[1, :2]&lt;/code&gt;：按照这个&lt;code&gt;[1, :2]&lt;/code&gt;的下标取值为第2行第1列起到第3列&lt;strong&gt;之间&lt;/strong&gt;所有的元素，得到的是4, 5这个元素位置宽度。所以你可以从效果图中看到第3个子图占据了第二行一大半的宽度（大概是66.66%的宽度）。&lt;/p&gt;&lt;p&gt;第四个子图的位置是&lt;code&gt;grid[1, 2]&lt;/code&gt;：按照这个&lt;code&gt;[1, 2]&lt;/code&gt;的下标取值为第2行第3列的元素，得到的是6这个元素位置宽度。所以你可以从效果图中看到第4个子图只占据了一个元素的宽度（大概是33.33%的宽度）。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/plot%E8%AF%AD%E6%B3%95/</guid><pubDate>Sun, 14 Nov 2021 00:00:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;第一个子图的位置是&lt;code&gt;grid[0, 0]&lt;/code&gt;：按照这个&lt;code&gt;[0, 0]&lt;/code&gt;的下标取值为第1行第1列的元素，得到的是1这个元素位置宽度（大概是33.33%的宽度）。&lt;/p&gt;&lt;p&gt;第二个子图的位置是&lt;code&gt;grid[0, 1:]&lt;/code&gt;：按照这个&lt;code&gt;[0, 1:]&lt;/code&gt;的下标取值为第1行第2列的之后所有的元素，得到的是2, 3这个元素位置宽度。所以你可以从效果图中看到第2个子图占据了第一行一大半的宽度（大概是66.66%的宽度）。&lt;/p&gt;&lt;p&gt;第三个子图的位置是&lt;code&gt;grid[1, :2]&lt;/code&gt;：按照这个&lt;code&gt;[1, :2]&lt;/code&gt;的下标取值为第2行第1列起到第3列&lt;strong&gt;之间&lt;/strong&gt;所有的元素，得到的是4, 5这个元素位置宽度。所以你可以从效果图中看到第3个子图占据了第二行一大半的宽度（大概是66.66%的宽度）。&lt;/p&gt;&lt;p&gt;第四个子图的位置是&lt;code&gt;grid[1, 2]&lt;/code&gt;：按照这个&lt;code&gt;[1, 2]&lt;/code&gt;的下标取值为第2行第3列的元素，得到的是6这个元素位置宽度。所以你可以从效果图中看到第4个子图只占据了一个元素的宽度（大概是33.33%的宽度）。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/plot%E8%AF%AD%E6%B3%95/</guid><pubDate>Sun, 14 Nov 2021 00:00:00 +0806</pubDate></item><item><title>电力电子技术复习</title><link>/Blog/archives/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0/</link><description>&lt;p&gt;&lt;strong&gt;电力电子技术期中&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;绪论&lt;/h3&gt;
+&lt;p&gt;器件：有源，无源&lt;/p&gt;&lt;p&gt;，拓扑，控制三要素&lt;/p&gt;&lt;p&gt;四种基本变换&lt;/p&gt;&lt;p&gt;AC-DC整流；DC-AC逆变；AC-AC周波变流器，cyclo-converter；DC-DC斩波器chopper&lt;/p&gt;&lt;p&gt;器件，拓扑，控制是电力电子的三要素，开关模式是现代电力电子的核心特征&lt;/p&gt;&lt;h3&gt;电力电子器件&lt;/h3&gt;
+&lt;h4&gt;概述&lt;/h4&gt;
+&lt;h5&gt;特征和概念&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;处理功率大&lt;/li&gt;
+&lt;li&gt;工作在开关模式&lt;/li&gt;
+&lt;li&gt;需要控制电路&lt;/li&gt;
+&lt;li&gt;需要驱动电路&lt;/li&gt;
+&lt;li&gt;功率损耗大，需要特殊封装器，散热器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;损耗分类&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;通态损耗&lt;/li&gt;
+&lt;li&gt;开关损耗：开通损耗，关断损耗&lt;/li&gt;
+&lt;li&gt;断态损耗&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;器件分类&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;不控器件——功率二极管&lt;/li&gt;
+&lt;li&gt;半控器件——晶闸管&lt;/li&gt;
+&lt;li&gt;全控器件——BJT(GTR),GTO,MOSFET，IGBT&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;全控器件又分为电流型和电压型，单极型（一种带电粒子，如power mosfet）、双极型（有电子、空穴两种带电粒子，如GTR和GTO），由双极型和单极型器件复合成的器件称为复合型器件，如IGBT&lt;/p&gt;&lt;p&gt;PN结形成的原因&lt;/p&gt;&lt;p&gt;多子扩散，少子漂移&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;正偏：形成正向电流，利于多子扩散，抑制漂移（因为电场的原因），少子的存储（越过电荷区后来不及复合）&lt;/li&gt;
+&lt;li&gt;反偏：漏电流，抑制多子扩散，利于漂移，空间电荷区变宽，少子的抽取（两侧漂移的少子被抽取来不及被补充）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;反偏击穿&lt;/p&gt;&lt;p&gt;雪崩击穿，齐纳击穿——可恢复；热击穿（不可恢复）&lt;/p&gt;&lt;p&gt;电容&lt;/p&gt;&lt;p&gt;结电容，频率越高，电容效应越明显&lt;/p&gt;&lt;p&gt;势垒电容：多子的移动&lt;/p&gt;&lt;p&gt;扩散电容：少子的存储和抽取&lt;/p&gt;&lt;h5&gt;不控器件&lt;/h5&gt;
+&lt;p&gt;功率二极管&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;尺寸更大，通过电流更大&lt;/li&gt;
+&lt;li&gt;垂直导电结构，通过电流更大&lt;/li&gt;
+&lt;li&gt;n-低掺杂，耐高压&lt;/li&gt;
+&lt;li&gt;电导调制效应，正向电流大时，P区注入并积累在N-区的少子空穴浓度增大，为维持漂移区电中性条件，N-区多子浓度也增大，从而使得电阻率下降，电导率增大；==主要是指N-区内的浓度变化==&lt;/li&gt;
+&lt;li&gt;大量少子需要一定时间来存储在N-区&lt;/li&gt;
+&lt;li&gt;反偏不能立即关断：功率二极管的空间电荷区两侧（特别是多掺杂N区）储存有大量少子的缘故而并没 有恢复反向阻断能力&lt;/li&gt;
+&lt;li&gt;延迟时间：$t_d  = t_4$，电流下降时间：$t_f = t_5$，反向恢复时间：$t_{rr} = t_d+t_f$，恢复特性的软度：$\frac{t_f}{t_d}$，用$S_r$表示。&lt;/li&gt;
+&lt;li&gt;反偏到正偏存在正向恢复时间$t_{rr}$。电流上升率越大，$V_{FP}$越高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;半控器件&lt;/h5&gt;
+&lt;p&gt;正反馈导通：正偏 + 提供门极电流$𝑰_𝐆$。&lt;/p&gt;&lt;p&gt;维持电流$I_H$ 晶闸管维持导通所必需的最小电流 ==通-断==&lt;/p&gt;&lt;p&gt;擎住电流$I_{L}$，晶闸管刚从断态转入通态并移除触发信号后， 能维持导通所需的最小电流。对同一晶闸管来说，通常$I_{L}$约为$I_H$的2~4倍。 ==断-通==
+开通时间turn on time $t_{on}=t_d+t_r$&lt;/p&gt;&lt;p&gt;carrier recombination用于少子复合，无法用外电路抽取&lt;/p&gt;&lt;p&gt;关断时间turn off time $t_{off}=t_{rr}+t_{gr}$。&lt;/p&gt;&lt;h5&gt;全控器件&lt;/h5&gt;
+&lt;p&gt;GTO关断增益大，可以通过门级抽取电流的方法进行关断，但开通关断吸收电路复杂，容易出现误导通现象。二极管反向恢复特性差，存在拖尾过程，不能用于高频工作&lt;/p&gt;&lt;p&gt;GTO可控关断的原因：&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;α2 设计的较大V2 更容易被控制，因而正反馈在关断时候也存在;&lt;/li&gt;
+&lt;li&gt;α1+α2 更接近于1， α1 + α2 ≈ 1. 05 ，因而开通时更接近于饱和区的边界；&lt;/li&gt;
+&lt;li&gt;多元集成结构使每个GTO元阴极面积很小，门极和阴极间的距 离大为缩短，使得P2基区横向电阻很小，使得从门极抽出较大电流成为可能.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;GTR放大倍数有限，需要采用达林顿接法，基极很宽，导致β较小。&lt;/p&gt;&lt;p&gt;BJT（GTR）二次击穿会造成永久损害&lt;/p&gt;&lt;p&gt;功率MOSFET&lt;/p&gt;&lt;p&gt;按导电沟道分为P沟道和N沟道&lt;/p&gt;&lt;p&gt;按栅极电压为零时存在导电沟道与否可分为耗尽型（为0）和增强型（不为0）&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;截止($V_{DS}$&amp;gt;0, $V_{GS}$=0 或开路)： J1处于反偏状态&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;导通($V_{DS}$&amp;gt;0, $V_{GS}$&amp;gt;0)：$V_{GS} &amp;gt;V_{th}$&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;体二极管反向导通($V_{DS}$&amp;lt;0, $V_{GS}$=0 或开路)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure style="flex: 56.296992481203006" &gt;&lt;img width="599" height="532" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/7bf8c9f2f1da3cddce7f4d5c9c7066a2.png" /&gt;&lt;/figure&gt;&lt;p&gt;MOSFET开通等效电路&lt;/p&gt;&lt;figure style="flex: 75.82116788321167" &gt;&lt;img width="831" height="548" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/45c17aa978b3d13a80c9b21bebe98642.png" /&gt;&lt;/figure&gt;&lt;p&gt;米勒平台：第三阶段中只对$C_{GD}$充电，$V_{GS}$保持不变&lt;/p&gt;&lt;p&gt;整个过程看$V_{DS}$要下降到0左右&lt;/p&gt;&lt;p&gt;米勒平台时间等于（$t_{fv1}+t_{fv2}$）&lt;/p&gt;&lt;p&gt;进入欧姆区后给$C_{GS}$充电直到稳态电压约15V&lt;/p&gt;&lt;p&gt;MOSFET的动态特性&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;开关频率和Cin关系大&lt;/li&gt;
+&lt;li&gt;可以减小门极电阻RG可以加快开关速度&lt;/li&gt;
+&lt;li&gt;开关时间10~100 ns，频率可以高于 100 kHz&lt;/li&gt;
+&lt;li&gt;正温度系数，易并联&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure style="flex: 98.90710382513662" &gt;&lt;img width="724" height="366" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/bc9616f464e60e78b8f6a30102af94b1.png" /&gt;&lt;/figure&gt;&lt;figure style="flex: 150.37313432835822" &gt;&lt;img width="806" height="268" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a2ec2020d61f6f52b86a8d561fd42fe.png" /&gt;&lt;/figure&gt;&lt;p&gt;IGBT&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;低导通损耗，类似GTR&lt;/li&gt;
+&lt;li&gt;电压型器件，类似MOSFET&lt;/li&gt;
+&lt;li&gt;工作频率高于GTR，低于MOSFET&lt;/li&gt;
+&lt;/ol&gt;
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0/</guid><pubDate>Mon, 22 Nov 2021 00:00:00 +0806</pubDate></item></channel></rss>
