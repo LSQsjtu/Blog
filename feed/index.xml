@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Tue, 23 Nov 2021 09:09:47 +0806</lastBuildDate><pubDate>Tue, 23 Nov 2021 09:09:47 +0806</pubDate><item><title>Tracking 实验结果</title><link>/Blog/archives/3DtrackingOnNuScences/</link><description>&lt;hr /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Wed, 24 Nov 2021 01:00:07 +0806</lastBuildDate><pubDate>Wed, 24 Nov 2021 01:00:07 +0806</pubDate><item><title>Tracking 实验结果</title><link>/Blog/archives/3DtrackingOnNuScences/</link><description>&lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Tracking 实验结果&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;mini dataset上&lt;/p&gt;&lt;p&gt;==detection结果==&lt;/p&gt;&lt;p&gt;Saving metrics to: work_dirs/nusc_nsweep_10
 mAP: 0.6720
 mATE: 0.2821
@@ -521,7 +521,7 @@ clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&
 &lt;li&gt;正偏：形成正向电流，利于多子扩散，抑制漂移（因为电场的原因），少子的存储（越过电荷区后来不及复合）&lt;/li&gt;
 &lt;li&gt;反偏：漏电流，抑制多子扩散，利于漂移，空间电荷区变宽，少子的抽取（两侧漂移的少子被抽取来不及被补充）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;反偏击穿&lt;/p&gt;&lt;p&gt;雪崩击穿，齐纳击穿——可恢复；热击穿（不可恢复）&lt;/p&gt;&lt;p&gt;电容&lt;/p&gt;&lt;p&gt;结电容，频率越高，电容效应越明显&lt;/p&gt;&lt;p&gt;势垒电容：多子的移动&lt;/p&gt;&lt;p&gt;扩散电容：少子的存储和抽取&lt;/p&gt;&lt;h5&gt;不控器件&lt;/h5&gt;
+&lt;p&gt;反偏击穿&lt;/p&gt;&lt;p&gt;雪崩击穿，齐纳击穿——可恢复；热击穿（不可恢复）&lt;/p&gt;&lt;p&gt;电容&lt;/p&gt;&lt;p&gt;结电容，频率越高，电容效应越明显&lt;/p&gt;&lt;p&gt;势垒电容：多子的移动&lt;/p&gt;&lt;p&gt;扩散电容：少子的存储和抽取&lt;/p&gt;&lt;p&gt;静态特性：伏安特性&lt;/p&gt;&lt;h5&gt;不控器件&lt;/h5&gt;
 &lt;p&gt;功率二极管&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;尺寸更大，通过电流更大&lt;/li&gt;
 &lt;li&gt;垂直导电结构，通过电流更大&lt;/li&gt;
@@ -532,9 +532,9 @@ clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&
 &lt;li&gt;延迟时间：$t_d  = t_4$，电流下降时间：$t_f = t_5$，反向恢复时间：$t_{rr} = t_d+t_f$，恢复特性的软度：$\frac{t_f}{t_d}$，用$S_r$表示。&lt;/li&gt;
 &lt;li&gt;反偏到正偏存在正向恢复时间$t_{rr}$。电流上升率越大，$V_{FP}$越高&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h5&gt;半控器件&lt;/h5&gt;
-&lt;p&gt;正反馈导通：正偏 + 提供门极电流$𝑰_𝐆$。&lt;/p&gt;&lt;p&gt;维持电流$I_H$ 晶闸管维持导通所必需的最小电流 ==通-断==&lt;/p&gt;&lt;p&gt;擎住电流$I_{L}$，晶闸管刚从断态转入通态并移除触发信号后， 能维持导通所需的最小电流。对同一晶闸管来说，通常$I_{L}$约为$I_H$的2~4倍。 ==断-通==
-开通时间turn on time $t_{on}=t_d+t_r$&lt;/p&gt;&lt;p&gt;carrier recombination用于少子复合，无法用外电路抽取&lt;/p&gt;&lt;p&gt;关断时间turn off time $t_{off}=t_{rr}+t_{gr}$。&lt;/p&gt;&lt;h5&gt;全控器件&lt;/h5&gt;
+&lt;p&gt;正向和反向电压过充的原因：&lt;/p&gt;&lt;p&gt;正向电流的上升会因器件自身的电感而产生较大压降，所以，电流上升率越大，电压过充越高&lt;/p&gt;&lt;p&gt;下降的两个过程：抽取少子和抽取远端少子&lt;/p&gt;&lt;p&gt;$V_{DRM}$正向重复峰值电压：$I_G = 0$时允许==重复==加在器件上的峰值电压，50Hz，每次不超过10ms&lt;/p&gt;&lt;h5&gt;半控器件&lt;/h5&gt;
+&lt;p&gt;正反馈导通：正偏 + 提供门极电流$𝑰_𝐆$。&lt;/p&gt;&lt;p&gt;关断：反偏+电流过零&lt;/p&gt;&lt;p&gt;维持电流$I_H$ 晶闸管维持导通所必需的最小电流 ==通-断==&lt;/p&gt;&lt;p&gt;擎住电流$I_{L}$，晶闸管刚从断态转入通态并移除触发信号后， 能维持导通所需的最小电流。对同一晶闸管来说，通常$I_{L}$约为$I_H$的2~4倍。 ==断-通==
+开通时间turn on time $t_{on}=t_d+t_r$&lt;/p&gt;&lt;p&gt;carrier recombination用于少子复合，无法用外电路抽取&lt;/p&gt;&lt;p&gt;关断时间turn off time $t_{off}=t_{rr}+t_{gr}$。反向恢复时间$t_{rr}$，正向阻断时间$t_{gr}$&lt;/p&gt;&lt;h5&gt;全控器件&lt;/h5&gt;
 &lt;p&gt;GTO关断增益大，可以通过门级抽取电流的方法进行关断，但开通关断吸收电路复杂，容易出现误导通现象。二极管反向恢复特性差，存在拖尾过程，不能用于高频工作&lt;/p&gt;&lt;p&gt;GTO可控关断的原因：&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;α2 设计的较大V2 更容易被控制，因而正反馈在关断时候也存在;&lt;/li&gt;
 &lt;li&gt;α1+α2 更接近于1， α1 + α2 ≈ 1. 05 ，因而开通时更接近于饱和区的边界；&lt;/li&gt;
@@ -551,9 +551,18 @@ clear all：清除工作空间的所有变量，函数，和MEX文件&lt;/p&gt;&
 &lt;li&gt;开关时间10~100 ns，频率可以高于 100 kHz&lt;/li&gt;
 &lt;li&gt;正温度系数，易并联&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure style="flex: 98.90710382513662" &gt;&lt;img width="724" height="366" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/bc9616f464e60e78b8f6a30102af94b1.png" /&gt;&lt;/figure&gt;&lt;figure style="flex: 150.37313432835822" &gt;&lt;img width="806" height="268" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a2ec2020d61f6f52b86a8d561fd42fe.png" /&gt;&lt;/figure&gt;&lt;p&gt;IGBT&lt;/p&gt;&lt;ol&gt;
+&lt;figure style="flex: 98.90710382513662" &gt;&lt;img width="724" height="366" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/bc9616f464e60e78b8f6a30102af94b1.png" /&gt;&lt;/figure&gt;&lt;figure style="flex: 150.37313432835822" &gt;&lt;img width="806" height="268" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a2ec2020d61f6f52b86a8d561fd42fe.png" /&gt;&lt;/figure&gt;&lt;p&gt;IGBT可以看成是MOSFET控制的GTR&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;低导通损耗，类似GTR&lt;/li&gt;
 &lt;li&gt;电压型器件，类似MOSFET&lt;/li&gt;
 &lt;li&gt;工作频率高于GTR，低于MOSFET&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;IGBT三端分别为G，C，E&lt;/p&gt;&lt;p&gt;与MOSFET区别&lt;/p&gt;&lt;p&gt;IGBT开通&lt;/p&gt;&lt;p&gt;$𝑡&lt;em&gt;{fv2}$不对应米勒平台 ；MOSFET $𝑡&lt;/em&gt;{fv2}$对应米勒平台的原因是$V_{DS}$变小，自身 $C_{GD}$及充电时间常数变很大。而IGBT中，MOSFET的$C_{GD}$是和GTR结电容串联后共同决定时间常数&lt;/p&gt;&lt;p&gt;IGBT关断&lt;/p&gt;&lt;p&gt;电流下降分两段，$𝑡&lt;em&gt;{fv1}+𝑡&lt;/em&gt;{fv2}$,并存在$𝑡&lt;em&gt;{fv2}$拖尾电流时间$𝑡&lt;/em&gt;{fv1}$对应IGBT内部MOSFET和GTR一起关断，电流下 降较快，$𝑡_{fv1}$时间，MOSFET已经关断，PNP晶体管无基区少子抽取通道，晶体管基区少子复合缓慢，造成电流下降缓慢，成为拖尾电流。&lt;/p&gt;&lt;p&gt;IGBT特征&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;开关速度快（相对于GTR）&lt;/li&gt;
+&lt;li&gt;通态电压比MOSFET低（导通损耗低）&lt;/li&gt;
+&lt;li&gt;高输入阻抗（电阻串联）&lt;/li&gt;
+&lt;li&gt;驱动功率低（电压驱动）&lt;/li&gt;
+&lt;li&gt;驱动电路简单&lt;/li&gt;
+&lt;li&gt;有拖尾电流（漂移层存储电荷导致）&lt;/li&gt;
+&lt;li&gt;存在==擎住效应==——内部存在一个寄生晶闸管导致&lt;/li&gt;
 &lt;/ol&gt;
 </description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0/</guid><pubDate>Mon, 22 Nov 2021 00:00:00 +0806</pubDate></item></channel></rss>
