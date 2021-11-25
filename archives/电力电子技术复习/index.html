@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/fc26ebce3f741e0b4c577e66b7cc8ba7.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/92983af830bdb1cfd0d788f0daa0fc2b.json"
         }
     </script>
     
@@ -197,7 +197,7 @@ var _hmt = _hmt || [];
 纹波分析（ripple analysis）</p></blockquote>
 <h4>4.3 降压式变换器</h4>
 <p>伏秒平衡</p><p>$(V_D-V_O)t_{on} = V_Ot_{off}$推得$\frac{V_O}{V_D}=\frac{t_{on}}{T_{s}}=D$</p><p>CCM模式的判断</p><figure style="flex: 68.52300242130751" ><img width="566" height="413" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/feded8ba3643d6176408b53bfdba44e8.png" /></figure><p>CCM模式下的纹波分析</p><figure style="flex: 75.99620493358634" ><img width="801" height="527" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/309f2301ee1aeba5c0e0c20440904d14.png" /></figure><h4>4.4 Boost升压变换器</h4>
-<p>伏秒平衡</p><p>$V_Dt_{on} = (V_O-V_D)t_{off}$推得$\frac{V_O}{V_D}=\frac{T_{s}}{T_{s}-t_{on}}=\frac{1}{1-D}$</p><p>CCM模式分析</p><figure style="flex: 72.63257575757575" ><img width="767" height="528" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f273c0a0477cdc82f42b0c802231929e.png" /></figure><p>寄生参数对于Boost电压增益的影响</p><p>因为电感，电容，开关等具有寄生参数导致损耗，所以Boost电路实际的增益曲线并不是线性的，在D逼近1时，电压增益大幅下降，事实上，Boost电路的占空比D是有限制的，通常电压增益限制在4倍以内。</p><figure style="flex: 81.875" ><img width="393" height="240" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/a6ec4d3cb751435aa04e50841a73a5be.png" /></figure><p>Boost变换器输出电压的纹波</p><figure style="flex: 77.95031055900621" ><img width="753" height="483" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/741db1968b2b1e9265381825ed3ccc97.png" /></figure><p>DCM优势：</p><ol>
+<p>伏秒平衡</p><p>$V_Dt_{on} = (V_O-V_D)t_{off}$推得$\frac{V_O}{V_D}=\frac{T_{s}}{T_{s}-t_{on}}=\frac{1}{1-D}$</p><p>CCM模式分析</p><figure style="flex: 72.63257575757575" ><img width="767" height="528" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f273c0a0477cdc82f42b0c802231929e.png" /></figure><p>Boost 变换器不能用于输出端开路工作的情况，没有负载或负载较小，$V_o$会不断升高</p><p>寄生参数对于Boost电压增益的影响</p><p>因为电感，电容，开关等具有寄生参数导致损耗，所以Boost电路实际的增益曲线并不是线性的，在D逼近1时，电压增益大幅下降，事实上，Boost电路的占空比D是有限制的，通常电压增益限制在4倍以内。</p><figure style="flex: 81.875" ><img width="393" height="240" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/a6ec4d3cb751435aa04e50841a73a5be.png" /></figure><p>Boost变换器输出电压的纹波</p><figure style="flex: 77.95031055900621" ><img width="753" height="483" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/741db1968b2b1e9265381825ed3ccc97.png" /></figure><p>DCM优势：</p><ol>
 <li>L尺寸小</li>
 <li>没有二极管反向恢复损耗</li>
 <li>效率高（所有存储能量都转移给负载）</li>
@@ -206,8 +206,11 @@ var _hmt = _hmt || [];
 <li>EMI电磁干扰</li>
 <li>D调节困难，可能会跑到CCM模式</li>
 </ol>
-<h4>Buck-Boost变换器</h4>
-
+<h4>4.5 Buck-Boost变换器</h4>
+<p>伏秒平衡</p><p>$V_Dt_{on} = V_Ot_{off}$推得$\frac{V_O}{V_D}=\frac{D}{1-D}$</p><p>CCM分析</p><figure style="flex: 77.40667976424362" ><img width="788" height="509" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b1a3287efaaa7547345f8163152b4e2a.png" /></figure><p>输出纹波电压分析</p><figure style="flex: 77.24550898203593" ><img width="774" height="501" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/e8fed3bb6d80bae5fb538b417e6989fa.png" /></figure><h4>4.6 正激变换器</h4>
+<p>$D_3，N_3$为磁复位电路，为了避免磁饱和，在源边人为注入反向电压</p><p>和Buck电路的主要区别$\frac{V_O}{V_D}=\frac{N_2}{N_1}D$</p><h4>4.7 反激变换器</h4>
+<figure style="flex: 55.90717299578059" ><img width="265" height="237" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/07a88ad2d49411def23e97ad3f143a6b.png" /></figure><p>原型是Buck-Boost</p><p>隔离的励磁电感代替L</p><p>根据伏秒平衡$\frac{V_O}{V_D}=\frac{N_2}{N_1}\frac{D}{1-D}$</p><p>CCM、DCM模式下，反激变换器磁芯工作状 态：反激变换器磁芯有很大的直流偏磁，通常要加入气隙以防止饱和。加入气隙后，磁滞回线变得偏平，达到$B_m$的H更大，电流更大</p><h4>PWM控制</h4>
+<p>开通是指器件有开通信号， 但要实际导通电流才称为导通。</p><figure style="flex: 82.57372654155496" ><img width="616" height="373" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f06af01afb950e994757ab33bff3a8b2.png" /></figure>
             </div>
         </article>
         <div id="ga-tags">
