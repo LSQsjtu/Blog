@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/92983af830bdb1cfd0d788f0daa0fc2b.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/a6d976352eea44ed941cdb657d365ad4.json"
         }
     </script>
     
@@ -116,7 +116,7 @@ var _hmt = _hmt || [];
             </span>
             <div class="ga-content_body">
                 <p><strong>电力电子技术期中</strong></p><h3>绪论</h3>
-<p>器件：有源，无源</p><p>，拓扑，控制三要素</p><p>四种基本变换</p><p>AC-DC整流；DC-AC逆变；AC-AC周波变流器，cyclo-converter；DC-DC斩波器chopper</p><p>器件，拓扑，控制是电力电子的三要素，开关模式是现代电力电子的核心特征</p><h3>第二章电力电子器件</h3>
+<p>器件：有源，无源</p><p>，拓扑，控制三要素</p><p>四种基本变换</p><p>AC-DC整流；DC-AC逆变；AC-AC周波变流器，cyclo-converter；DC-DC斩波器chopper</p><p>器件，拓扑，控制是电力电子的三要素，开关模式是现代电力电子的核心特征</p><p>应用：新能源发电，电源，电力系统</p><h3>第二章电力电子器件</h3>
 <h4>2.1概述</h4>
 <h5>特征和概念</h5>
 <ol>
@@ -140,7 +140,7 @@ var _hmt = _hmt || [];
 <li>正偏：形成正向电流，利于多子扩散，抑制漂移（因为电场的原因），少子的存储（越过电荷区后来不及复合）</li>
 <li>反偏：漏电流，抑制多子扩散，利于漂移，空间电荷区变宽，少子的抽取（两侧漂移的少子被抽取来不及被补充）</li>
 </ol>
-<p>反偏击穿</p><p>雪崩击穿，齐纳击穿——可恢复；热击穿（不可恢复）</p><p>电容</p><p>结电容，频率越高，电容效应越明显</p><p>势垒电容：多子的移动</p><p>扩散电容：少子的存储和抽取</p><p>静态特性：伏安特性</p><h4>2.2不控器件</h4>
+<p>反偏击穿</p><p>雪崩击穿，齐纳击穿——可恢复；热击穿（不可恢复）</p><p>电容</p><p>结电容，频率越高，电容效应越明显</p><p>势垒电容：多子的移动</p><p>扩散电容：少子的存储和抽取</p><p>静态特性：伏安特性</p><h4>2.2 不控器件</h4>
 <p>功率二极管</p><ol>
 <li>尺寸更大，通过电流更大</li>
 <li>垂直导电结构，通过电流更大</li>
@@ -151,21 +151,21 @@ var _hmt = _hmt || [];
 <li>延迟时间：$t_d  = t_4$，电流下降时间：$t_f = t_5$，反向恢复时间：$t_{rr} = t_d+t_f$，恢复特性的软度：$\frac{t_f}{t_d}$，用$S_r$表示。</li>
 <li>反偏到正偏存在正向恢复时间$t_{rr}$。电流上升率越大，$V_{FP}$越高</li>
 </ol>
-<p>正向和反向电压过充的原因：</p><p>正向电流的上升会因器件自身的电感而产生较大压降，所以，电流上升率越大，电压过充越高</p><p>下降的两个过程：==抽取少子和抽取远端少子==</p><p>$V_{DRM}$正向重复峰值电压：$I_G = 0$时允许==重复==加在器件上的峰值电压，50Hz，每次不超过10ms</p><h4>2.3半控器件</h4>
+<p>正向和反向电压过充的原因：</p><p>正向电流的上升会因器件自身的电感而产生较大压降，所以，电流上升率越大，电压过充越高</p><p>下降的两个过程：==抽取少子和抽取远端少子==</p><p>$V_{DRM}$正向重复峰值电压：$I_G = 0$时允许==重复==加在器件上的峰值电压，50Hz，每次不超过10ms</p><h4>2.3 半控器件</h4>
 <p>正反馈导通：正偏 + 提供门极电流$𝑰_𝐆$。</p><p>关断：反偏+电流过零</p><p>维持电流$I_H$ 晶闸管维持导通所必需的最小电流 ==通-断==</p><p>擎住电流$I_{L}$，晶闸管刚从断态转入通态并移除触发信号后， 能维持导通所需的最小电流。对同一晶闸管来说，通常$I_{L}$约为$I_H$的2~4倍。 ==断-通==
-开通时间turn on time $t_{on}=t_d+t_r$</p><p>carrier recombination用于少子复合，无法用外电路抽取</p><p>关断时间turn off time $t_{off}=t_{rr}+t_{gr}$。反向恢复时间$t_{rr}$，正向阻断时间$t_{gr}$</p><h4>2.4全控器件</h4>
+开通时间turn on time $t_{on}=t_d+t_r$</p><p>carrier recombination用于少子复合，无法用外电路抽取</p><p>关断时间turn off time $t_{off}=t_{rr}+t_{gr}$。反向恢复时间$t_{rr}$，正向阻断时间$t_{gr}$（下面的PN结处于方向状态，无法抽取）</p><h4>2.4 全控器件</h4>
 <p>GTO关断增益大，可以通过门级抽取电流的方法进行关断，但开通关断吸收电路复杂，容易出现误导通现象。二极管反向恢复特性差，存在拖尾过程，不能用于高频工作</p><p>GTO可控关断的原因：</p><ol>
 <li>α2 设计的较大V2 更容易被控制，因而正反馈在关断时候也存在;</li>
 <li>α1+α2 更接近于1， α1 + α2 ≈ 1. 05 ，因而开通时更接近于饱和区的边界；</li>
 <li>多元集成结构使每个GTO元阴极面积很小，门极和阴极间的距 离大为缩短，使得P2基区横向电阻很小，使得从门极抽出较大电流成为可能.</li>
 </ol>
-<p>GTR放大倍数有限，需要采用达林顿接法，基极很宽，导致β较小。</p><p>BJT（GTR）二次击穿会造成永久损害</p><p>==负的温度系数==</p><p>功率MOSFET</p><p>按导电沟道分为P沟道和N沟道</p><p>按栅极电压为零时存在导电沟道与否可分为耗尽型（为0）和增强型（不为0）</p><ul>
+<p>GTR放大倍数有限，需要采用达林顿接法，基极很宽，导致β较小。</p><p>BJT（GTR）二次击穿会造成永久损害</p><p>GTR具有==负的温度系数==</p><p>功率MOSFET</p><p>按导电沟道分为P沟道和N沟道</p><p>按栅极电压为零时存在导电沟道与否可分为耗尽型（为0）和增强型（不为0）</p><ul>
 <li><p>截止($V_{DS}$&gt;0, $V_{GS}$=0 或开路)： J1处于反偏状态</p></li>
 <li><p>导通($V_{DS}$&gt;0, $V_{GS}$&gt;0)：$V_{GS} &gt;V_{th}$</p></li>
 <li><p>体二极管反向导通($V_{DS}$&lt;0, $V_{GS}$=0 或开路)</p></li>
 </ul>
 <figure style="flex: 56.296992481203006" ><img width="599" height="532" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/7bf8c9f2f1da3cddce7f4d5c9c7066a2.png" /></figure><p>MOSFET开通等效电路</p><figure style="flex: 75.82116788321167" ><img width="831" height="548" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/45c17aa978b3d13a80c9b21bebe98642.png" /></figure><p>了解四个阶段的大致过程即可，$C_{GD}$在增大</p><p>米勒平台：第三阶段中只对$C_{GD}$充电，$V_{GS}$保持不变</p><p>整个过程看$V_{DS}$要下降到0左右</p><p>米勒平台时间等于（$t_{fv1}+t_{fv2}$）</p><p>进入欧姆区后给$C_{GS}$充电直到稳态电压约15V</p><p>MOSFET的动态特性</p><ol>
-<li>开关频率和Cin关系大</li>
+<li>开关频率和Cin关系大（时间常数）</li>
 <li>可以减小门极电阻RG可以加快开关速度（增大注入电流）</li>
 <li>开关时间10~100 ns，频率可以高于 100 kHz</li>
 <li>正温度系数，易并联</li>
@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
 <p>伏秒平衡</p><p>$V_Dt_{on} = V_Ot_{off}$推得$\frac{V_O}{V_D}=\frac{D}{1-D}$</p><p>CCM分析</p><figure style="flex: 77.40667976424362" ><img width="788" height="509" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b1a3287efaaa7547345f8163152b4e2a.png" /></figure><p>输出纹波电压分析</p><figure style="flex: 77.24550898203593" ><img width="774" height="501" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/e8fed3bb6d80bae5fb538b417e6989fa.png" /></figure><h4>4.6 正激变换器</h4>
 <p>$D_3，N_3$为磁复位电路，为了避免磁饱和，在源边人为注入反向电压</p><p>和Buck电路的主要区别$\frac{V_O}{V_D}=\frac{N_2}{N_1}D$</p><h4>4.7 反激变换器</h4>
 <figure style="flex: 55.90717299578059" ><img width="265" height="237" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/07a88ad2d49411def23e97ad3f143a6b.png" /></figure><p>原型是Buck-Boost</p><p>隔离的励磁电感代替L</p><p>根据伏秒平衡$\frac{V_O}{V_D}=\frac{N_2}{N_1}\frac{D}{1-D}$</p><p>CCM、DCM模式下，反激变换器磁芯工作状 态：反激变换器磁芯有很大的直流偏磁，通常要加入气隙以防止饱和。加入气隙后，磁滞回线变得偏平，达到$B_m$的H更大，电流更大</p><h4>PWM控制</h4>
-<p>开通是指器件有开通信号， 但要实际导通电流才称为导通。</p><figure style="flex: 82.57372654155496" ><img width="616" height="373" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f06af01afb950e994757ab33bff3a8b2.png" /></figure>
+<p>开通是指器件有开通信号， 但要实际导通电流才称为导通。</p><figure style="flex: 82.57372654155496" ><img width="616" height="373" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/f06af01afb950e994757ab33bff3a8b2.png" /></figure><p>全桥变换器的三种典型应用和控制方法：直流电机驱动、正弦波逆变器、高频隔离DC-DC</p>
             </div>
         </article>
         <div id="ga-tags">
