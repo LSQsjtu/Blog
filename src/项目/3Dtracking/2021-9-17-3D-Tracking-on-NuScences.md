@@ -133,5 +133,13 @@ param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function o
 
 - [ ] 不归一化
 - [ ] softmax重新测量
-- [ ] 重新训练sigmoid
+- [x] 重新训练sigmoid
 - [ ] 只用框内的点
+
+
+
+只使用sigmoid的缺陷：
+
+![](2021-9-17-3D-Tracking-on-NuScences.assets/image-20211204112245197.png)
+
+由于值的原因，无法很好区分物体，就存在每个值都接近于0.5左右
