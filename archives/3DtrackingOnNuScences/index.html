@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/e7b8a3ddee0bc40873e6d45af6c59cba.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/d030f96e41574e5375dda95bad639922.json"
         }
     </script>
     
@@ -193,10 +193,10 @@ param.sizes<span class="o">()</span> <span class="o">=</span> <span class="o">[<
 <p>一开始由于改变了nsample_q的值，导致后面就是查询1个物体，没有起到训练的效果</p><ul>
 <li>[ ] 不归一化</li>
 <li>[ ] softmax重新测量</li>
-<li>[ ] 重新训练sigmoid</li>
+<li>[x] 重新训练sigmoid</li>
 <li>[ ] 只用框内的点</li>
 </ul>
-
+<p>只使用sigmoid的缺陷：</p><figure style="flex: 40.273972602739725" ><img width="294" height="365" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/9dfd770b2811a62811a3767c0eac0e68.png" /></figure><p>由于值的原因，无法很好区分物体，就存在每个值都接近于0.5左右</p>
             </div>
         </article>
         <div id="ga-tags">
