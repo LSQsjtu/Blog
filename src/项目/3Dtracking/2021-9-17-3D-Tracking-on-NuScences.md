@@ -143,3 +143,9 @@ param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function o
 ![](2021-9-17-3D-Tracking-on-NuScences.assets/image-20211204112245197.png)
 
 由于值的原因，无法很好区分物体，就存在每个值都接近于0.5左右
+
+
+
+- [x] 重新写一下link_loss
+- [ ] 写成一个模型，用一个优化器去优化
+- [ ] linear层的修改
