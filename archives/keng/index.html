@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/5224ada980f03494120daafa99f1fae2.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/7c1d55c28dfd6c601efd1942aa9b5539.json"
         }
     </script>
     
@@ -193,8 +193,9 @@ var _hmt = _hmt || [];
 </pre></div>
 <p>没有什么特别好的解决办法，在训练前用 num_of_samples % batch_size 算一下会不会正好剩下一个样本。</p></li>
 <li><p><strong>优化器的weight_decay项导致的隐蔽bug</strong></p><p>weight_decay指的是权值衰减，即在原损失的基础上加上一个L2惩罚项，使得模型趋向于选择更小的权重参数，起到正则化的效果。</p><p>在训练一个ResNet50的时候，网络的高层部分layer4暂时没有用到，因此也并不会有梯度回传，于是将ResNet50的<strong>所有参数</strong>都传递给Optimizer进行更新了，想着layer4应该能保持原来的权重不变才对。但是实际上，尽管layer4没有梯度回传，但是<strong>weight_decay的作用仍然存在，它使得layer4权值越来越小，趋向于0</strong>。后面需要用到layer4的时候，发现输出异常（接近于0），才注意到这个问题的存在。</p><p>虽然这样的情况可能不容易遇到，但是还是要谨慎：<strong>暂时不需要更新的权值，一定不要传递给Optimizer，避免不必要的麻烦。</strong></p></li>
+<li><p><strong>高低版本的切换</strong></p></li>
 </ol>
-
+<p>​		AT_CHECK()-&gt;TORCH_CHECK()</p><p>​		THCState_getCurrentStream(state)-&gt;at::cuda::getCurrentCUDAStream().stream()</p><p>​		来自 <a href="https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754">https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754</a></p>
             </div>
         </article>
         <div id="ga-tags">
