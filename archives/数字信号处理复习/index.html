@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/7c1d55c28dfd6c601efd1942aa9b5539.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/7034aeaf4cf20e0975ca384e089d9146.json"
         }
     </script>
     
@@ -122,7 +122,7 @@ $$
 具有周期性的正弦序列满足</p><p>$$
 \omega _{0} = 2\pi \frac{M}{N}, M,N \in Z
 $$</p>
-<p>在离散时间中$0\le \omega &lt;2\pi$，其他是混叠的</p><p>DTFT：对离散时间的傅里叶变换，转换到频域中去，是连续的</p><p>对DTFT得到的频域序列进行采样，再取周期序列的主值空间，得到的便是DFT（离散傅里叶变换），方便计算机计算</p><p>这样IDFT得到的便是时域的周期延拓，==频域采样，时域周期延拓；时域采样，频域周期延拓==</p><p>DFS与DFT本质一致</p><p>$n &lt; 0 时 x[n] = 0$的序列称为因果序列。</p><p>线性移不变系统稳定的充分必要条件是其单位冲激响应绝对可和
+<p>在离散时间中$0\le \omega &lt;2\pi$，其他是混叠的</p><p>DTFT：对离散时间的傅里叶变换，转换到频域中去，是连续的</p><p>对DTFT得到的频域序列进行采样，再取周期序列的主值空间，得到的便是DFT（离散傅里叶变换），方便计算机计算</p><p>这样IDFT得到的便是时域的周期延拓，==频域采样，时域周期延拓；时域采样，频域周期延拓==</p><p>DFS与DFT本质一致，DFS = 周期性序列一个周期的DFT</p><p>$n &lt; 0 时 x[n] = 0$的序列称为因果序列。</p><p>线性移不变系统稳定的充分必要条件是其单位冲激响应绝对可和
 $$
 \sum_{n=-\infin}^{\infin} |h[n]| = P &lt; \infin
 $$
@@ -156,7 +156,18 @@ $$</p>
 $$
 \lim_{N\rightarrow \infin} L_n^{(N)}(t) = sinc(t-n) 
 $$
-混叠公式</p><figure style="flex: 93.9882697947214" ><img width="641" height="341" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/017c6c41c682f1f6353231b29c70c94a.png" /></figure><p>使用==低通滤波==将信号变成==带限信号==</p><p>采样时每隔$T_s$关闭一次开关，采样一次</p>
+混叠公式</p><figure style="flex: 93.9882697947214" ><img width="641" height="341" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/017c6c41c682f1f6353231b29c70c94a.png" /></figure><p>使用==低通滤波==将信号变成==带限信号==</p><p>采样时每隔$T_s$关闭一次开关，采样一次</p><p>信号流图上乘除上系数</p><p>不完备空间的例子：有理数集合
+$$
+x_{n}=\sum_{k=0}^{n} \frac{1}{k!} \in Q ~~ but~~ \lim_{n\rightarrow \infin}x_{n}=e\notin Q
+$$
+找到基函数</p><figure style="flex: 66.9218989280245" ><img width="874" height="653" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/c0f34d7d3b52a0ccb61a0b3253cf27a5.png" /></figure><p>找到正交基前的系数，便是DFT的过程</p><p>近似空间</p><figure style="flex: 95.45454545454545" ><img width="630" height="330" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/90a58da53f2bb907b44f83ac944f9b47.png" /></figure><p>正交投影是“最优”近似，有着最小范数误差</p><ul>
+<li>[ ] sinc采样的==空间解释==</li>
+</ul>
+<p>STFT用窗取一段信号进行DFT</p><p>DFT定义
+$$
+w_k[n]=e^{j\frac{2\pi}{N}nk},~~n,k=0,1,...,N-1
+$$
+用这个基去表示x[n]</p><p>DFT在幅度上是对称的</p>
             </div>
         </article>
         <div id="ga-tags">
