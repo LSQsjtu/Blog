@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/6e5a1a861de9a66f703cba61621cd32c.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/a91a6d1ebcf657c4bc18941bb239df96.json"
         }
     </script>
     
@@ -163,7 +163,7 @@ var _hmt = _hmt || [];
 <span class="c1"># Alternative syntax:</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tensor @ tensor.T </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">tensor</span> <span class="o">@</span> <span class="n">tensor</span><span class="o">.</span><span class="n">T</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
-<ol start="4">
+<ol start="5">
 <li>替代修改操作</li>
 </ol>
 <p>Operations that have a <code>_</code> suffix are in-place. For example: <code>x.copy_(y)</code>, <code>x.t_()</code>, will change <code>x</code>.</p><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -181,7 +181,15 @@ var _hmt = _hmt || [];
         <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>
         <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]])</span>
 </pre></div>
-<p>in_place操作会节省内存，但是求导时会报错，故不鼓励使用</p><h2>Bridge with NumPy</h2>
+<p>in_place操作会节省内存，但是求导时会报错，故不鼓励使用</p><ol start="6">
+<li>torch.expand()</li>
+</ol>
+<p>-1默认不该变这一维的大小，其他改变的相当于将这一维复制扩展</p><ol start="7">
+<li>torch.gather()</li>
+</ol>
+<blockquote>
+<p>torch.gather(<em>input</em>, <em>dim</em>, <em>index</em>, ***, <em>sparse_grad=False</em>, <em>out=None</em>)</p></blockquote>
+<p>将dim索引改成对应的index[i][j][k]，<strong>从完整数据中按索引取值</strong></p><h2>Bridge with NumPy</h2>
 <div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
