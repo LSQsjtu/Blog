@@ -395,4 +395,5 @@ None
 
 ==改进方法==
 
-- 尝试使用mlp对feature进一步提取
+- 尝试使用mlp对feature进一步提取（pointnet++)
+- 相似度的选取，一一对应。运动同步,论文
