@@ -1,27 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Thu, 27 Jan 2022 07:34:20 +0806</lastBuildDate><pubDate>Thu, 27 Jan 2022 07:34:20 +0806</pubDate><item><title>归一化</title><link>/Blog/archives/%E5%BD%92%E4%B8%80%E5%8C%96/</link><description>&lt;p&gt;&lt;strong&gt;归一化&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;sigmoid和softmax函数区别&lt;/p&gt;&lt;h2&gt;分类问题&lt;/h2&gt;
-&lt;h3&gt;&lt;strong&gt;1 Sigmoid函数&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Sigmoid =&lt;strong&gt;多标签分类问题&lt;/strong&gt;=多个正确答案=非独占输出（例如胸部X光检查、住院）。构建分类器，解决有多个正确答案的问题时，用Sigmoid函数分别处理各个原始输出值。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sigmoid函数&lt;/strong&gt;是一种logistic函数，它将任意的值转换到$[0,1]$之间，如图1所示，函数表达式为：$Sigmoid = \frac{1}{1 + e^{-x}}$ 。&lt;/p&gt;&lt;p&gt;它的导函数为： $Sigmoid'(x) = Sigmoid(x)*(1-Sigmoid(x))$。&lt;/p&gt;&lt;figure style="flex: 74.94145199063232" &gt;&lt;img width="640" height="427" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b3c2cbcc5704847d6d9042143cb7401f.jpg" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;​																									图1：Sigmoid函数&lt;/p&gt;&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：1. Sigmoid函数的输出在(0,1)之间，输出范围有限，优化稳定，可以用作输出层。2. 连续函数，便于求导。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：1. 最明显的就是饱和性，从上图也不难看出其两侧导数逐渐趋近于0，容易造成梯度消失。2.==激活函数的偏移现象==。Sigmoid函数的输出值均大于0，使得输出==不是0的均值==，这会导致后一层的神经元将得到上一层非0均值的信号作为输入，这会对梯度产生影响。 3. 计算复杂度高，因为Sigmoid函数是指数形式。&lt;/p&gt;&lt;h3&gt;2 Softmax函数&lt;/h3&gt;
-&lt;p&gt;Softmax =&lt;strong&gt;多类别分类问题&lt;/strong&gt;=只有一个正确答案=互斥输出（例如手写数字，鸢尾花）。构建分类器，解决只有唯一正确答案的问题时，用Softmax函数处理各个原始输出值。Softmax函数的分母综合了原始输出值的所有因素，这意味着，Softmax函数得到的不同概率之间相互关联。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Softmax函数&lt;/strong&gt;，又称归一化指数函数，函数表达式为：$Softmax = \frac{e^{x_i}}{\sum_{j=1}^{n}e^{x_j}}$。&lt;/p&gt;&lt;figure style="flex: 89.33002481389578" &gt;&lt;img width="720" height="403" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/dc924cfae91bbe8d50b7de43d9d5dfed.jpg" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;​																				图2：Softmax函数计算过程&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Softmax函数是二分类函数Sigmoid在多分类上的推广，目的是将多分类的结果以概率的形式展现出来。&lt;/strong&gt;如图2所示，Softmax直白来说就是将原来输出是3,1,-3通过Softmax函数一作用，就映射成为(0,1)的值，而这些值的累和为1（满足概率的性质），那么我们就可以将它理解成概率，在最后选取输出结点的时候，我们就可以选取概率最大（也就是值对应最大的）结点，作为我们的预测目标。&lt;/p&gt;&lt;p&gt;由于Softmax函数先拉大了输入向量元素之间的差异（通过指数函数），然后才归一化为一个概率分布，在应用到分类问题时，它使得各个类别的概率差异比较显著，最大值产生的概率更接近1，这样输出分布的形式更接近真实分布。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Softmax可以由三个不同的角度来解释。从不同角度来看softmax函数，可以对其应用场景有更深刻的理解：&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;softmax可以当作arg max的一种平滑近似，与arg max操作中暴力地选出一个最大值（产生一个one-hot向量）不同，softmax将这种输出作了一定的平滑，即将one-hot输出中最大值对应的1按输入元素值的大小分配给其他位置。&lt;/li&gt;
-&lt;li&gt;softmax将输入向量归一化映射到一个类别概率分布，即 个类别上的概率分布（前文也有提到）。这也是为什么在深度学习中常常将softmax作为MLP的最后一层，并配合以交叉熵损失函数（对分布间差异的一种度量)。&lt;/li&gt;
-&lt;li&gt;从概率图模型的角度来看，softmax的这种形式可以理解为一个概率无向图上的联合概率。因此你会发现，条件最大熵模型与softmax回归模型实际上是一致的，诸如这样的例子还有很多。由于概率图模型很大程度上借用了一些热力学系统的理论，因此也可以从物理系统的角度赋予softmax一定的内涵。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;3 总结&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;如果模型输出为非互斥类别，且可以同时选择多个类别，则采用Sigmoid函数计算该网络的原始输出值。&lt;/li&gt;
-&lt;li&gt;如果模型输出为互斥类别，且只能选择一个类别，则采用Softmax函数计算该网络的原始输出值。&lt;/li&gt;
-&lt;li&gt;Sigmoid函数可以用来解决多标签问题，Softmax函数用来解决单标签问题。&lt;a href="https://zhuanlan.zhihu.com/p/356976844#ref_1"&gt;[1]&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;对于某个分类场景，当Softmax函数能用时，Sigmoid函数一定可以用。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;4. 二分类任务&lt;/h3&gt;
-&lt;p&gt;对于二分类问题来说，&lt;strong&gt;理论上，两者是没有任何区别的。&lt;/strong&gt;由于我们现在用的Pytorch、TensorFlow等框架计算矩阵方式的问题，导致两者在反向传播的过程中还是有区别的。实验结果表明，两者还是存在差异的，对于不同的分类模型，可能Sigmoid函数效果好，也可能是Softmax函数效果。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;首先我们先理论上证明一下二者没有本质上的区别&lt;/strong&gt;，对于二分类而言（以输入$x_1$为例)：&lt;/p&gt;&lt;p&gt;Sigmoid函数： $output(x_1)=\frac{1}{1+e^{-x_1}} (1)$&lt;/p&gt;&lt;p&gt;Softmax函数： $output(x_2)=\frac{e^{-x_1}}{e^{-x_1}+e^{-x_2}} (2)$&lt;/p&gt;&lt;p&gt;由公式（2）我们可知， $x_1-x_2$可以用$z_1$代替，即Softmax函数可以写成：  $output(z_1)=\frac{1}{1+e^{-z_1}} $，和公式（1)完全相同，所以理论上来说两者是没有任何区别的。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;然后我们再分析为什么两者之间还存着差异（以Pytorch为例）：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;首先我们要明白，当你用Sigmoid函数的时候，你的最后一层全连接层的神经元个数为1，而当你用Softmax函数的时候，你的最后一层全连接层的神经元个数是2。这个很好理解，因为Sigmoid函数只有是目标和不是目标之分，实际上只存在一类目标类，另外一个是背景类。而Softmax函数将目标分类为了二类，所以有两个神经元。这也是导致两者存在差异的主要原因。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sigmoid函数&lt;/strong&gt;针对两点分布提出。神经网络的输出经过它的转换，可以将数值压缩到(0,1)之间，得到的结果可以理解成&lt;strong&gt;分类成目标类别的概率P，而不分类到该类别的概率是(1 - P)&lt;/strong&gt;，这也是典型的两点分布的形式。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Softmax函数&lt;/strong&gt;本身针对多项分布提出，当类别数是2时，它退化为二项分布。而它和Sigmoid函数真正的区别就在——二项分布包含两个分类类别（姑且分别称为A和B），而两点分布其实是针对一个类别的概率分布，其对应的那个类别的分布直接由1-P得出。&lt;/p&gt;&lt;p&gt;简单点理解就是，&lt;strong&gt;Sigmoid函数，我们可以当作成它是对一个类别的“建模”&lt;/strong&gt;，将该类别建模完成，另一个相对的类别就直接通过1减去得到。&lt;strong&gt;而softmax函数，是对两个类别建模&lt;/strong&gt;，同样的，得到两个类别的概率之和是1。&lt;/p&gt;&lt;p&gt;神经网络在做二分类时，使用Softmax还是Sigmoid，做法其实有明显差别。由于Softmax是对两个类别（正反两类，通常定义为0/1的label）建模，所以对于NLP模型而言（比如泛BERT模型），Bert输出层需要通过一个nn.Linear()全连接层压缩至2维，然后接Softmax（Pytorch的做法，就是直接接上torch.nn.CrossEntropyLoss）；而Sigmoid只对一个类别建模（通常就是正确的那个类别），所以Bert输出层需要通过一个nn.Linear()全连接层压缩至1维，然后接Sigmoid（torch就是接torch.nn.BCEWithLogitsLoss）。&lt;/p&gt;&lt;p&gt;总而言之，Sotfmax和Sigmoid确实在二分类的情况下可以化为相同的数学表达形式，但并不意味着二者有一样的含义，而且二者的输入输出都是不同的。Sigmoid得到的结果是“分到正确类别的概率和未分到正确类别的概率”，Softmax得到的是“分到正确类别的概率和分到错误类别的概率”。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;一种常见的错法（NLP中）：&lt;/strong&gt;即错误地将Softmax和Sigmoid混为一谈，再把BERT输出层压缩至2维的情况下，却用Sigmoid对结果进行计算。这样我们得到的结果其意义是什么呢？&lt;/p&gt;&lt;p&gt;假设我们现在BERT输出层经nn.Linear()压缩后，得到一个二维的向量：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[-0.9419267177581787, 1.944047451019287]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;对应类别分别是(0,1)。我们经过Sigmoid运算得到：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tensor([0.2805, 0.8748])
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;前者0.2805指的是分类类别为0的概率，0.8748指的是分类类别为1的概率。二者相互独立，可看作两次独立的实验（显然在这里不适用，因为0-1类别之间显然不是相互独立的两次伯努利事件）。所以显而易见的，二者加和并不等于1。&lt;/p&gt;&lt;p&gt;若用softmax进行计算，可得：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tensor([0.0529, 0.9471])
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;这里两者加和是1，才是正确的选择。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;经验：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;对于NLP而言&lt;/strong&gt;，这两者之间确实有差别，Softmax的处理方式有时候会比Sigmoid的处理方式好一点。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;对于CV而言&lt;/strong&gt;，这两者之间也是有差别的，Sigmoid的处理方式有时候会比Softmax的处理方式好一点。&lt;/p&gt;&lt;p&gt;两者正好相反，这只是笔者的实验经验，建议大家两者都试试。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E5%BD%92%E4%B8%80%E5%8C%96/</guid><pubDate>Sun, 31 Oct 2021 00:00:00 +0806</pubDate></item><item><title>numpy学习</title><link>/Blog/archives/numpy%E8%AF%AD%E6%B3%95/</link><description>&lt;p&gt;&lt;strong&gt;numpy学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;numpy.where()&lt;/strong&gt; 有两种用法：&lt;/p&gt;&lt;h3&gt;1. np.where(condition, x, y)&lt;/h3&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Sat, 29 Jan 2022 02:58:07 +0806</lastBuildDate><pubDate>Sat, 29 Jan 2022 02:58:07 +0806</pubDate><item><title>numpy学习</title><link>/Blog/archives/numpy%E8%AF%AD%E6%B3%95/</link><description>&lt;p&gt;&lt;strong&gt;numpy学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;numpy.where()&lt;/strong&gt; 有两种用法：&lt;/p&gt;&lt;h3&gt;1. np.where(condition, x, y)&lt;/h3&gt;
 &lt;p&gt;满足条件(condition)，输出x，不满足输出y。&lt;/p&gt;&lt;p&gt;如果是一维数组，相当于&lt;code&gt;[xv if c else yv for (c,xv,yv) in zip(condition,x,y)]&lt;/code&gt;&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]],&lt;/span&gt;    &lt;span class="c1"&gt;# 官网上的例子&lt;/span&gt;
     		 &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]],&lt;/span&gt;
              &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
@@ -589,4 +567,110 @@ $$
 &lt;li&gt;&lt;strong&gt;能让人放弃对天气，不，是对世界的执念。&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;这不是一件本身就比那束光还暖还亮，男主一直追寻的那道光的尽头的答案吗？&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;大部分影片都是处于留白，留下无尽的想象。自己的感受就是一个青年从懵懂慢慢地走向成长，要承担自己的责任，为自己所爱的事物去不断努力，男生莽撞，女生担负着照顾其他的职责。&lt;/p&gt;&lt;p&gt;不断地成长吧！为了自己的以后。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/thesonofwhether/</guid><pubDate>Thu, 23 Dec 2021 00:00:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;大部分影片都是处于留白，留下无尽的想象。自己的感受就是一个青年从懵懂慢慢地走向成长，要承担自己的责任，为自己所爱的事物去不断努力，男生莽撞，女生担负着照顾其他的职责。&lt;/p&gt;&lt;p&gt;不断地成长吧！为了自己的以后。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/thesonofwhether/</guid><pubDate>Thu, 23 Dec 2021 00:00:00 +0806</pubDate></item><item><title>李群和李代数</title><link>/Blog/archives/rotation%20matrix/</link><description>&lt;p&gt;&lt;strong&gt;李群和李代数&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;三维旋转矩阵构成特殊正交群，SO(3),变换矩阵构成了特殊欧式群SE(3).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+SO(3)=\{R \in R^{3 \times 3} \mid RR^{T} = I,det(R)=I\}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\operatorname{SE}(3)=\left\{\mathrm{T}=\left[\begin{array}{cc}
+R &amp;amp; t \\
+0 &amp;amp; 1
+\end{array}\right] \in \mathrm{R}^{4 \times 4} \mid R \in S O(3), t \in R^{3}\right\}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从上面看群是一种集合加上一种运算的代数结构。把集合记作A，运算记作$\bullet $，群记为G=(A,$\bullet $),群应满足以下四个特性（封结幺逆）：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;封闭性：$\forall a_{1}, a_{2} \in A, \quad a_{2} \bullet a_{3} \in A$&lt;/li&gt;
+&lt;li&gt;结合律：$\forall a_{1}, a_{2}, a_{3} \in A, \quad\left(a_{1} \bullet a_{2}\right) \bullet a_{3}=a_{1} \bullet\left(a_{2} \bullet a_{3}\right)$&lt;/li&gt;
+&lt;li&gt;幺元：$\exists a_{0} \in A, s . t \forall a \in A, a_{0} \bullet a=a \bullet a_{0}=a$&lt;/li&gt;
+&lt;li&gt;逆：∀a∈A,∃$a^{−1}$∈A, s.t $a \bullet  a^{−1}$ = a&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;李群是指具有连续光滑性质的群,像一般的整数离散群不具有连续性，SO(3), SE(3)在实数空间上是连续的，表示一个位置变换到另一个位置，路径是连续的。但是群的概念只定义了乘法，没有加法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;李代数的引出：&lt;/p&gt;&lt;p&gt;李代数由一个集合V、一个数域F和一个二元运算[ ，]（李括号）组成。称（V,F，[ , ]）为一个李代数，记为g.&lt;/p&gt;&lt;p&gt;在实际应用中我们估计相机的位置和姿态时，由于干扰，不可能没有误差，那么产生误差需要矫正，我们会用补偿量ΔR,ΔT 去补偿误差。然而群的定义对加法没有封闭性，比如两个旋转或变换矩阵相加后不再表示一个旋转或变换矩阵，失去了原有的意义，于是李代数的提出为此问题提供了解决思路，把SE(3)空间的T映射为李代数se(3),它由向量组成，我们在中学数学就知道，向量相加还表示为一个向量（例如平行四边形原则），李代数对加法具有封闭性（加完之后还是向量）。这样可以通过李代数求导间接对变换矩阵T进行求导。在优化相机位姿时，每次迭代更新一个位姿的增量δ，使目标函数最小，那么这个δ就是通过对T微分得到的。它们对于某时刻的R(t)(李群空间)，存在一个三维向量$\phi = (\phi_1, \phi_2, \phi_3 )$的李代数空间来描述R在t时刻的导数。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\dot{R}(t)=\phi(t)^{\wedge} R(t)=\left[\begin{array}{ccc} 0 &amp;amp; -\phi_{3} &amp;amp; \phi_{2} \\ \phi_{3} &amp;amp; 0 &amp;amp; -\phi_{1} \\ -\phi_{2} &amp;amp; \phi_{1} &amp;amp; 0 \end{array}\right] R(t)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;指数映射：向量$\phi = (\phi_1, \phi_2, \phi_3 )$反映了R的导数性质，它们之间的微分关系可以描述为：李代数so(3)对应李群SO(3) 在原点附近的正切空间。换句话说，李代数so(3)是三维向量$\phi = (\phi_1, \phi_2, \phi_3 )$的集合，每个$\phi (i)$的反对称矩阵都$\phi (i)$^可以表示SO(3)上旋转矩阵$R(i)$的导数,R和$\phi$又呈现一个指数映射关系：$R(t)=exp(\phi_0 ^{\wedge}t)$&lt;/p&gt;&lt;p&gt;$\exp \left(\phi^{\wedge}\right)=\exp \left(\theta \mathrm{a}^{\wedge}\right)=\sum_{n=0}^{\infty} \frac{1}{n !}\left(\theta \mathrm{a}^{\wedge}\right)^{n}$经过泰勒展开后变为$\exp \left(\theta \mathrm{a}^{\wedge}\right)= cos\left( \theta I\right) + \left( 1- cos\theta \right)aa^{T} + sin \theta \mathrm{a}^{\wedge}$又回到了罗德里格斯。对于三维旋转和变换的关系图如下;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure style="flex: 72.46376811594203" &gt;&lt;img width="500" height="345" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/7121e5cce17df61b42643df0bc961835.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;李代数求导与扰动模型：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以SO(3)为例，当李代数的so(3)做加法时，在李群SO(3)是否对应为两个矩阵的乘积，exp(ϕ∧1)exp(ϕ∧2)=exp((ϕ1+ϕ2)∧)exp⁡(ϕ1∧)exp⁡(ϕ2∧)=exp⁡((ϕ1+ϕ2)∧)？ln(exp(A)exp(B))=A+Bln⁡(exp⁡(A)exp⁡(B))=A+B？答案是对矩阵运算都不成立，BCH公式给出了近似解：&lt;/p&gt;&lt;p&gt;ln(exp(Aϕ∧1)exp(ϕ∧2))∨≈{Jl(ϕ2)−1ϕ1+ϕ2,ϕ1minJr(ϕ1)−1ϕ2+ϕ1,ϕ2minln⁡(exp⁡(Aϕ1∧)exp⁡(ϕ2∧))∨≈{Jl(ϕ2)−1ϕ1+ϕ2,ϕ1minJr(ϕ1)−1ϕ2+ϕ1,ϕ2min&lt;/p&gt;&lt;p&gt;以下标为l的左乘模型来说，意思是，我们对一个旋转矩阵R2 (李代数ϕ2ϕ2)左乘一个微小旋转矩阵R1 (李代数ϕ1ϕ1 )，看成是李代数 ϕ2ϕ2加上一项&lt;/p&gt;&lt;p&gt;Jl(ϕ2)−1ϕ1Jl(ϕ2)−1ϕ1&lt;/p&gt;&lt;p&gt;右乘模型同理。式中有一个近似的雅可比Jl,再通俗的形象一下就是，假定对一个旋转R(李代数ϕϕ)产生的漂移进行矫正，左乘一个ΔRΔR (李代数ΔϕΔϕ)，在李群上的结果为ΔR∙RΔR∙R&lt;/p&gt;&lt;p&gt;用BCH近似为&lt;/p&gt;&lt;p&gt;Jl(ϕ)−1Δϕ+ϕJl(ϕ)−1Δϕ+ϕ&lt;/p&gt;&lt;p&gt;合起来就是exp(Δϕ∧)exp(ϕ∧)=exp((ϕ+Jl(ϕ)Δϕ)∧)exp⁡(Δϕ∧)exp⁡(ϕ∧)=exp⁡((ϕ+Jl(ϕ)Δϕ)∧)&lt;em&gt;，然而上面刚刚说到在李代数上加法是封闭的，可以进行加法运算，一个&lt;/em&gt;&lt;/p&gt;&lt;p&gt;ϕ+Δϕϕ+Δϕ&lt;/p&gt;&lt;p&gt;&lt;em&gt;可以近似为李群上带左右雅可比的乘法:&lt;/em&gt;exp((ϕ+Δϕ)∧)=exp((JlΔϕ)∧)exp(ϕ∧)=exp(ϕ∧)exp((JrΔϕ)∧)exp⁡((ϕ+Δϕ)∧)=exp⁡((JlΔϕ)∧)exp⁡(ϕ∧)=exp⁡(ϕ∧)exp⁡((JrΔϕ)∧)&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;求导运算1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;空间中有一向量p,然后我们对其进行了R的旋转变换变为Rp,求旋转之后Rp对旋转R的导数，∂(Rp)∂R∂(Rp)∂R ，但是没有加法，无法按照导数定义计算，因此转为李代数计算。&lt;/p&gt;&lt;p&gt;∂(Rp)∂R=∂(exp(ϕ∧)p)∂ϕ=−(Rp)∧Jl∂(Rp)∂R=∂(exp⁡(ϕ∧)p)∂ϕ=−(Rp)∧Jl&lt;/p&gt;&lt;p&gt;结果中有一个雅可比，在应用中不太好处理，又出现了扰动模型来替代，思路是对R进行一次扰动ΔRΔR(左乘形式），看结果相对扰动的变化率。 ΔRΔR对应的李代数为 φφ，∂(Rp)∂φ=−(Rp)∧∂(Rp)∂φ=−(Rp)∧,这样就没有了雅可比，对实际应用更加合理。&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;实现才是硬道理：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="#harmful-link"&gt;&lt;figure style="flex: 50.0" &gt;&lt;img width="20" height="20" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0b926442b9a767983066a04a1b07b067.gif" /&gt;&lt;figcaption&gt;复制代码&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 1 #include&amp;lt;iostream&amp;gt;
+ 2 #include&amp;lt;cmath&amp;gt;
+ 3 #include&amp;lt;Eigen/Core&amp;gt;
+ 4 #include&amp;lt;Eigen/Geometry&amp;gt;
+ 5 #include&amp;quot;sophus/se3.h&amp;quot;
+ 6 #include&amp;quot;sophus/so3.h&amp;quot;
+ 7 
+ 8 using namespace std;
+ 9 using namespace Eigen;
+10 
+11 int main(int argc,char **argv)
+12 {
+13     // 沿Z轴转90度的旋转矩阵用旋转向量表示
+14     Eigen::Matrix3d R = Eigen::AngleAxisd(M_PI/2, Eigen::Vector3d(0,0,1)).toRotationMatrix();
+15     
+16     Sophus::SO3 SO3_R(R);               // Sophus::SO(3)可以直接从旋转矩阵构造
+17     Sophus::SO3 SO3_v( 0, 0, M_PI/2 );  // 亦可从旋转向量构造
+18     Eigen::Quaterniond q(R);            // 或者四元数
+19     Sophus::SO3 SO3_q( q );
+20     // 上述表达方式都是等价的
+21    
+22     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由矩阵构造:\n &amp;quot;&amp;lt;&amp;lt;SO3_R.matrix()&amp;lt;&amp;lt;endl;
+23     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由向量构造: \n&amp;quot;&amp;lt;&amp;lt;SO3_v.matrix()&amp;lt;&amp;lt;endl;
+24     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由四元数构造:\n&amp;quot;&amp;lt;&amp;lt;SO3_q.matrix()&amp;lt;&amp;lt;endl;
+25     
+26     // 使用对数映射获得它的李代数
+27     Eigen::Vector3d so3 = SO3_R.log();
+28     cout&amp;lt;&amp;lt;&amp;quot;SO(3)的李代数so(3) =SO3_R.log()为： &amp;quot;&amp;lt;&amp;lt;so3.transpose()&amp;lt;&amp;lt;endl;
+29     // hat 为向量到反对称矩阵
+30     cout&amp;lt;&amp;lt;&amp;quot;so(3)李代数向量对应的反对称矩阵： \n&amp;quot;&amp;lt;&amp;lt;Sophus::SO3::hat(so3)&amp;lt;&amp;lt;endl;
+31     // 相对的，vee为反对称矩阵到向量
+32     cout&amp;lt;&amp;lt;&amp;quot;so(3)反对称矩阵对应的李代数向量： \n &amp;quot;&amp;lt;&amp;lt;Sophus::SO3::vee( Sophus::SO3::hat(so3) ).transpose()&amp;lt;&amp;lt;endl;
+33     // transpose纯粹是为了输出美观一些
+34     
+35     // 增量扰动模型的更新
+36     Eigen::Vector3d update_so3(1e-4, 0, 0); //假设更新量为这么多
+37     Sophus::SO3 SO3_updated = Sophus::SO3::exp(update_so3)*SO3_R;
+38     cout&amp;lt;&amp;lt;&amp;quot;更新后的SO(3) =δ×R为 \n&amp;quot;&amp;lt;&amp;lt;SO3_updated.matrix()&amp;lt;&amp;lt;endl;
+39     
+40     cout&amp;lt;&amp;lt;&amp;quot;***********SE(3)的操作*************&amp;quot;&amp;lt;&amp;lt;endl;
+41     // 对SE(3)操作大同小异
+42     Eigen::Vector3d t(1,0,0);           // 沿X轴平移1
+43     Sophus::SE3 SE3_Rt(R, t);           // 从R,t构造SE(3)
+44     Sophus::SE3 SE3_qt(q,t);            // 从q,t构造SE(3)
+45     cout&amp;lt;&amp;lt;&amp;quot;SE3由矩阵旋转+平移构造（ R,t)= &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_Rt.matrix()&amp;lt;&amp;lt;endl;
+46     cout&amp;lt;&amp;lt;&amp;quot;SE3由四元数q,t= &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_qt.matrix()&amp;lt;&amp;lt;endl;
+47     // 李代数se(3) 是一个六维向量，方便起见先typedef一下
+48     typedef Eigen::Matrix&amp;lt;double,6,1&amp;gt; Vector6d;
+49     Vector6d se3 = SE3_Rt.log();
+50     cout&amp;lt;&amp;lt;&amp;quot;SE(3)对应的李代数se(3) =\n &amp;quot;&amp;lt;&amp;lt;se3.transpose()&amp;lt;&amp;lt;endl;
+51     // 观察输出，会发现在Sophus中，se(3)的平移在前，旋转在后.
+52     // 同样的，有hat和vee两个算符
+53     cout&amp;lt;&amp;lt;&amp;quot;se(3)对应的反对称矩阵 = &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;Sophus::SE3::hat(se3)&amp;lt;&amp;lt;endl;
+54     cout&amp;lt;&amp;lt;&amp;quot;反对称矩阵对应的李代数向量 = &amp;quot;&amp;lt;&amp;lt;Sophus::SE3::vee( Sophus::SE3::hat(se3) ).transpose()&amp;lt;&amp;lt;endl;
+55     
+56     // se(3)的扰动
+57     Vector6d update_se3; //更新量
+58     update_se3.setZero();//六维更新量
+59     update_se3(0,0) = 1e-4d;//改变其中一个量来产生观测
+60     Sophus::SE3 SE3_updated = Sophus::SE3::exp(update_se3)*SE3_Rt;
+61     cout&amp;lt;&amp;lt;&amp;quot;更新后的SE(3) = &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_updated.matrix()&amp;lt;&amp;lt;endl;
+62     
+63 return 0;
+64 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href="#harmful-link"&gt;&lt;figure style="flex: 50.0" &gt;&lt;img width="20" height="20" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0b926442b9a767983066a04a1b07b067.gif" /&gt;&lt;figcaption&gt;复制代码&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;figure style="flex: 90.92071611253196" &gt;&lt;img width="711" height="391" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/a30675a91c5f31cf748c49e3e484f009.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure style="flex: 97.57281553398059" &gt;&lt;img width="804" height="412" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/226f0fda8fb394fa5a16a443cacc2a57.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/rotation%20matrix/</guid><pubDate>Sat, 29 Jan 2022 00:00:00 +0806</pubDate></item></channel></rss>
