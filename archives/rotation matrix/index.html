@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/cb2e9a9a090054c85f5bc52a4cb271fb.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/8e7f7463a9cc124bff7fc62ea401e755.json"
         }
     </script>
     
@@ -149,10 +149,28 @@ $$</p>
 <figure style="flex: 72.46376811594203" ><img width="500" height="345" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/7121e5cce17df61b42643df0bc961835.png" /><figcaption>img</figcaption></figure><ul>
 <li>李代数求导与扰动模型：</li>
 </ul>
-<p>以SO(3)为例，当李代数的so(3)做加法时，在李群SO(3)是否对应为两个矩阵的乘积，exp(ϕ∧1)exp(ϕ∧2)=exp((ϕ1+ϕ2)∧)exp⁡(ϕ1∧)exp⁡(ϕ2∧)=exp⁡((ϕ1+ϕ2)∧)？ln(exp(A)exp(B))=A+Bln⁡(exp⁡(A)exp⁡(B))=A+B？答案是对矩阵运算都不成立，BCH公式给出了近似解：</p><p>ln(exp(Aϕ∧1)exp(ϕ∧2))∨≈{Jl(ϕ2)−1ϕ1+ϕ2,ϕ1minJr(ϕ1)−1ϕ2+ϕ1,ϕ2minln⁡(exp⁡(Aϕ1∧)exp⁡(ϕ2∧))∨≈{Jl(ϕ2)−1ϕ1+ϕ2,ϕ1minJr(ϕ1)−1ϕ2+ϕ1,ϕ2min</p><p>以下标为l的左乘模型来说，意思是，我们对一个旋转矩阵R2 (李代数ϕ2ϕ2)左乘一个微小旋转矩阵R1 (李代数ϕ1ϕ1 )，看成是李代数 ϕ2ϕ2加上一项</p><p>Jl(ϕ2)−1ϕ1Jl(ϕ2)−1ϕ1</p><p>右乘模型同理。式中有一个近似的雅可比Jl,再通俗的形象一下就是，假定对一个旋转R(李代数ϕϕ)产生的漂移进行矫正，左乘一个ΔRΔR (李代数ΔϕΔϕ)，在李群上的结果为ΔR∙RΔR∙R</p><p>用BCH近似为</p><p>Jl(ϕ)−1Δϕ+ϕJl(ϕ)−1Δϕ+ϕ</p><p>合起来就是exp(Δϕ∧)exp(ϕ∧)=exp((ϕ+Jl(ϕ)Δϕ)∧)exp⁡(Δϕ∧)exp⁡(ϕ∧)=exp⁡((ϕ+Jl(ϕ)Δϕ)∧)<em>，然而上面刚刚说到在李代数上加法是封闭的，可以进行加法运算，一个</em></p><p>ϕ+Δϕϕ+Δϕ</p><p><em>可以近似为李群上带左右雅可比的乘法:</em>exp((ϕ+Δϕ)∧)=exp((JlΔϕ)∧)exp(ϕ∧)=exp(ϕ∧)exp((JrΔϕ)∧)exp⁡((ϕ+Δϕ)∧)=exp⁡((JlΔϕ)∧)exp⁡(ϕ∧)=exp⁡(ϕ∧)exp⁡((JrΔϕ)∧)</p><ul>
+<p>以SO(3)为例，当李代数的so(3)做加法时，在李群SO(3)是否对应为两个矩阵的乘积，$exp(ϕ^{\wedge}<em>1)exp(ϕ^{\wedge}_2)=exp((ϕ1+ϕ2)</em>{\wedge})？ln(exp(A)exp(B))=A+B？$答案是对矩阵运算都不成立，BCH公式给出了近似解：
+$$
+\begin{aligned}
+&amp; \ln \left(\exp \left(A \phi_{1}^{\wedge}\right) \exp \left(\phi_{2}^{\wedge}\right)\right)^{\vee} \
+\approx &amp;\left{\begin{array}{l}
+J_{l}\left(\phi_{2}\right)^{-1} \phi_{1}+\phi_{2}, \phi_{1} \min \
+J_{r}\left(\phi_{1}\right)^{-1} \phi_{2}+\phi_{1}, \phi_{2} \min
+\end{array}\right.
+\end{aligned}
+$$</p><p>以下标为l的左乘模型来说，意思是，我们对一个旋转矩阵R2 (李代数$\phi_2$)左乘一个微小旋转矩阵R1 (李代数$\phi_1$ )，看成是李代数 $\phi_2$加上一项</p><p>$$
+J_{l}\left(\phi_{2}\right)^{-1} \phi_{1}
+$$</p>
+<p>右乘模型同理。式中有一个近似的雅可比$J_l$,再通俗的形象一下就是，假定对一个旋转R(李代数$\phi $)产生的漂移进行矫正，左乘一个ΔR (李代数Δϕ)，在李群上的结果为ΔR$\bullet$R</p><p>用BCH近似为</p><p>$$
+J_{l}\left(\phi\right)^{-1}  \Delta\phi + \phi
+$$</p>
+<p>合起来就是$exp(\Delta \phi^{\wedge})exp(\phi^{\wedge})= exp({(\phi +J_{l}\left(\phi\right)^{-1}  \Delta\phi )}^{\wedge})$，<strong>然而上面刚刚说到在李代数上加法是封闭的，可以进行加法运算</strong>，一个$\phi + \Delta \phi$</p><p><em>可以近似为李群上带左右雅可比的乘法:</em>$exp((\phi +\Delta \phi)^{\wedge})=exp((J_{l}\Delta \phi)^{\wedge})exp(\phi^{\wedge})=exp(\phi^{\wedge})exp({(J_{r}  \Delta\phi )}^{\wedge})$</p><ul>
 <li>求导运算1</li>
 </ul>
-<p>空间中有一向量p,然后我们对其进行了R的旋转变换变为Rp,求旋转之后Rp对旋转R的导数，∂(Rp)∂R∂(Rp)∂R ，但是没有加法，无法按照导数定义计算，因此转为李代数计算。</p><p>∂(Rp)∂R=∂(exp(ϕ∧)p)∂ϕ=−(Rp)∧Jl∂(Rp)∂R=∂(exp⁡(ϕ∧)p)∂ϕ=−(Rp)∧Jl</p><p>结果中有一个雅可比，在应用中不太好处理，又出现了扰动模型来替代，思路是对R进行一次扰动ΔRΔR(左乘形式），看结果相对扰动的变化率。 ΔRΔR对应的李代数为 φφ，∂(Rp)∂φ=−(Rp)∧∂(Rp)∂φ=−(Rp)∧,这样就没有了雅可比，对实际应用更加合理。</p><ul>
+<p>空间中有一向量p,然后我们对其进行了R的旋转变换变为Rp,求旋转之后Rp对旋转R的导数，$\frac{\partial(R p)}{\partial R}$，但是没有加法，无法按照导数定义计算，因此转为李代数计算。</p><p>$$
+\frac{\partial(R p)}{\partial R}=\frac{\partial\left(\exp \left(\phi^{\wedge}\right) p\right)}{\partial \phi}=-(R p)^{\wedge} J_{l}
+$$</p>
+<p>结果中有一个雅可比，在应用中不太好处理，又出现了扰动模型来替代，思路是对R进行一次扰动ΔR(左乘形式），看结果相对扰动的变化率。 ΔR对应的李代数为$\varphi$，$\frac{\partial(R p)}{\partial \varphi}=-(R p)^{\wedge}$,这样就没有了雅可比，对实际应用更加合理。</p><ul>
 <li>实现才是硬道理：</li>
 </ul>
 <p><a href="#harmful-link"><figure style="flex: 50.0" ><img width="20" height="20" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0b926442b9a767983066a04a1b07b067.gif" /><figcaption>复制代码</figcaption></figure></a></p>
