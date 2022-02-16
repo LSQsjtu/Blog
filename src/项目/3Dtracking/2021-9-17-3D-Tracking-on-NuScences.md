@@ -129,12 +129,16 @@ grad.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1, 1]
 param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function operator())
 ```
 
+确认问题是在ret部分对scores的修改
+
+![image-20220216165900320](2021-9-17-3D-Tracking-on-NuScences.assets/image-20220216165900320-16450019420891.png)
+
 一开始由于改变了nsample_q的值，导致后面就是查询1个物体，没有起到训练的效果
 
-- [ ] 不归一化
-- [ ] softmax重新测量
+- [x] 不归一化
+- [x] softmax重新测量
 - [x] 重新训练sigmoid
-- [ ] 只用框内的点
+- [x] 只用框内的点
 
 
 
@@ -147,5 +151,5 @@ param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function o
 
 
 - [x] 重新写一下link_loss
-- [ ] 写成一个模型，用一个优化器去优化
-- [ ] linear层的修改
+- [x] 写成一个模型，用一个优化器去优化
+- [x] linear层的修改
