@@ -129,7 +129,7 @@ grad.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1, 1]
 param.sizes() = [512, 1024, 1, 1], strides() = [1024, 1, 1024, 1024] (function operator())
 ```
 
-确认问题是在ret部分对scores的修改
+确认问题是在ret部分赋值的原因，如果没有赋值就不会出现问题
 
 ![image-20220216165900320](2021-9-17-3D-Tracking-on-NuScences.assets/image-20220216165900320-16450019420891.png)
 
