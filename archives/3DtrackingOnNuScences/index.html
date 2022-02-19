@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/5448d4fc7e0cd4ff8fecb9410fdd34b3.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/3852188eb525594d41a22f896646449c.json"
         }
     </script>
     
@@ -190,7 +190,7 @@ def points_in_convex_polygon_jit<span class="o">(</span>points, polygon, <span c
 grad.sizes<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">512</span>, <span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>, strides<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>
 param.sizes<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">512</span>, <span class="m">1024</span>, <span class="m">1</span>, <span class="m">1</span><span class="o">]</span>, strides<span class="o">()</span> <span class="o">=</span> <span class="o">[</span><span class="m">1024</span>, <span class="m">1</span>, <span class="m">1024</span>, <span class="m">1024</span><span class="o">]</span> <span class="o">(</span><span class="k">function</span> operator<span class="o">())</span>
 </pre></div>
-<p>确认问题是在ret部分对scores的修改</p><figure style="flex: 62.41900647948164" ><img width="578" height="463" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b3a1509f015bb8674dd5669b399ed6e1.png" /><figcaption>image-20220216165900320</figcaption></figure><p>一开始由于改变了nsample_q的值，导致后面就是查询1个物体，没有起到训练的效果</p><ul>
+<p>确认问题是在ret部分赋值的原因，如果没有赋值就不会出现问题</p><figure style="flex: 62.41900647948164" ><img width="578" height="463" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/b3a1509f015bb8674dd5669b399ed6e1.png" /><figcaption>image-20220216165900320</figcaption></figure><p>一开始由于改变了nsample_q的值，导致后面就是查询1个物体，没有起到训练的效果</p><ul>
 <li>[x] 不归一化</li>
 <li>[x] softmax重新测量</li>
 <li>[x] 重新训练sigmoid</li>
