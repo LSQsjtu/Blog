@@ -33,3 +33,10 @@ lbs权重生成
 
 - Tpose找最近点，重心坐标表示生成，norm为grid点和最近点的距离
 - 每一帧pxyz找最近点作为lbs值，norm需要aabbtree中找寻
+
+
+
+运行过程
+
+![](2021-2-5-animate-nerf.assets/image-20220220183134128.png)
+
