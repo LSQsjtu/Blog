@@ -13,6 +13,12 @@ excerpt: 项目学习
 
 **aninerf代码**
 
+环境配置
+
+- pillow版本 8.2.0
+
+
+
 数据集中导入数据：
 
 - K:camera->pixel, D:五个畸变参数, R:旋转参数, T:平移参数
