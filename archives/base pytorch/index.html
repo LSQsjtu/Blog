@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/0f478e2f907150fbe8b72bde26e72bea.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/865919a8c5a22567ac5d3d4173ee74e7.json"
         }
     </script>
     
@@ -188,7 +188,11 @@ var _hmt = _hmt || [];
 <li>torch.gather()</li>
 </ol>
 <blockquote>
-<p>torch.gather(<em>input</em>, <em>dim</em>, <em>index</em>, ***, <em>sparse_grad=False</em>, <em>out=None</em>)</p></blockquote>
+<p>torch.gather(<em>input</em>, <em>dim</em>, <em>index</em>, ***, <em>sparse_grad=False</em>, <em>out=None</em>)</p><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>  <span class="c1"># if dim == 0</span>
+<span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]][</span><span class="n">k</span><span class="p">]</span>  <span class="c1"># if dim == 1</span>
+<span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]]</span>  <span class="c1"># if dim == 2</span>
+</pre></div>
+</blockquote>
 <p>将dim索引改成对应的index[i][j][k]，<strong>从完整数据中按索引取值</strong></p><h2>Bridge with NumPy</h2>
 <div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
