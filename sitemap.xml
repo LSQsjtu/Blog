@@ -12,6 +12,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/%E4%BF%A1%E6%9D%A1/</loc>
+    <lastmod>2022-03-25</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/animate%20paper/</loc>
     <lastmod>2022-03-22</lastmod>
     <changefreq>always</changefreq>
