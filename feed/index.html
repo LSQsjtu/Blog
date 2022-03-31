@@ -1,57 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Thu, 31 Mar 2022 01:00:01 +0806</lastBuildDate><pubDate>Thu, 31 Mar 2022 01:00:01 +0806</pubDate><item><title>数字信号处理复习</title><link>/Blog/archives/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E5%A4%8D%E4%B9%A0/</link><description>&lt;p&gt;&lt;strong&gt;数字信号处理复习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;重要公式离散转模拟
-$$
-x[n] = sin(\omega &lt;em&gt;{0}n+\theta)=x&lt;/em&gt;{a}(nT_{s})=sin(2\pi f_{0}nT_{s}+\theta)
-$$
-具有周期性的正弦序列满足&lt;/p&gt;&lt;p&gt;$$
-\omega _{0} = 2\pi \frac{M}{N}, M,N \in Z
-$$&lt;/p&gt;
-&lt;p&gt;在离散时间中$0\le \omega &amp;lt;2\pi$，其他是混叠的&lt;/p&gt;&lt;p&gt;DTFT：对离散时间的傅里叶变换，转换到频域中去，是连续的&lt;/p&gt;&lt;p&gt;对DTFT得到的频域序列进行采样，再取周期序列的主值空间，得到的便是DFT（离散傅里叶变换），方便计算机计算&lt;/p&gt;&lt;p&gt;这样IDFT得到的便是时域的周期延拓，==频域采样，时域周期延拓；时域采样，频域周期延拓==&lt;/p&gt;&lt;p&gt;DFS与DFT本质一致，DFS = 周期性序列一个周期的DFT&lt;/p&gt;&lt;p&gt;$n &amp;lt; 0 时 x[n] = 0$的序列称为因果序列。&lt;/p&gt;&lt;p&gt;线性移不变系统稳定的充分必要条件是其单位冲激响应绝对可和
-$$
-\sum_{n=-\infin}^{\infin} |h[n]| = P &amp;lt; \infin
-$$
-==FT变换公式==
-$$
-X(f)=\int_{-\infin}^{\infin}x(t)e^{-j2\pi ft}dt\
-x(t)=\int_{-\infin}^{\infin}X(f)e^{j2\pi ft}df
-$$
-另外一种表达形式：$\Omega = 2\pi f$
-$$
-X(j\Omega )=\int_{-\infin}^{\infin}x(t)e^{-j\Omega t}dt\
-x(t)=\frac{1}{2\pi}\int_{-\infin}^{\infin}X(j\Omega )e^{j\Omega t}d\Omega
-$$
-==重要例子==
-$$
-\Phi(f)=\frac{1}{F_{s}}rect(\frac{f}{F_{s}})\
-\psi(t)=sinc(\frac{t}{T_{s}})
-$$
-插值应该是无限可微的&lt;/p&gt;&lt;p&gt;多项式插值&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;[ ] 拉格朗日插值函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;$$
-L_n^{(N)}(t) = \prod_{k=-N\ and\ k\ne n}^{N}\frac{t-k}{n-k}, n=-N,...,N \\
-p(t) = \sum_{n=-N}^{N}x[n]L_n^{(N)}(t)
-$$&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;重要特征：无限可微&lt;/li&gt;
-&lt;li&gt;缺点：拉格朗日插值函数定义依赖于N，如果数据长度改变，多项式改变&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果不要求无限可微，可采用核函数插值法，零阶插值、一阶插值、三阶插值……
-$$
-\lim_{N\rightarrow \infin} L_n^{(N)}(t) = sinc(t-n) 
-$$
-混叠公式&lt;/p&gt;&lt;figure style="flex: 93.9882697947214" &gt;&lt;img width="641" height="341" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/017c6c41c682f1f6353231b29c70c94a.png" /&gt;&lt;/figure&gt;&lt;p&gt;使用==低通滤波==将信号变成==带限信号==&lt;/p&gt;&lt;p&gt;采样时每隔$T_s$关闭一次开关，采样一次&lt;/p&gt;&lt;p&gt;信号流图上乘除上系数&lt;/p&gt;&lt;p&gt;不完备空间的例子：有理数集合
-$$
-x_{n}=\sum_{k=0}^{n} \frac{1}{k!} \in Q ~~ but~~ \lim_{n\rightarrow \infin}x_{n}=e\notin Q
-$$
-找到基函数&lt;/p&gt;&lt;figure style="flex: 66.9218989280245" &gt;&lt;img width="874" height="653" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/c0f34d7d3b52a0ccb61a0b3253cf27a5.png" /&gt;&lt;/figure&gt;&lt;p&gt;找到正交基前的系数，便是DFT的过程&lt;/p&gt;&lt;p&gt;近似空间&lt;/p&gt;&lt;figure style="flex: 95.45454545454545" &gt;&lt;img width="630" height="330" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/90a58da53f2bb907b44f83ac944f9b47.png" /&gt;&lt;/figure&gt;&lt;p&gt;正交投影是“最优”近似，有着最小范数误差&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;[ ] sinc采样的==空间解释==&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;STFT用窗取一段信号进行DFT&lt;/p&gt;&lt;p&gt;DFT定义
-$$
-w_k[n]=e^{j\frac{2\pi}{N}nk},~~n,k=0,1,...,N-1
-$$
-用这个基去表示x[n]&lt;/p&gt;&lt;p&gt;DFT在幅度上是对称的&lt;/p&gt;&lt;p&gt;采样要先限制在$F_{s}/2$内&lt;/p&gt;&lt;p&gt;或者先进行$F_{S}$-滤波&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E5%A4%8D%E4%B9%A0/</guid><pubDate>Wed, 15 Dec 2021 00:00:00 +0806</pubDate></item><item><title>cage安装</title><link>/Blog/archives/cage%E5%AE%89%E8%A3%85/</link><description>&lt;p&gt;&lt;strong&gt;cage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;已解决&lt;/p&gt;&lt;blockquote&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Thu, 31 Mar 2022 14:27:08 +0806</lastBuildDate><pubDate>Thu, 31 Mar 2022 14:27:08 +0806</pubDate><item><title>cage安装</title><link>/Blog/archives/cage%E5%AE%89%E8%A3%85/</link><description>&lt;p&gt;&lt;strong&gt;cage&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;已解决&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;安装时指定prefix采用绝对路径&lt;/p&gt;&lt;p&gt;现在寻找Cmake文件出错，安装出了问题&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;新问题&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;/home/pyc/Program/Thea_build/Thea/Code/Source/Plugins/GL/glxew.h:103:12: fatal error: GL/glew.h: No such file or directory&lt;/p&gt;&lt;/blockquote&gt;
@@ -230,4 +178,5 @@ $$&lt;/p&gt;
 </description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/animate%20paper/</guid><pubDate>Tue, 22 Mar 2022 00:00:00 +0806</pubDate></item><item><title>信条</title><link>/Blog/archives/%E4%BF%A1%E6%9D%A1/</link><description>&lt;p&gt;&lt;strong&gt;信条&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;整体场景非常震撼，电影设定背景新奇。&lt;/p&gt;&lt;p&gt;运用电影倒放的拍摄手法&lt;/p&gt;&lt;p&gt;人性，世界与个人，英雄主义和个人主义的强烈撞击&lt;/p&gt;&lt;p&gt;还是超级英雄主义&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/%E4%BF%A1%E6%9D%A1/</guid><pubDate>Fri, 25 Mar 2022 00:00:00 +0806</pubDate></item><item><title>leetcode刷题</title><link>/Blog/archives/leetcode/</link><description>&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;list.extend返回null，直接修改原list，append是将list整个放在末尾&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Python数据结构学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;==堆== import ==heapq==&lt;/p&gt;&lt;p&gt;heappush(heap, item): 将 &lt;em&gt;item&lt;/em&gt; 的值加入 &lt;em&gt;heap&lt;/em&gt; 中，保持堆的不变性。&lt;/p&gt;&lt;p&gt;heappop(heap): 弹出并返回 &lt;em&gt;heap&lt;/em&gt; 的最小的元素，保持堆的不变性。如果堆为空，抛出 &lt;a href="https://docs.python.org/zh-cn/3/library/exceptions.html#IndexError"&gt;&lt;code&gt;IndexError&lt;/code&gt;&lt;/a&gt; 。使用 &lt;code&gt;heap[0]&lt;/code&gt; ，可以只访问最小的元素而不弹出它。&lt;/p&gt;&lt;p&gt;优先队列（SortedList）&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/leetcode/</guid><pubDate>Tue, 29 Mar 2022 00:00:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;Python数据结构学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;==堆== import ==heapq==&lt;/p&gt;&lt;p&gt;heappush(heap, item): 将 &lt;em&gt;item&lt;/em&gt; 的值加入 &lt;em&gt;heap&lt;/em&gt; 中，保持堆的不变性。&lt;/p&gt;&lt;p&gt;heappop(heap): 弹出并返回 &lt;em&gt;heap&lt;/em&gt; 的最小的元素，保持堆的不变性。如果堆为空，抛出 &lt;a href="https://docs.python.org/zh-cn/3/library/exceptions.html#IndexError"&gt;&lt;code&gt;IndexError&lt;/code&gt;&lt;/a&gt; 。使用 &lt;code&gt;heap[0]&lt;/code&gt; ，可以只访问最小的元素而不弹出它。&lt;/p&gt;&lt;p&gt;优先队列（SortedList）&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/leetcode/</guid><pubDate>Tue, 29 Mar 2022 00:00:00 +0806</pubDate></item><item><title>attention is all you need</title><link>/Blog/archives/attention%20is%20all%20you%20need/</link><description>&lt;p&gt;&lt;strong&gt;Attention is all you need&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;seq2seq中RNN全部盖臣self-attention layer，相比较于RNN，支持&lt;strong&gt;parallel operation&lt;/strong&gt;，同样能够看到更远的信息。加入人为生成的position-encoder信息&lt;/p&gt;&lt;p&gt;主要结构如下所示：&lt;/p&gt;&lt;figure style="flex: 73.00357568533968" &gt;&lt;img width="1225" height="839" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d8392fca4f9fc175255d258992e45ea7.png" /&gt;&lt;/figure&gt;&lt;p&gt;其中q, k, v分别指代&lt;/p&gt;&lt;img src="attetion.assets/Snipaste_2022-03-31_20-23-29.png" style="zoom:50%;" /&gt;
+&lt;p&gt;其中增加的结构multi-head能够看更远，学习到更多的信息, 不同head注意不同距离的信息。&lt;/p&gt;&lt;p&gt;其中layer-norm是用于将input normalization，符合RNN的性质&lt;/p&gt;&lt;p&gt;sine and cosine function做position-encoding，能够推测更长的时序信号&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/attention%20is%20all%20you%20need/</guid><pubDate>Thu, 31 Mar 2022 00:00:00 +0806</pubDate></item></channel></rss>
