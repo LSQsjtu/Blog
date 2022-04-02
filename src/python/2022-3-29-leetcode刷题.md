@@ -28,3 +28,8 @@ heappop(heap): 弹出并返回 *heap* 的最小的元素，保持堆的不变性
 
 优先队列（SortedList）
 
+==哈希表==
+
+Counter 记录对应字符串或者对应值的个数
+
+cnt[x]是对应值的size

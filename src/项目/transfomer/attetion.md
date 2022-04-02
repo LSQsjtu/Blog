@@ -31,3 +31,7 @@ seq2seq中RNN全部盖臣self-attention layer，相比较于RNN，支持**parall
 
 
 sine and cosine function做position-encoding，能够推测更长的时序信号
+
+
+
+DERT将目标检测任务归结为**输出无序集合**，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路
