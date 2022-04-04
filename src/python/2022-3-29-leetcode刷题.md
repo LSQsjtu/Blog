@@ -33,3 +33,17 @@ heappop(heap): 弹出并返回 *heap* 的最小的元素，保持堆的不变性
 Counter 记录对应字符串或者对应值的个数
 
 cnt[x]是对应值的size
+
+
+
+**树状数组**
+
+![](2022-3-29-leetcode刷题.assets/binary_tree.png)
+
+![](2022-3-29-leetcode刷题.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhb2thaV9Bc3N1bHRNYXN0ZXI=,size_16,color_FFFFFF,t_70-16490562983703.png)
+
+然后通过对应位置的求和得到最终的结果
+
+具体的树的结构
+
+<img src="2022-3-29-leetcode刷题.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhb2thaV9Bc3N1bHRNYXN0ZXI=,size_16,color_FFFFFF,t_70-16490563397235.png" style="zoom: 67%;" />
