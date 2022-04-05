@@ -222,14 +222,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/tmux/</loc>
+    <loc>/Blog/archives/%E5%90%8E%E5%8F%B0/</loc>
     <lastmod>2021-09-25</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/%E5%90%8E%E5%8F%B0/</loc>
+    <loc>/Blog/archives/tmux/</loc>
     <lastmod>2021-09-25</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -278,14 +278,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/MOT/</loc>
+    <loc>/Blog/archives/pickle/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/pickle/</loc>
+    <loc>/Blog/archives/MOT/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -362,7 +362,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/%E5%8F%AF%E9%87%8D%E5%A4%8D%E6%80%A7%E6%80%BB%E7%BB%93/</loc>
+    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -376,7 +376,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
+    <loc>/Blog/archives/%E5%8F%AF%E9%87%8D%E5%A4%8D%E6%80%A7%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -397,14 +397,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/</loc>
+    <loc>/Blog/archives/PHP/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/web/</loc>
+    <loc>/Blog/archives/NodeJS/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -425,6 +425,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/IOS/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
@@ -432,7 +439,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/NodeJS/</loc>
+    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/web/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -440,20 +454,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/Java/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/PHP/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
