@@ -47,3 +47,7 @@ cnt[x]是对应值的size
 具体的树的结构
 
 <img src="2022-3-29-leetcode刷题.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhb2thaV9Bc3N1bHRNYXN0ZXI=,size_16,color_FFFFFF,t_70-16490563397235.png" style="zoom: 67%;" />
+
+==lowbit==
+
+x&-x: 找最近的不是0的位
