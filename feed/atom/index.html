@@ -1,134 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2022-04-08T08:01:46.504379+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/rotation%20matrix/</id><title>李群和李代数</title><updated>2022-04-08T08:01:46.504858+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;李群和李代数&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;三维旋转矩阵构成特殊正交群，SO(3),变换矩阵构成了特殊欧式群SE(3).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;$$
-SO(3)=\{R \in R^{3 \times 3} \mid RR^{T} = I,det(R)=I\}
-$$&lt;/p&gt;
-&lt;p&gt;$$
-\operatorname{SE}(3)=\left\{\mathrm{T}=\left[\begin{array}{cc}
-R &amp;amp; t \\
-0 &amp;amp; 1
-\end{array}\right] \in \mathrm{R}^{4 \times 4} \mid R \in S O(3), t \in R^{3}\right\}
-$$&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;从上面看群是一种集合加上一种运算的代数结构。把集合记作A，运算记作$\bullet $，群记为G=(A,$\bullet $),群应满足以下四个特性（封结幺逆）：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;封闭性：$\forall a_{1}, a_{2} \in A, \quad a_{2} \bullet a_{3} \in A$&lt;/li&gt;
-&lt;li&gt;结合律：$\forall a_{1}, a_{2}, a_{3} \in A, \quad\left(a_{1} \bullet a_{2}\right) \bullet a_{3}=a_{1} \bullet\left(a_{2} \bullet a_{3}\right)$&lt;/li&gt;
-&lt;li&gt;幺元：$\exists a_{0} \in A, s . t \forall a \in A, a_{0} \bullet a=a \bullet a_{0}=a$&lt;/li&gt;
-&lt;li&gt;逆：∀a∈A,∃$a^{−1}$∈A, s.t $a \bullet  a^{−1}$ = a&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;李群是指具有连续光滑性质的群,像一般的整数离散群不具有连续性，SO(3), SE(3)在实数空间上是连续的，表示一个位置变换到另一个位置，路径是连续的。但是群的概念只定义了乘法，没有加法。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;李代数的引出：&lt;/p&gt;&lt;p&gt;李代数由一个集合V、一个数域F和一个二元运算[ ，]（李括号）组成。称（V,F，[ , ]）为一个李代数，记为g.&lt;/p&gt;&lt;p&gt;在实际应用中我们估计相机的位置和姿态时，由于干扰，不可能没有误差，那么产生误差需要矫正，我们会用补偿量ΔR,ΔT 去补偿误差。然而群的定义对加法没有封闭性，比如两个旋转或变换矩阵相加后不再表示一个旋转或变换矩阵，失去了原有的意义，于是李代数的提出为此问题提供了解决思路，把SE(3)空间的T映射为李代数se(3),它由向量组成，我们在中学数学就知道，向量相加还表示为一个向量（例如平行四边形原则），李代数对加法具有封闭性（加完之后还是向量）。这样可以通过李代数求导间接对变换矩阵T进行求导。在优化相机位姿时，每次迭代更新一个位姿的增量δ，使目标函数最小，那么这个δ就是通过对T微分得到的。它们对于某时刻的R(t)(李群空间)，存在一个三维向量$\phi = (\phi_1, \phi_2, \phi_3 )$的李代数空间来描述R在t时刻的导数。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;$$
-\dot{R}(t)=\phi(t)^{\wedge} R(t)=\left[\begin{array}{ccc} 0 &amp;amp; -\phi_{3} &amp;amp; \phi_{2} \\ \phi_{3} &amp;amp; 0 &amp;amp; -\phi_{1} \\ -\phi_{2} &amp;amp; \phi_{1} &amp;amp; 0 \end{array}\right] R(t)
-$$&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;指数映射：向量$\phi = (\phi_1, \phi_2, \phi_3 )$反映了R的导数性质，它们之间的微分关系可以描述为：李代数so(3)对应李群SO(3) 在原点附近的正切空间。换句话说，李代数so(3)是三维向量$\phi = (\phi_1, \phi_2, \phi_3 )$的集合，每个$\phi (i)$的反对称矩阵都$\phi (i)$^可以表示SO(3)上旋转矩阵$R(i)$的导数,R和$\phi$又呈现一个指数映射关系：$R(t)=exp(\phi_0 ^{\wedge}t)$&lt;/p&gt;&lt;p&gt;$\exp \left(\phi^{\wedge}\right)=\exp \left(\theta \mathrm{a}^{\wedge}\right)=\sum_{n=0}^{\infty} \frac{1}{n !}\left(\theta \mathrm{a}^{\wedge}\right)^{n}$经过泰勒展开后变为$\exp \left(\theta \mathrm{a}^{\wedge}\right)= cos\left( \theta I\right) + \left( 1- cos\theta \right)aa^{T} + sin \theta \mathrm{a}^{\wedge}$又回到了罗德里格斯。对于三维旋转和变换的关系图如下;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure style="flex: 72.46376811594203" &gt;&lt;img width="500" height="345" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/7121e5cce17df61b42643df0bc961835.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;ul&gt;
-&lt;li&gt;李代数求导与扰动模型：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;以SO(3)为例，当李代数的so(3)做加法时，在李群SO(3)是否对应为两个矩阵的乘积，$exp(ϕ^{\wedge}&lt;em&gt;1)exp(ϕ^{\wedge}_2)=exp((ϕ1+ϕ2)&lt;/em&gt;{\wedge})？ln(exp(A)exp(B))=A+B？$答案是对矩阵运算都不成立，BCH公式给出了近似解：
-$$
-\begin{aligned}
-&amp;amp; \ln \left(\exp \left(A \phi_{1}^{\wedge}\right) \exp \left(\phi_{2}^{\wedge}\right)\right)^{\vee} \
-\approx &amp;amp;\left{\begin{array}{l}
-J_{l}\left(\phi_{2}\right)^{-1} \phi_{1}+\phi_{2}, \phi_{1} \min \
-J_{r}\left(\phi_{1}\right)^{-1} \phi_{2}+\phi_{1}, \phi_{2} \min
-\end{array}\right.
-\end{aligned}
-$$&lt;/p&gt;&lt;p&gt;以下标为l的左乘模型来说，意思是，我们对一个旋转矩阵R2 (李代数$\phi_2$)左乘一个微小旋转矩阵R1 (李代数$\phi_1$ )，看成是李代数 $\phi_2$加上一项&lt;/p&gt;&lt;p&gt;$$
-J_{l}\left(\phi_{2}\right)^{-1} \phi_{1}
-$$&lt;/p&gt;
-&lt;p&gt;右乘模型同理。式中有一个近似的雅可比$J_l$,再通俗的形象一下就是，假定对一个旋转R(李代数$\phi $)产生的漂移进行矫正，左乘一个ΔR (李代数Δϕ)，在李群上的结果为ΔR$\bullet$R&lt;/p&gt;&lt;p&gt;用BCH近似为&lt;/p&gt;&lt;p&gt;$$
-J_{l}\left(\phi\right)^{-1}  \Delta\phi + \phi
-$$&lt;/p&gt;
-&lt;p&gt;合起来就是$exp(\Delta \phi^{\wedge})exp(\phi^{\wedge})= exp({(\phi +J_{l}\left(\phi\right)^{-1}  \Delta\phi )}^{\wedge})$，&lt;strong&gt;然而上面刚刚说到在李代数上加法是封闭的，可以进行加法运算&lt;/strong&gt;，一个$\phi + \Delta \phi$&lt;/p&gt;&lt;p&gt;&lt;em&gt;可以近似为李群上带左右雅可比的乘法:&lt;/em&gt;$exp((\phi +\Delta \phi)^{\wedge})=exp((J_{l}\Delta \phi)^{\wedge})exp(\phi^{\wedge})=exp(\phi^{\wedge})exp({(J_{r}  \Delta\phi )}^{\wedge})$&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;求导运算1&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;空间中有一向量p,然后我们对其进行了R的旋转变换变为Rp,求旋转之后Rp对旋转R的导数，$\frac{\partial(R p)}{\partial R}$，但是没有加法，无法按照导数定义计算，因此转为李代数计算。&lt;/p&gt;&lt;p&gt;$$
-\frac{\partial(R p)}{\partial R}=\frac{\partial\left(\exp \left(\phi^{\wedge}\right) p\right)}{\partial \phi}=-(R p)^{\wedge} J_{l}
-$$&lt;/p&gt;
-&lt;p&gt;结果中有一个雅可比，在应用中不太好处理，又出现了扰动模型来替代，思路是对R进行一次扰动ΔR(左乘形式），看结果相对扰动的变化率。 ΔR对应的李代数为$\varphi$，$\frac{\partial(R p)}{\partial \varphi}=-(R p)^{\wedge}$,这样就没有了雅可比，对实际应用更加合理。&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;实现才是硬道理：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href="#harmful-link"&gt;&lt;figure style="flex: 50.0" &gt;&lt;img width="20" height="20" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0b926442b9a767983066a04a1b07b067.gif" /&gt;&lt;figcaption&gt;复制代码&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 1 #include&amp;lt;iostream&amp;gt;
- 2 #include&amp;lt;cmath&amp;gt;
- 3 #include&amp;lt;Eigen/Core&amp;gt;
- 4 #include&amp;lt;Eigen/Geometry&amp;gt;
- 5 #include&amp;quot;sophus/se3.h&amp;quot;
- 6 #include&amp;quot;sophus/so3.h&amp;quot;
- 7 
- 8 using namespace std;
- 9 using namespace Eigen;
-10 
-11 int main(int argc,char **argv)
-12 {
-13     // 沿Z轴转90度的旋转矩阵用旋转向量表示
-14     Eigen::Matrix3d R = Eigen::AngleAxisd(M_PI/2, Eigen::Vector3d(0,0,1)).toRotationMatrix();
-15     
-16     Sophus::SO3 SO3_R(R);               // Sophus::SO(3)可以直接从旋转矩阵构造
-17     Sophus::SO3 SO3_v( 0, 0, M_PI/2 );  // 亦可从旋转向量构造
-18     Eigen::Quaterniond q(R);            // 或者四元数
-19     Sophus::SO3 SO3_q( q );
-20     // 上述表达方式都是等价的
-21    
-22     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由矩阵构造:\n &amp;quot;&amp;lt;&amp;lt;SO3_R.matrix()&amp;lt;&amp;lt;endl;
-23     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由向量构造: \n&amp;quot;&amp;lt;&amp;lt;SO3_v.matrix()&amp;lt;&amp;lt;endl;
-24     cout&amp;lt;&amp;lt;&amp;quot;SO(3)由四元数构造:\n&amp;quot;&amp;lt;&amp;lt;SO3_q.matrix()&amp;lt;&amp;lt;endl;
-25     
-26     // 使用对数映射获得它的李代数
-27     Eigen::Vector3d so3 = SO3_R.log();
-28     cout&amp;lt;&amp;lt;&amp;quot;SO(3)的李代数so(3) =SO3_R.log()为： &amp;quot;&amp;lt;&amp;lt;so3.transpose()&amp;lt;&amp;lt;endl;
-29     // hat 为向量到反对称矩阵
-30     cout&amp;lt;&amp;lt;&amp;quot;so(3)李代数向量对应的反对称矩阵： \n&amp;quot;&amp;lt;&amp;lt;Sophus::SO3::hat(so3)&amp;lt;&amp;lt;endl;
-31     // 相对的，vee为反对称矩阵到向量
-32     cout&amp;lt;&amp;lt;&amp;quot;so(3)反对称矩阵对应的李代数向量： \n &amp;quot;&amp;lt;&amp;lt;Sophus::SO3::vee( Sophus::SO3::hat(so3) ).transpose()&amp;lt;&amp;lt;endl;
-33     // transpose纯粹是为了输出美观一些
-34     
-35     // 增量扰动模型的更新
-36     Eigen::Vector3d update_so3(1e-4, 0, 0); //假设更新量为这么多
-37     Sophus::SO3 SO3_updated = Sophus::SO3::exp(update_so3)*SO3_R;
-38     cout&amp;lt;&amp;lt;&amp;quot;更新后的SO(3) =δ×R为 \n&amp;quot;&amp;lt;&amp;lt;SO3_updated.matrix()&amp;lt;&amp;lt;endl;
-39     
-40     cout&amp;lt;&amp;lt;&amp;quot;***********SE(3)的操作*************&amp;quot;&amp;lt;&amp;lt;endl;
-41     // 对SE(3)操作大同小异
-42     Eigen::Vector3d t(1,0,0);           // 沿X轴平移1
-43     Sophus::SE3 SE3_Rt(R, t);           // 从R,t构造SE(3)
-44     Sophus::SE3 SE3_qt(q,t);            // 从q,t构造SE(3)
-45     cout&amp;lt;&amp;lt;&amp;quot;SE3由矩阵旋转+平移构造（ R,t)= &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_Rt.matrix()&amp;lt;&amp;lt;endl;
-46     cout&amp;lt;&amp;lt;&amp;quot;SE3由四元数q,t= &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_qt.matrix()&amp;lt;&amp;lt;endl;
-47     // 李代数se(3) 是一个六维向量，方便起见先typedef一下
-48     typedef Eigen::Matrix&amp;lt;double,6,1&amp;gt; Vector6d;
-49     Vector6d se3 = SE3_Rt.log();
-50     cout&amp;lt;&amp;lt;&amp;quot;SE(3)对应的李代数se(3) =\n &amp;quot;&amp;lt;&amp;lt;se3.transpose()&amp;lt;&amp;lt;endl;
-51     // 观察输出，会发现在Sophus中，se(3)的平移在前，旋转在后.
-52     // 同样的，有hat和vee两个算符
-53     cout&amp;lt;&amp;lt;&amp;quot;se(3)对应的反对称矩阵 = &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;Sophus::SE3::hat(se3)&amp;lt;&amp;lt;endl;
-54     cout&amp;lt;&amp;lt;&amp;quot;反对称矩阵对应的李代数向量 = &amp;quot;&amp;lt;&amp;lt;Sophus::SE3::vee( Sophus::SE3::hat(se3) ).transpose()&amp;lt;&amp;lt;endl;
-55     
-56     // se(3)的扰动
-57     Vector6d update_se3; //更新量
-58     update_se3.setZero();//六维更新量
-59     update_se3(0,0) = 1e-4d;//改变其中一个量来产生观测
-60     Sophus::SE3 SE3_updated = Sophus::SE3::exp(update_se3)*SE3_Rt;
-61     cout&amp;lt;&amp;lt;&amp;quot;更新后的SE(3) = &amp;quot;&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;SE3_updated.matrix()&amp;lt;&amp;lt;endl;
-62     
-63 return 0;
-64 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="#harmful-link"&gt;&lt;figure style="flex: 50.0" &gt;&lt;img width="20" height="20" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0b926442b9a767983066a04a1b07b067.gif" /&gt;&lt;figcaption&gt;复制代码&lt;/figcaption&gt;&lt;/figure&gt;&lt;/a&gt;&lt;/p&gt;&lt;figure style="flex: 90.92071611253196" &gt;&lt;img width="711" height="391" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/a30675a91c5f31cf748c49e3e484f009.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure style="flex: 97.57281553398059" &gt;&lt;img width="804" height="412" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/226f0fda8fb394fa5a16a443cacc2a57.png" /&gt;&lt;figcaption&gt;img&lt;/figcaption&gt;&lt;/figure&gt;</content><link href="/Blog/archives/rotation%20matrix/" rel="alternate"/><published>2022-01-29T00:00:00+08:06</published></entry><entry><id>/Blog/archives/The%20pianist/</id><title>钢琴家</title><updated>2022-04-08T08:01:46.504823+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;The pianist&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;更像是以第一视角去体验二战时期，华沙地区犹太民族的辛酸和苦痛，不同名族，种族的对立与厌恶，不同性格阶级人民的对立。&lt;/p&gt;&lt;p&gt;作为犹太人，从一开始的经济限制到固定居所，最后送到集中营自生自灭。&lt;/p&gt;&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog/</id><title>我的个人博客</title><updated>2022-04-08T13:21:21.944061+08:06</updated><author><name>LSQ</name><email>1959376918@qq.com</email></author><link href="/Blog/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</logo><subtitle>记录生活美好</subtitle><entry><id>/Blog/archives/The%20pianist/</id><title>钢琴家</title><updated>2022-04-08T13:21:21.944476+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;The pianist&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;更像是以第一视角去体验二战时期，华沙地区犹太民族的辛酸和苦痛，不同名族，种族的对立与厌恶，不同性格阶级人民的对立。&lt;/p&gt;&lt;p&gt;作为犹太人，从一开始的经济限制到固定居所，最后送到集中营自生自灭。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;全剧中有直接了当是血腥画面，第三视角的悲伤（更多），满街的尸体，到处的废墟，没有一丝生机，全是战争的疮痍&lt;/li&gt;
 &lt;li&gt;小孩，妇女，老人每处都有迫害的细节，难以直视&lt;/li&gt;
 &lt;li&gt;常常感受到无言中透露的对战争的控诉&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/Blog/archives/The%20pianist/" rel="alternate"/><published>2022-02-12T00:00:00+08:06</published></entry><entry><id>/Blog/archives/aeiou/</id><title>日本五十音图学习</title><updated>2022-04-08T08:01:46.504792+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
+</content><link href="/Blog/archives/The%20pianist/" rel="alternate"/><published>2022-02-12T00:00:00+08:06</published></entry><entry><id>/Blog/archives/aeiou/</id><title>日本五十音图学习</title><updated>2022-04-08T13:21:21.944446+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;文字组成&lt;ul&gt;
 &lt;li&gt;汉字&lt;/li&gt;
@@ -144,11 +20,11 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-</content><link href="/Blog/archives/aeiou/" rel="alternate"/><published>2022-02-20T00:00:00+08:06</published></entry><entry><id>/Blog/archives/nerf/</id><title>nerf</title><updated>2022-04-08T08:01:46.504760+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;nerf&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;链接：&lt;a href="https://www.youtube.com/watch?v=otly9jcZ0Jg&amp;amp;t=5215s"&gt;nerf介绍&lt;/a&gt;&lt;/p&gt;&lt;p&gt;volumetric rendering&lt;/p&gt;&lt;p&gt;ray_o, ray_d输入，返回rgb值，和真值算MSE loss。&lt;/p&gt;&lt;p&gt;volumetric density积分转化为分段&lt;/p&gt;&lt;p&gt;xyz低维信息，难以使用，通过input coordinate mapping 转化为Fourier feature&lt;/p&gt;&lt;p&gt;转换通过B matrix，最终性能和B matrix有较大关系&lt;/p&gt;&lt;p&gt;problem：&lt;/p&gt;&lt;ul&gt;
+</content><link href="/Blog/archives/aeiou/" rel="alternate"/><published>2022-02-20T00:00:00+08:06</published></entry><entry><id>/Blog/archives/nerf/</id><title>nerf</title><updated>2022-04-08T13:21:21.944415+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;nerf&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;链接：&lt;a href="https://www.youtube.com/watch?v=otly9jcZ0Jg&amp;amp;t=5215s"&gt;nerf介绍&lt;/a&gt;&lt;/p&gt;&lt;p&gt;volumetric rendering&lt;/p&gt;&lt;p&gt;ray_o, ray_d输入，返回rgb值，和真值算MSE loss。&lt;/p&gt;&lt;p&gt;volumetric density积分转化为分段&lt;/p&gt;&lt;p&gt;xyz低维信息，难以使用，通过input coordinate mapping 转化为Fourier feature&lt;/p&gt;&lt;p&gt;转换通过B matrix，最终性能和B matrix有较大关系&lt;/p&gt;&lt;p&gt;problem：&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;速度&lt;/li&gt;
 &lt;li&gt;过拟合和欠拟合&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/Blog/archives/nerf/" rel="alternate"/><published>2022-02-26T00:00:00+08:06</published></entry><entry><id>/Blog/archives/animate%20paper/</id><title>animate paper</title><updated>2022-04-08T08:01:46.504722+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;3D Menagerie: Modeling the 3D Shape and Pose of Animals&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;task:&lt;/p&gt;&lt;ul&gt;
+</content><link href="/Blog/archives/nerf/" rel="alternate"/><published>2022-02-26T00:00:00+08:06</published></entry><entry><id>/Blog/archives/animate%20paper/</id><title>animate paper</title><updated>2022-04-08T13:21:21.944380+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;3D Menagerie: Modeling the 3D Shape and Pose of Animals&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;task:&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;fitting new animals from template&lt;/li&gt;
 &lt;li&gt;deformation by SMAL&lt;/li&gt;
 &lt;li&gt;fit animals to image&lt;/li&gt;
@@ -159,19 +35,19 @@ $$&lt;/p&gt;
 &lt;li&gt;difficult tail part&lt;/li&gt;
 &lt;li&gt;a variety of data species&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/Blog/archives/animate%20paper/" rel="alternate"/><published>2022-03-22T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E4%BF%A1%E6%9D%A1/</id><title>信条</title><updated>2022-04-08T08:01:46.504683+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;信条&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;整体场景非常震撼，电影设定背景新奇。&lt;/p&gt;&lt;p&gt;运用电影倒放的拍摄手法&lt;/p&gt;&lt;p&gt;人性，世界与个人，英雄主义和个人主义的强烈撞击&lt;/p&gt;&lt;p&gt;还是超级英雄主义&lt;/p&gt;</content><link href="/Blog/archives/%E4%BF%A1%E6%9D%A1/" rel="alternate"/><published>2022-03-25T00:00:00+08:06</published></entry><entry><id>/Blog/archives/leetcode/</id><title>leetcode刷题</title><updated>2022-04-08T08:01:46.504623+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
+</content><link href="/Blog/archives/animate%20paper/" rel="alternate"/><published>2022-03-22T00:00:00+08:06</published></entry><entry><id>/Blog/archives/%E4%BF%A1%E6%9D%A1/</id><title>信条</title><updated>2022-04-08T13:21:21.944344+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;信条&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;整体场景非常震撼，电影设定背景新奇。&lt;/p&gt;&lt;p&gt;运用电影倒放的拍摄手法&lt;/p&gt;&lt;p&gt;人性，世界与个人，英雄主义和个人主义的强烈撞击&lt;/p&gt;&lt;p&gt;还是超级英雄主义&lt;/p&gt;</content><link href="/Blog/archives/%E4%BF%A1%E6%9D%A1/" rel="alternate"/><published>2022-03-25T00:00:00+08:06</published></entry><entry><id>/Blog/archives/leetcode/</id><title>leetcode刷题</title><updated>2022-04-08T13:21:21.944312+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;list.extend返回null，直接修改原list，append是将list整个放在末尾&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Python数据结构学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;==堆== import ==heapq==&lt;/p&gt;&lt;p&gt;heappush(heap, item): 将 &lt;em&gt;item&lt;/em&gt; 的值加入 &lt;em&gt;heap&lt;/em&gt; 中，保持堆的不变性。&lt;/p&gt;&lt;p&gt;heappop(heap): 弹出并返回 &lt;em&gt;heap&lt;/em&gt; 的最小的元素，保持堆的不变性。如果堆为空，抛出 &lt;a href="https://docs.python.org/zh-cn/3/library/exceptions.html#IndexError"&gt;&lt;code&gt;IndexError&lt;/code&gt;&lt;/a&gt; 。使用 &lt;code&gt;heap[0]&lt;/code&gt; ，可以只访问最小的元素而不弹出它。&lt;/p&gt;&lt;p&gt;优先队列（SortedList）&lt;/p&gt;&lt;p&gt;==哈希表==&lt;/p&gt;&lt;p&gt;Counter 记录对应字符串或者对应值的个数&lt;/p&gt;&lt;p&gt;cnt[x]是对应值的size&lt;/p&gt;&lt;p&gt;&lt;strong&gt;树状数组&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 98.45238095238095" &gt;&lt;img width="1654" height="840" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d0d085b71c57bda23e8a2f33a376bcea.png" /&gt;&lt;/figure&gt;&lt;figure style="flex: 94.20654911838791" &gt;&lt;img width="748" height="397" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/1d66fbca451285b471947b5b782a23da.png" /&gt;&lt;/figure&gt;&lt;p&gt;然后通过对应位置的求和得到最终的结果&lt;/p&gt;&lt;p&gt;具体的树的结构&lt;/p&gt;&lt;img src="2022-3-29-leetcode刷题.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhb2thaV9Bc3N1bHRNYXN0ZXI=,size_16,color_FFFFFF,t_70-16490563397235.png" style="zoom: 67%;" /&gt;
-&lt;p&gt;==lowbit==&lt;/p&gt;&lt;p&gt;x&amp;amp;-x: 找最近的不是0的位&lt;/p&gt;</content><link href="/Blog/archives/leetcode/" rel="alternate"/><published>2022-03-29T00:00:00+08:06</published></entry><entry><id>/Blog/archives/attention%20is%20all%20you%20need/</id><title>attention is all you need</title><updated>2022-04-08T08:01:46.504581+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;Attention is all you need&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;seq2seq中RNN全部盖臣self-attention layer，相比较于RNN，支持&lt;strong&gt;parallel operation&lt;/strong&gt;，同样能够看到更远的信息。加入人为生成的position-encoder信息&lt;/p&gt;&lt;p&gt;主要结构如下所示：&lt;/p&gt;&lt;figure style="flex: 73.00357568533968" &gt;&lt;img width="1225" height="839" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d8392fca4f9fc175255d258992e45ea7.png" /&gt;&lt;/figure&gt;&lt;p&gt;其中q, k, v分别指代&lt;/p&gt;&lt;img src="attetion.assets/Snipaste_2022-03-31_20-23-29.png" style="zoom:50%;" /&gt;
-&lt;p&gt;其中增加的结构multi-head能够看更远，学习到更多的信息, 不同head注意不同距离的信息。&lt;/p&gt;&lt;p&gt;其中layer-norm是用于将input normalization，符合RNN的性质&lt;/p&gt;&lt;p&gt;sine and cosine function做position-encoding，能够推测更长的时序信号&lt;/p&gt;&lt;p&gt;DERT将目标检测任务归结为&lt;strong&gt;输出无序集合&lt;/strong&gt;，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路&lt;/p&gt;</content><link href="/Blog/archives/attention%20is%20all%20you%20need/" rel="alternate"/><published>2022-03-31T00:00:00+08:06</published></entry><entry><id>/Blog/archives/District%2013/</id><title>暴力街区</title><updated>2022-04-08T08:01:46.504539+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;暴力街区&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;非常酷炫的跑酷追击效果，强烈的打击感。&lt;/p&gt;&lt;p&gt;总的来说是一部非常棒的动作片，叙事感觉较为平铺直叙，较为简单，疑问设置少，感觉比较简单。&lt;/p&gt;&lt;p&gt;增强打击感的作用：&lt;/p&gt;&lt;ol&gt;
+&lt;p&gt;==lowbit==&lt;/p&gt;&lt;p&gt;x&amp;amp;-x: 找最近的不是0的位&lt;/p&gt;</content><link href="/Blog/archives/leetcode/" rel="alternate"/><published>2022-03-29T00:00:00+08:06</published></entry><entry><id>/Blog/archives/attention%20is%20all%20you%20need/</id><title>attention is all you need</title><updated>2022-04-08T13:21:21.944274+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;Attention is all you need&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;seq2seq中RNN全部盖臣self-attention layer，相比较于RNN，支持&lt;strong&gt;parallel operation&lt;/strong&gt;，同样能够看到更远的信息。加入人为生成的position-encoder信息&lt;/p&gt;&lt;p&gt;主要结构如下所示：&lt;/p&gt;&lt;figure style="flex: 73.00357568533968" &gt;&lt;img width="1225" height="839" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d8392fca4f9fc175255d258992e45ea7.png" /&gt;&lt;/figure&gt;&lt;p&gt;其中q, k, v分别指代&lt;/p&gt;&lt;img src="attetion.assets/Snipaste_2022-03-31_20-23-29.png" style="zoom:50%;" /&gt;
+&lt;p&gt;其中增加的结构multi-head能够看更远，学习到更多的信息, 不同head注意不同距离的信息。&lt;/p&gt;&lt;p&gt;其中layer-norm是用于将input normalization，符合RNN的性质&lt;/p&gt;&lt;p&gt;sine and cosine function做position-encoding，能够推测更长的时序信号&lt;/p&gt;&lt;p&gt;DERT将目标检测任务归结为&lt;strong&gt;输出无序集合&lt;/strong&gt;，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路&lt;/p&gt;</content><link href="/Blog/archives/attention%20is%20all%20you%20need/" rel="alternate"/><published>2022-03-31T00:00:00+08:06</published></entry><entry><id>/Blog/archives/District%2013/</id><title>暴力街区</title><updated>2022-04-08T13:21:21.944236+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;暴力街区&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;非常酷炫的跑酷追击效果，强烈的打击感。&lt;/p&gt;&lt;p&gt;总的来说是一部非常棒的动作片，叙事感觉较为平铺直叙，较为简单，疑问设置少，感觉比较简单。&lt;/p&gt;&lt;p&gt;增强打击感的作用：&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;快慢镜头的掌控&lt;/li&gt;
 &lt;li&gt;身上加上闪光粉&lt;/li&gt;
 &lt;li&gt;将拳影剪贴到对应的地方&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;叙事背景非常简单，构造一个虚拟的犯罪区域，缺乏历史的厚重感&lt;/p&gt;</content><link href="/Blog/archives/District%2013/" rel="alternate"/><published>2022-04-02T00:00:00+08:06</published></entry><entry><id>/Blog/archives/a%20shape%20of%20voice/</id><title>声の形</title><updated>2022-04-08T08:01:46.504449+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;声の形&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
+&lt;p&gt;叙事背景非常简单，构造一个虚拟的犯罪区域，缺乏历史的厚重感&lt;/p&gt;</content><link href="/Blog/archives/District%2013/" rel="alternate"/><published>2022-04-02T00:00:00+08:06</published></entry><entry><id>/Blog/archives/a%20shape%20of%20voice/</id><title>声の形</title><updated>2022-04-08T13:21:21.944194+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;声の形&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;对自己，从来不要讨厌自己，恶意讨好他人，没有一个人是完美无缺的，在不伤害其他人的情况下接纳自己的缺点。对他人恶意相向只是最简单的，不要想着把自己的悲伤与快乐强加在他人身上&lt;/li&gt;
 &lt;li&gt;对待挚友，用心对待，维护这份来之不易的友情&lt;/li&gt;
 &lt;li&gt;对待亲情，用心去爱&lt;/li&gt;
 &lt;/ol&gt;
-</content><link href="/Blog/archives/a%20shape%20of%20voice/" rel="alternate"/><published>2022-04-08T00:00:00+08:06</published></entry></feed>
+</content><link href="/Blog/archives/a%20shape%20of%20voice/" rel="alternate"/><published>2022-04-08T00:00:00+08:06</published></entry><entry><id>/Blog/archives/c%2B%2B%20part/</id><title>leetcode刷题</title><updated>2022-04-08T13:21:21.944116+00:00</updated><author><name>刘胜琪</name><email>1959376918@qq.com</email><uri>https://lsqsjtu.github.io/Blog/</uri></author><content>&lt;p&gt;&lt;strong&gt;C++&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;生成格式vector&lt;int&gt; 变量名&lt;/p&gt;&lt;p&gt;vector.push_back()放入最后，&lt;/p&gt;&lt;p&gt;queue&amp;lt;类型&amp;gt; 变量名 queue.push(), queue.pop(), 先进先出&lt;/p&gt;&lt;p&gt;move(vector) allowing the efficient transfer of resources from &lt;code&gt;t&lt;/code&gt; to another object. &lt;strong&gt;唯一的功能是把左值强制转化为右值&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;实现移动语义，避免拷贝，从而提升程序性能&lt;/strong&gt;, 这样可以避免深拷贝，只提取数值。&lt;/p&gt;</content><link href="/Blog/archives/c%2B%2B%20part/" rel="alternate"/><published>2022-04-08T00:00:00+08:06</published></entry></feed>
