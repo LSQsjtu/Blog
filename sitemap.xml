@@ -12,14 +12,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/c%2B%2B%20part/</loc>
-    <lastmod>2022-04-08</lastmod>
+    <loc>/Blog/archives/Paper%20Reading/</loc>
+    <lastmod>2022-04-15</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
     <loc>/Blog/archives/a%20shape%20of%20voice/</loc>
+    <lastmod>2022-04-08</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/c%2B%2B%20part/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -131,6 +138,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/model.train/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/numpy%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>always</changefreq>
@@ -139,13 +153,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/plot%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
