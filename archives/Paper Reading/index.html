@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/071dcc9fe753c4e4381b6104d4cde442.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/89dedb4fddfe190063b43f06bd77bae1.json"
         }
     </script>
     
@@ -130,7 +130,18 @@ var _hmt = _hmt || [];
 <li>方法</li>
 <li>结果，以及未来畅想</li>
 </ol>
-<p><strong>经典论文</strong></p><p>==Resnet==</p><p>残差连接：学习浅层网络没有学习到的residual，当输入为0时后面的网络层基本为0，没有多余的信息，学习==$H(x) - x$==的信息。网络结构的设计使得梯度稳定，不会到零（后人的解释）。原始想法是将机器学习中学习残差的思想运用到深度网络训练中。</p><p>bottleneck：先降维，然后提取信息，再提升维度，起到降低算法复杂度的功能，不用学习无用维度的信息。</p>
+<p><strong>经典论文</strong></p><p>==Resnet==</p><p>残差连接：学习浅层网络没有学习到的residual，当输入为0时后面的网络层基本为0，没有多余的信息，学习==$H(x) - x$==的信息。网络结构的设计使得梯度稳定，不会到零（后人的解释）。原始想法是将机器学习中学习残差的思想运用到深度网络训练中。</p><p>bottleneck：先降维，然后提取信息，再提升维度，起到降低算法复杂度的功能，不用学习无用维度的信息。</p><p>==Generative adversarial nets==</p><p>写作方面</p><ul>
+<li>对于开创性的工作来说主要说明自己独一无二的地方，基于其他方法改进的主要突出强调区别</li>
+</ul>
+<p>创新点</p><ul>
+<li>以往是近似构造似然函数去学习这个分布，现在通过模型网络来直接<strong>学习分布</strong>（于是可以训练了），分布的求解往往是不可逆的，无法求出分布的逆函数，来通过参数求出对应的输出数据，于是采用非常大的数据去盗版模仿</li>
+<li>通过G和D去对抗，minmax最优化分布函数，求取最优值</li>
+</ul>
+<p>新的知识点</p><ul>
+<li>==KL散度==：如果D过拟合会导致输出为0，不好优化求导，后面有工作去更新优化方式，通过更简约的方法去学习这个分布。</li>
+<li>如果数据不属于同一个分布，那么就可以训练同一个二分类去分类</li>
+</ul>
+
             </div>
         </article>
         <div id="ga-tags">
