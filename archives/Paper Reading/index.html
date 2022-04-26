@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/ed428d990735a6c967f48e5e9684acfc.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/4c99f768a290fbddef4e9bcb9db4e804.json"
         }
     </script>
     
@@ -141,6 +141,20 @@ var _hmt = _hmt || [];
 <li>==KL散度==：如果D过拟合会导致输出为0，不好优化求导，后面有工作去更新优化方式，通过更简约的方法去学习这个分布。</li>
 <li>如果数据不属于同一个分布，那么就可以训练同一个二分类去分类</li>
 </ul>
+<p><strong>BERT</strong></p><p>芝麻街中人物姓名</p><p>解决问题</p><ul>
+<li>可以预训练后广泛运用在其他任务上（加一个输出层）</li>
+<li>将预训练过程和大模型过程</li>
+</ul>
+<p>创新点</p><ul>
+<li>引入==mask==，完形填空，从而可以利用双向的信息，而不是单纯地就将从左向右和从右向左结合在一起</li>
+<li>证明了利用大量没有标号的数据训练，比利用少量有标号的数据训练要更好</li>
+</ul>
+<p>写作</p><ul>
+<li>数值展示：绝对值（相对值）</li>
+<li>比较，开门见山，比较BERT和GPT，Elmo</li>
+</ul>
+<blockquote>
+<p>GPT（在下游任务上微调，分阶段训练）</p><p>ELmo: RNN 提取特征后再一起用于训练</p></blockquote>
 
             </div>
         </article>

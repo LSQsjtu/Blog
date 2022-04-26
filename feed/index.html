@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Sat, 23 Apr 2022 06:36:01 +0806</lastBuildDate><pubDate>Sat, 23 Apr 2022 06:36:01 +0806</pubDate><item><title>日本五十音图学习</title><link>/Blog/archives/aeiou/</link><description>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Tue, 26 Apr 2022 07:42:23 +0806</lastBuildDate><pubDate>Tue, 26 Apr 2022 07:42:23 +0806</pubDate><item><title>日本五十音图学习</title><link>/Blog/archives/aeiou/</link><description>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;文字组成&lt;ul&gt;
 &lt;li&gt;汉字&lt;/li&gt;
@@ -35,7 +35,7 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Python数据结构学习&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;==堆== import ==heapq==&lt;/p&gt;&lt;p&gt;heappush(heap, item): 将 &lt;em&gt;item&lt;/em&gt; 的值加入 &lt;em&gt;heap&lt;/em&gt; 中，保持堆的不变性。&lt;/p&gt;&lt;p&gt;heappop(heap): 弹出并返回 &lt;em&gt;heap&lt;/em&gt; 的最小的元素，保持堆的不变性。如果堆为空，抛出 &lt;a href="https://docs.python.org/zh-cn/3/library/exceptions.html#IndexError"&gt;&lt;code&gt;IndexError&lt;/code&gt;&lt;/a&gt; 。使用 &lt;code&gt;heap[0]&lt;/code&gt; ，可以只访问最小的元素而不弹出它。&lt;/p&gt;&lt;p&gt;优先队列（SortedList）&lt;/p&gt;&lt;p&gt;==哈希表==&lt;/p&gt;&lt;p&gt;Counter 记录对应字符串或者对应值的个数&lt;/p&gt;&lt;p&gt;cnt[x]是对应值的size&lt;/p&gt;&lt;p&gt;&lt;strong&gt;树状数组&lt;/strong&gt;&lt;/p&gt;&lt;figure style="flex: 98.45238095238095" &gt;&lt;img width="1654" height="840" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d0d085b71c57bda23e8a2f33a376bcea.png" /&gt;&lt;/figure&gt;&lt;figure style="flex: 94.20654911838791" &gt;&lt;img width="748" height="397" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/1d66fbca451285b471947b5b782a23da.png" /&gt;&lt;/figure&gt;&lt;p&gt;然后通过对应位置的求和得到最终的结果&lt;/p&gt;&lt;p&gt;具体的树的结构&lt;/p&gt;&lt;img src="2022-3-29-leetcode刷题.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhb2thaV9Bc3N1bHRNYXN0ZXI=,size_16,color_FFFFFF,t_70-16490563397235.png" style="zoom: 67%;" /&gt;
 &lt;p&gt;==lowbit==&lt;/p&gt;&lt;p&gt;x&amp;amp;-x: 找最近的不是0的位&lt;/p&gt;&lt;p&gt;对于字典排序，dfs搜素，最后一位为9则上一位加10，如果之后乘以10仍然在范围之内则乘以10，继续加1&lt;/p&gt;&lt;p&gt;==凸包==&lt;/p&gt;&lt;p&gt;Andrew算法，找下凸壳，上凸壳，通过叉乘判断点的位置在左方还是右方，，如果在右方，把栈中末尾元素pop，栈是在维护凸包的边。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/leetcode/</guid><pubDate>Tue, 29 Mar 2022 00:00:00 +0806</pubDate></item><item><title>attention is all you need</title><link>/Blog/archives/attention%20is%20all%20you%20need/</link><description>&lt;p&gt;&lt;strong&gt;Attention is all you need&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;seq2seq中RNN全部盖臣self-attention layer，相比较于RNN，支持&lt;strong&gt;parallel operation&lt;/strong&gt;，同样能够看到更远的信息。加入人为生成的position-encoder信息&lt;/p&gt;&lt;p&gt;主要结构如下所示：&lt;/p&gt;&lt;figure style="flex: 73.00357568533968" &gt;&lt;img width="1225" height="839" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/d8392fca4f9fc175255d258992e45ea7.png" /&gt;&lt;/figure&gt;&lt;p&gt;其中q, k, v分别指代&lt;/p&gt;&lt;img src="attetion.assets/Snipaste_2022-03-31_20-23-29.png" style="zoom:50%;" /&gt;
-&lt;p&gt;其中增加的结构multi-head能够看更远，学习到更多的信息, 不同head注意不同距离的信息。&lt;/p&gt;&lt;p&gt;其中layer-norm是用于将input normalization，符合RNN的性质&lt;/p&gt;&lt;p&gt;sine and cosine function做position-encoding，能够推测更长的时序信号&lt;/p&gt;&lt;p&gt;DERT将目标检测任务归结为&lt;strong&gt;输出无序集合&lt;/strong&gt;，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/attention%20is%20all%20you%20need/</guid><pubDate>Thu, 31 Mar 2022 00:00:00 +0806</pubDate></item><item><title>暴力街区</title><link>/Blog/archives/District%2013/</link><description>&lt;p&gt;&lt;strong&gt;暴力街区&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;非常酷炫的跑酷追击效果，强烈的打击感。&lt;/p&gt;&lt;p&gt;总的来说是一部非常棒的动作片，叙事感觉较为平铺直叙，较为简单，疑问设置少，感觉比较简单。&lt;/p&gt;&lt;p&gt;增强打击感的作用：&lt;/p&gt;&lt;ol&gt;
+&lt;p&gt;其中增加的结构multi-head能够看更远，学习到更多的信息, 不同head注意不同距离的信息。&lt;/p&gt;&lt;p&gt;其中layer-norm是用于将input normalization，符合RNN的性质&lt;/p&gt;&lt;p&gt;sine and cosine function做position-encoding，能够推测更长的时序信号&lt;/p&gt;&lt;p&gt;DERT将目标检测任务归结为&lt;strong&gt;输出无序集合&lt;/strong&gt;，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路&lt;/p&gt;&lt;p&gt;层数：L，词向量长度H，multihead：A，大致计算出参数，当词语数量较多时，参数主要是embedding 层&lt;/p&gt;&lt;p&gt;并且在transformer中编码器看不到解码器的信息。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/attention%20is%20all%20you%20need/</guid><pubDate>Thu, 31 Mar 2022 00:00:00 +0806</pubDate></item><item><title>暴力街区</title><link>/Blog/archives/District%2013/</link><description>&lt;p&gt;&lt;strong&gt;暴力街区&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;非常酷炫的跑酷追击效果，强烈的打击感。&lt;/p&gt;&lt;p&gt;总的来说是一部非常棒的动作片，叙事感觉较为平铺直叙，较为简单，疑问设置少，感觉比较简单。&lt;/p&gt;&lt;p&gt;增强打击感的作用：&lt;/p&gt;&lt;ol&gt;
 &lt;li&gt;快慢镜头的掌控&lt;/li&gt;
 &lt;li&gt;身上加上闪光粉&lt;/li&gt;
 &lt;li&gt;将拳影剪贴到对应的地方&lt;/li&gt;
@@ -71,4 +71,18 @@
 &lt;li&gt;==KL散度==：如果D过拟合会导致输出为0，不好优化求导，后面有工作去更新优化方式，通过更简约的方法去学习这个分布。&lt;/li&gt;
 &lt;li&gt;如果数据不属于同一个分布，那么就可以训练同一个二分类去分类&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;BERT&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;芝麻街中人物姓名&lt;/p&gt;&lt;p&gt;解决问题&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;可以预训练后广泛运用在其他任务上（加一个输出层）&lt;/li&gt;
+&lt;li&gt;将预训练过程和大模型过程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创新点&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;引入==mask==，完形填空，从而可以利用双向的信息，而不是单纯地就将从左向右和从右向左结合在一起&lt;/li&gt;
+&lt;li&gt;证明了利用大量没有标号的数据训练，比利用少量有标号的数据训练要更好&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;写作&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;数值展示：绝对值（相对值）&lt;/li&gt;
+&lt;li&gt;比较，开门见山，比较BERT和GPT，Elmo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GPT（在下游任务上微调，分阶段训练）&lt;/p&gt;&lt;p&gt;ELmo: RNN 提取特征后再一起用于训练&lt;/p&gt;&lt;/blockquote&gt;
 </description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/Paper%20Reading/</guid><pubDate>Fri, 15 Apr 2022 00:00:00 +0806</pubDate></item></channel></rss>
