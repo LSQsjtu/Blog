@@ -35,3 +35,9 @@ sine and cosine function做position-encoding，能够推测更长的时序信号
 
 
 DERT将目标检测任务归结为**输出无序集合**，Faster R-CNN等算法通过各种操作，并结合复杂后处理最终才得到无序集合属于绕路
+
+
+
+层数：L，词向量长度H，multihead：A，大致计算出参数，当词语数量较多时，参数主要是embedding 层
+
+并且在transformer中编码器看不到解码器的信息。
