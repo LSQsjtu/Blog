@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Tue, 26 Apr 2022 07:42:23 +0806</lastBuildDate><pubDate>Tue, 26 Apr 2022 07:42:23 +0806</pubDate><item><title>日本五十音图学习</title><link>/Blog/archives/aeiou/</link><description>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Fri, 29 Apr 2022 12:50:05 +0806</lastBuildDate><pubDate>Fri, 29 Apr 2022 12:50:05 +0806</pubDate><item><title>日本五十音图学习</title><link>/Blog/archives/aeiou/</link><description>&lt;p&gt;&lt;strong&gt;五十音图&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;基础知识&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;文字组成&lt;ul&gt;
 &lt;li&gt;汉字&lt;/li&gt;
@@ -78,6 +78,7 @@
 &lt;p&gt;创新点&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;引入==mask==，完形填空，从而可以利用双向的信息，而不是单纯地就将从左向右和从右向左结合在一起&lt;/li&gt;
 &lt;li&gt;证明了利用大量没有标号的数据训练，比利用少量有标号的数据训练要更好&lt;/li&gt;
+&lt;li&gt;任务相对简单，故&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;写作&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;数值展示：绝对值（相对值）&lt;/li&gt;
@@ -85,4 +86,20 @@
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;GPT（在下游任务上微调，分阶段训练）&lt;/p&gt;&lt;p&gt;ELmo: RNN 提取特征后再一起用于训练&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;MAE: masked autoencoder&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;解决问题：将Bert引入cv中存在三个问题&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;位置信息不好和图片信息一起输入transform中（但是一般CNN网络架构中顺序卷积会将位置信息传递下去），==ViT已经解决==。&lt;/li&gt;
+&lt;li&gt;信息密度不一样（词和图片），词不好去掉，但是图片冗余信息多，所以要丢掉高比率随机块（去掉很多块）、&lt;/li&gt;
+&lt;li&gt;decoder的设计，不同层次信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;创新点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;将ViT和Bert结合起来，构建非对称的autoencoder（encoder只关注没有mask的部分，decoder关注所有信息，并且输入对应的位置信息，重新==生成==mask的部分）&lt;/li&gt;
+&lt;li&gt;发现盖住75%的图片，random掩码能够得到较好的信息（示例图片amazing，但是对于其他图片或许没有这么好的效果）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;知识点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;ViT：将图片分割成16$\times$16的分块，当做词语来学习&lt;/li&gt;
+&lt;li&gt;auto：x，y来自同一个样本（如同一个句子或同样的图片），快的模型：efficient，大的模型：scalable&lt;/li&gt;
+&lt;li&gt;字词是高层次语义信息，所以简单输出层encoder就可以了，图片语义分割常采用转置的神经网络解码器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;写作：&lt;/p&gt;&lt;blockquote&gt;
+&lt;p&gt;名字：&lt;strong&gt;什么是什么&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;写清训练和测试过程中的操作安排，讲好自己为什么这样做，并且有数据支撑&lt;/p&gt;&lt;/blockquote&gt;
 </description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/Paper%20Reading/</guid><pubDate>Fri, 15 Apr 2022 00:00:00 +0806</pubDate></item></channel></rss>

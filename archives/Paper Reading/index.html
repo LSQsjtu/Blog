@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/4c99f768a290fbddef4e9bcb9db4e804.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/bab41753e72701ed9f7f1d38d2184186.json"
         }
     </script>
     
@@ -148,6 +148,7 @@ var _hmt = _hmt || [];
 <p>创新点</p><ul>
 <li>引入==mask==，完形填空，从而可以利用双向的信息，而不是单纯地就将从左向右和从右向左结合在一起</li>
 <li>证明了利用大量没有标号的数据训练，比利用少量有标号的数据训练要更好</li>
+<li>任务相对简单，故</li>
 </ul>
 <p>写作</p><ul>
 <li>数值展示：绝对值（相对值）</li>
@@ -155,6 +156,22 @@ var _hmt = _hmt || [];
 </ul>
 <blockquote>
 <p>GPT（在下游任务上微调，分阶段训练）</p><p>ELmo: RNN 提取特征后再一起用于训练</p></blockquote>
+<p><strong>MAE: masked autoencoder</strong></p><p>解决问题：将Bert引入cv中存在三个问题</p><ol>
+<li>位置信息不好和图片信息一起输入transform中（但是一般CNN网络架构中顺序卷积会将位置信息传递下去），==ViT已经解决==。</li>
+<li>信息密度不一样（词和图片），词不好去掉，但是图片冗余信息多，所以要丢掉高比率随机块（去掉很多块）、</li>
+<li>decoder的设计，不同层次信息</li>
+</ol>
+<p>创新点：</p><ul>
+<li>将ViT和Bert结合起来，构建非对称的autoencoder（encoder只关注没有mask的部分，decoder关注所有信息，并且输入对应的位置信息，重新==生成==mask的部分）</li>
+<li>发现盖住75%的图片，random掩码能够得到较好的信息（示例图片amazing，但是对于其他图片或许没有这么好的效果）</li>
+</ul>
+<p>知识点：</p><ul>
+<li>ViT：将图片分割成16$\times$16的分块，当做词语来学习</li>
+<li>auto：x，y来自同一个样本（如同一个句子或同样的图片），快的模型：efficient，大的模型：scalable</li>
+<li>字词是高层次语义信息，所以简单输出层encoder就可以了，图片语义分割常采用转置的神经网络解码器</li>
+</ul>
+<p>写作：</p><blockquote>
+<p>名字：<strong>什么是什么</strong></p><p>写清训练和测试过程中的操作安排，讲好自己为什么这样做，并且有数据支撑</p></blockquote>
 
             </div>
         </article>
