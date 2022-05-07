@@ -23,18 +23,18 @@
         }
     </script>
     
-<title>animate nerf - 我的个人博客</title>
+<title>ffmpeg教程 - 我的个人博客</title>
 <meta name="author" content="刘胜琪" />
-<meta name="description" content="项目学习" />
-<meta property="og:title" content="animate nerf - 我的个人博客" />
-<meta property="og:description" content="项目学习" />
+<meta name="description" content="ffmpeg教程" />
+<meta property="og:title" content="ffmpeg教程 - 我的个人博客" />
+<meta property="og:description" content="ffmpeg教程" />
 <meta property="og:site_name" content="我的个人博客" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/Blog/archives/animate%20nerf/" />
+<meta property="og:url" content="/Blog/archives/ffmpeg%E6%95%99%E7%A8%8B/" />
 <meta property="og:image" content="" />
-<meta property="article:published_time" content="2021-02-05T00:00:00-00.00" />
-<meta name="twitter:title" content="animate nerf - 我的个人博客" />
-<meta name="twitter:description" content="项目学习" />
+<meta property="article:published_time" content="2022-05-07T00:00:00-00.00" />
+<meta name="twitter:title" content="ffmpeg教程 - 我的个人博客" />
+<meta name="twitter:description" content="ffmpeg教程" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content="" />
 
@@ -101,11 +101,11 @@ var _hmt = _hmt || [];
 <main>    
     <section class="ga-section ga-content">
         <article class="yue">
-            <h1 class="ga-post_title">animate nerf</h1>
+            <h1 class="ga-post_title">ffmpeg教程</h1>
             <span class="ga-post_meta ga-mono">
                 <span>刘胜琪</span>
                 <time>
-                    2021-02-05
+                    2022-05-07
                 </time>
                 
                 in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
@@ -115,27 +115,87 @@ var _hmt = _hmt || [];
                 
             </span>
             <div class="ga-content_body">
-                <p><strong>aninerf代码</strong></p><p>环境配置</p><ul>
-<li>pillow版本 8.2.0</li>
+                <h1>ffmpeg教程</h1>
+<h2>在Linux上安装</h2>
+<ul>
+<li>如果没有更高的权限，可以这么安装<ul>
+<li>将那个<code>.tar.xz</code>文件解压</li>
+<li><code>xz -d ***.xz</code></li>
+<li><code>tar -xvf ***.tar</code></li>
+<li>然后有一个ffmpeg就可以直接用了</li>
 </ul>
-<p>数据集中导入数据：</p><ul>
-<li>K:camera-&gt;pixel, D:五个畸变参数, R:旋转参数, T:平移参数</li>
-<li>img路径</li>
-<li>世界坐标系下vertices的坐标</li>
-<li>两种空间下lbs权重</li>
-<li>nerf sample后的结果</li>
+</li>
 </ul>
-<p>lbs权重生成</p><ul>
-<li>Tpose找最近点，重心坐标表示生成，norm为grid点和最近点的距离</li>
-<li>每一帧pxyz找最近点作为lbs值，norm需要aabbtree中找寻</li>
+<h2>常用指令</h2>
+<ul>
+<li>查看视频的基本信息<ul>
+<li><code>ffmpeg -i input.mp4</code></li>
 </ul>
-<p>运行过程</p><figure style="flex: 165.49019607843138" ><img width="1688" height="510" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/aec801cd3a8e8d0300ee3a8f794fb2e0.png" /></figure>
+</li>
+<li>裁剪<ul>
+<li><code>ffmpeg -i input.mp4 -vf crop=&quot;720:720:280:0&quot; output.mp4</code></li>
+<li>vf的意思是video filter</li>
+<li>crop里面的四个参数分别是whxy(width, height, 从x开始裁剪, 从y开始裁剪)</li>
+</ul>
+</li>
+<li>调整帧率<ul>
+<li><code>ffmpeg -i input -r 25 output</code></li>
+<li>-r后面输入帧率就可以了</li>
+</ul>
+</li>
+<li>resize video<ul>
+<li>假设input是1920x1080，想变成480x320</li>
+<li><code>ffmpeg -i input -vf scale=480:-1 output</code></li>
+<li>如果是-1，就会按照原来的尺寸进行缩放</li>
+</ul>
+</li>
+<li>将视频帧导出<ul>
+<li><code>ffmpeg -i input -r 25/1 %6d.png</code></li>
+<li>帧速率指定为25帧1秒</li>
+<li>%6d表示需要是6位</li>
+<li>%06d也可以</li>
+<li>输出png</li>
+</ul>
+</li>
+<li>图片合成视频<ul>
+<li><code>ffmpeg -i &lt;input&gt; -r &lt;fps&gt; &lt;output&gt;</code></li>
+<li>比如图片的名字都是<code>img000001.png</code>这种形式，那么input就写<code>img%06d.png</code></li>
+<li>可以添加<code>-y</code>表示覆盖</li>
+<li>这样生成的视频是没有声音的</li>
+</ul>
+</li>
+<li>音视频合成<ul>
+<li>适用于视频本身没有声音的情况</li>
+<li><code>ffmpeg -i &lt;audio&gt; -i &lt;video&gt; &lt;output&gt;</code></li>
+</ul>
+</li>
+<li>截取一段视频<ul>
+<li><code>ffmpeg -i &lt;input&gt; -ss 3 -t 23 &lt;output&gt;</code></li>
+<li>从3s开始，截取长度为23s的视频</li>
+</ul>
+</li>
+<li>合并音频(concat)<ul>
+<li><code>ffmpeg -i &quot;concat:1.mp3|2.mp3|3.mp3&quot; -acodec copy concat.mp3</code></li>
+<li>这个方法只支持MP3格式</li>
+</ul>
+</li>
+<li>混合音频(remix)<ul>
+<li><code>ffmpeg -i 1.mp3 -i 2.mp3 -i 3.mp3 -filter_complex amix=inputs=3:duration=first:dropout_transition=2 output.mp3</code></li>
+<li>要是多个输入就改变<code>inputs=&lt;num_input&gt;</code>就可以了</li>
+</ul>
+</li>
+<li>修改视频比特率<ul>
+<li><code>ffmpeg -i input.mp4 -b:v 1000k output.mp4</code></li>
+</ul>
+</li>
+</ul>
+
             </div>
         </article>
         <div id="ga-tags">
     
     <span class="ga-tag">
-        <a class="ga-highlight" href="/Blog/tag/%E4%BB%A3%E7%A0%81/">#代码</a>
+        <a class="ga-highlight" href="/Blog/tag/linux/">#linux</a>
     </span>
     
 </div>
@@ -144,14 +204,14 @@ var _hmt = _hmt || [];
 <section id="ga-content_pager">
 
     <div class="next">
-        <a class="ga-highlight" href="/Blog/archives/cage%E5%AE%89%E6%8E%92/">cage安排</a>
-        <p class="yue">项目学习</p>
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
     </div>
 
 
     <div class="prev">
-        <a class="ga-highlight" href="/Blog/archives/cage%E7%AE%97%E6%B3%95%E8%A7%A3%E8%AF%BB/">cage算法解读</a>
-        <p class="yue">项目学习</p>
+        <a class="ga-highlight" href="/Blog/archives/Paper%20Reading/">Paper Reading</a>
+        <p class="yue">Mu Li系列</p>
     </div>
 
 </section>
