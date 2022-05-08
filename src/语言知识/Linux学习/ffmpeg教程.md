@@ -61,3 +61,8 @@ excerpt: ffmpeg教程
   - 要是多个输入就改变`inputs=<num_input>`就可以了
 - 修改视频比特率
   - `ffmpeg -i input.mp4 -b:v 1000k output.mp4`
+- 合成视频
+  - `ffmpeg -f concat -safe 0 -i mylist.txt -c copy myvideo.mp4`
+  - -safe 0 防止出现“unsafe warning”
+  - txt格式 `file "file_path"`
+  - 
