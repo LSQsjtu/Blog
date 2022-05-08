@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/85ee325b4b6a9d232316ab027ecbdd01.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/17315f798d22503fd625370da190eeac.json"
         }
     </script>
     
@@ -186,6 +186,13 @@ var _hmt = _hmt || [];
 </li>
 <li>修改视频比特率<ul>
 <li><code>ffmpeg -i input.mp4 -b:v 1000k output.mp4</code></li>
+</ul>
+</li>
+<li>合成视频<ul>
+<li><code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy myvideo.mp4</code></li>
+<li>-safe 0 防止出现“unsafe warning”</li>
+<li>txt格式 <code>file &quot;file_path&quot;</code></li>
+<li></li>
 </ul>
 </li>
 </ul>
