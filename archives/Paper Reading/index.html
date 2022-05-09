@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/17315f798d22503fd625370da190eeac.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f6bc18409f13695699d9f8fbce57c05c.json"
         }
     </script>
     
@@ -128,7 +128,7 @@ var _hmt = _hmt || [];
 <p>论文项目三步分解法</p><ol>
 <li>问题</li>
 <li>方法</li>
-<li>结果，以及未来畅想</li>
+<li>结果，以及未来畅想（将某些部分替换打补丁）</li>
 </ol>
 <p><strong>经典论文</strong></p><p>==Resnet==</p><p>残差连接：学习浅层网络没有学习到的residual，当输入为0时后面的网络层基本为0，没有多余的信息，学习==$H(x) - x$==的信息。网络结构的设计使得梯度稳定，不会到零（后人的解释）。原始想法是将机器学习中学习残差的思想运用到深度网络训练中。</p><p>bottleneck：先降维，然后提取信息，再提升维度，起到降低算法复杂度的功能，不用学习无用维度的信息。</p><p>==Generative adversarial nets==</p><p>写作方面</p><ul>
 <li>对于开创性的工作来说主要说明自己独一无二的地方，基于其他方法改进的主要突出强调区别</li>
@@ -172,6 +172,19 @@ var _hmt = _hmt || [];
 </ul>
 <p>写作：</p><blockquote>
 <p>名字：<strong>什么是什么</strong></p><p>写清训练和测试过程中的操作安排，讲好自己为什么这样做，并且有数据支撑</p></blockquote>
+<p><strong>MoCo</strong></p><p>Momentum Contrast learning</p><p>解决问题：</p><ol>
+<li>无监督学习无法泛化，相比较于nlp领域中是离散的key（容易建模），CV中图片信息冗余，需要建立一个更加大的字典一一对应</li>
+<li>解决动态字典内容少，信息不一致的情况</li>
+</ol>
+<p>创新点</p><ul>
+<li>动量对比学习 $\theta_{k+1} = m\theta_{k}+\theta_{q}$，m设置为0.999，此时更新k的部分慢</li>
+<li>用FIFO队列维护字典，每次出去mini_batch的数据，相比较于end-to-end（大小受限），memory bank（not consistent）方法更有效</li>
+</ul>
+<p>知识</p><ul>
+<li>对比学习，pretext task（前置任务）区分正负样本，让正样本更接近，负样本分布更离散。最简单的instance discrimination将图片随机裁剪，旋转生成新的图片，视为正样本，其余视为负样本</li>
+</ul>
+<p>写作</p><blockquote>
+<p>说明为什么要使用这个method</p></blockquote>
 
             </div>
         </article>
