@@ -159,3 +159,9 @@ Momentum Contrast learning
 写作
 
 > 说明为什么要使用这个method
+>
+> 论文
+>
+> introduction强调high level的cage的作用
+>
+> 文章公式罗列：说明为什么要这样使用
