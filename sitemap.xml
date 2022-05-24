@@ -12,6 +12,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/PR%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2022-05-24</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/%E7%BF%BB%E5%A2%99%E5%AE%9E%E7%8E%B0/</loc>
     <lastmod>2022-05-20</lastmod>
     <changefreq>always</changefreq>
