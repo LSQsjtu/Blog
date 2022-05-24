@@ -165,3 +165,11 @@ Momentum Contrast learning
 > introduction强调high level的cage的作用
 >
 > 文章公式罗列：说明为什么要这样使用
+
+
+
+**DeepMind 用机器学习指导视觉**
+
+想法：通过机器学习观察$X(Z),Y(z)$之间映射函数之间的关系，通过梯度大小反应对应量是否会影响最终目标值。
+
+使用automl类工具，让你更加专注于问题本身，例如autogluon
