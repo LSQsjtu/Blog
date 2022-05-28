@@ -65,4 +65,4 @@ excerpt: ffmpeg教程
   - `ffmpeg -f concat -safe 0 -i mylist.txt -c copy myvideo.mp4`
   - -safe 0 防止出现“unsafe warning”
   - txt格式 `file "file_path"`
-  - 
+  - ffmpeg -r 30 -i folder_name/%06d.png -c:v libx264 -crf 0 output.mp4
