@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/ffe16503f0202314193beb1415096c95.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/954fc9bd1a061b33a821e379e50ef1f0.json"
         }
     </script>
     
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
 <span class="nb">print</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">])</span>
 <span class="c1"># [dict_keys([&#39;params&#39;, &#39;lr&#39;, &#39;momentum&#39;, &#39;dampening&#39;, &#39;weight_decay&#39;, &#39;nesterov&#39;]), dict_keys([&#39;params&#39;, &#39;lr&#39;, &#39;momentum&#39;, &#39;dampening&#39;, &#39;weight_decay&#39;, &#39;nesterov&#39;])]</span>
 </pre></div>
-<p>这次的list变成了两个元素，而且每个元素的组成和使用Adam也不一样了，这很明显，因为不同的优化器需要的参数不同嘛~(关于不同层的lr不同的设置这里给出官网<a href="https://pytorch.org/docs/1.1.0/optim.html#per-parameter-options">链接</a>)</p><p>但是两者是相似的，就是每个元素都有params和lr，这就够了。</p><p>pytorch1.1+是先训练，然后再<code>step()</code></p><p>scheduler会调用<code>get_lr()</code>重载函数更换lr</p>
+<p>这次的list变成了两个元素，而且每个元素的组成和使用Adam也不一样了，这很明显，因为不同的优化器需要的参数不同嘛~(关于不同层的lr不同的设置这里给出官网<a href="https://pytorch.org/docs/1.1.0/optim.html#per-parameter-options">链接</a>)</p><p>但是两者是相似的，就是每个元素都有params和lr，这就够了。</p><p>pytorch1.1+是先训练，然后再<code>step()</code></p><p>scheduler会调用<code>get_lr()</code>重载函数更换lr</p><p>adam优化算法，维护momentum和variance两个量，计算开销翻两倍</p><p>fp16比fp32速度快，但可能导致精度不够。</p><p>pytorch使用的内存是碎片化的，可能无法很好得使用，tensorflow事先计算好需要内存，取一整块出来。</p><figure  size-undefined><img width="-1" height="-1" src="../../../../19593/Desktop/Snipaste_2022-06-17_09-38-28.png" /><figcaption>Snipaste_2022-06-17_09-38-28</figcaption></figure><p>参数服务器的思想，不同GPU维护不同块的参数。</p><p>每次计算前，拿到完整计算量，然后只保存需要的量，多的释放。</p><p>tcp/ip等通讯协议，维护一个buffer，到一定时间统一发送</p>
             </div>
         </article>
         <div id="ga-tags">
