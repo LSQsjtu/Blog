@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,LSQ,Galileo,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="我的个人博客 &raquo; RSS 2.0" href="/Blog/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="我的个人博客 &raquo; ATOM 1.0" href="/Blog/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/4c219a2de870c071f3ee9a7c516c1ff0.json"
+        }
+    </script>
+    
+<title>kernel approximation - 我的个人博客</title>
+<meta name="author" content="刘胜琪" />
+<meta name="description" content="暑期专业实习" />
+<meta property="og:title" content="kernel approximation - 我的个人博客" />
+<meta property="og:description" content="暑期专业实习" />
+<meta property="og:site_name" content="我的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/Blog/archives/kernel%20approximation/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2022-06-18T00:00:00-00.00" />
+<meta name="twitter:title" content="kernel approximation - 我的个人博客" />
+<meta name="twitter:description" content="暑期专业实习" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/logo.png">
+<script type='text/javascript' src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery-3.4.1.min.js"></script>
+<!-- szgotop -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/css/szgotop.css" />
+<!-- FancyBox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/jquery.fancybox.min.js"></script>
+<script>
+$(function() {
+   $(".yue figure img").each(function(i) {
+      if (!this.parentNode.href) {
+         $(this).wrap("<a href='" + this.src + "' data-fancybox='images' data-caption='" + this.alt + "'></a>")
+      }
+   })
+});
+</script>
+<script type="text/javascript">
+$( '[data-fancybox]' ).fancybox({
+	protect:true,
+	caption : function( instance, item ) {
+	return $(this).find('figcaption').html();
+	}
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d69b9b23082b2143a5bce14c4c459baa";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/Blog/">我的个人博客</a></h1>
+                        <p>记录生活美好</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/Blog/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/Blog/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">kernel approximation</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>刘胜琪</span>
+                <time>
+                    2022-06-18
+                </time>
+                
+                in <a no-style class="category" href="/Blog/category/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">
+                    默认分类
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong>kernel approximation</strong></p><ol>
+<li>如何使用random feature去训练数据</li>
+<li>多少random feature需要去确保质量</li>
+<li>evaluation of popular random features based algorithms</li>
+</ol>
+<p>data dependent（根据数据distribution采样）和data-independent（高斯分布，高斯采样就可以）</p><p>sample number bigger than dim but much smaller than n.</p><p>random feature model可以看作两层神经网络（固定参数）</p><figure style="flex: 123.66071428571429" ><img width="554" height="224" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a5eb3adf2a8b1653a61a19b83727cf9.jpg" /><figcaption>double descent phenomena</figcaption></figure><p>其中左边的部分即为传统统计学习中的bias-variance trade-off，此时模型的参数小于interpolation threshold，实际上这个threshold即为模型数与样本数相等的点（在多分类的情况下略有变化）。当模型的参数超过这个threshold的时候，模型通过进一步增加参数以增加可能的最小范数模型的范围、进而达到降低test error。考虑到double descent现象是从最近的统计学习方法中发现的，与我们经典统计学习中的“U型”特征不同，故称上图左侧为classical regime，此时模型的状态是under-parameterized；而称上图右侧为modern interpolating regime，此时模型的状态是over-parameterized。</p><p>不清楚的概念：kernel function, kernel matrix</p><p>kernel learning by random features是通过学习分布得到。先学习random feature</p><p>通过算法可以得到random feature数量级单位</p>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/Blog/tag/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
+    </span>
+    
+</div>
+    </section>
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/Blog/archives/chinatown/">唐人街探案</a>
+        <p class="yue">闲下时间来看一看电影还是挺让人放松的，比其他方式轻松许多。</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/Blog/archives/%E4%BF%9D%E7%A0%94%E5%87%86%E5%A4%87/">保研准备</a>
+        <p class="yue">保研准备</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand"><a no-style href="https://github.com/Arley517693777" target="_blank">我的个人博客</a></span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2022 LSQ</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/lsq15" target="_blank"><i class="gi gi-twitter"></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="GitHub" href="https://github.com/LSQsjtu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2021-05-04T22:46+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog/gotop/js/szgotop.js"></script>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+
+    </body>
+</html>
