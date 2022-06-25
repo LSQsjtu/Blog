@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/1378458c6768005c3352e0734585acfb.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/8395b1558c1965e82b43e5d44c9f97c9.json"
         }
     </script>
     
@@ -116,17 +116,23 @@ var _hmt = _hmt || [];
             </span>
             <div class="ga-content_body">
                 <p><strong>neural tangent kernel (NTK)</strong></p><p>观点：</p><ol>
-<li>NTK在无限宽极限下趋于一个确定的核(Kernel)，在无限宽极限下不随着时间变化，而且在梯度下降的训练过程中保持不变，因此==无限宽网络==的输出层结果的动力学可以用一个常微分方程来表示。</li>
-<li>无限宽的神经网络等价于高斯过程</li>
+<li>NTK在无限宽极限下趋于一个确定的核(Kernel)，在无限宽极限下不随着时间变化==（是训练中的不变量）==，而且在梯度下降的训练过程中保持不变，因此==无限宽网络==的输出层结果的动力学可以用一个常微分方程来表示。</li>
+<li>无限宽的神经网络等价于高斯过程，相当于一个线性过程，可以线性叠加并且可以在不同初始条件收敛到同一过程</li>
 <li>Mean field Theory中存在超参数平面中的一条临界线</li>
 <li><figure style="flex: 195.3804347826087" ><img width="719" height="184" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/3dd0f1c10fc0e2b9c38a15962b662f01.png" /><figcaption>image-20220620212719766</figcaption></figure></li>
 <li>==引入NTK parameterziation==，是因为LeCun参数化会导致NTK在无限宽极限下发散。</li>
+<li>神经网络是不凸的，有很多局部最优点，通过NTK可以通过梯度下降到全局最优点</li>
+<li>递归定义<figure style="flex: 86.3901018922853" ><img width="1187" height="687" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/fcd1f20af681acbae93c7dac943cbb5b.png" /><figcaption>image-20220623165503742</figcaption></figure></li>
+<li>NTK就是前h层梯度积，经验NTK在宽度趋向无穷时可以趋近理想NTK，NTK只和网络层数有关，网络层数&gt;=2</li>
 </ol>
 <p>提出的问题困难：</p><ol>
 <li>NTK在有限宽网络会失效：<strong>有限宽度到无穷的NTK演变问题</strong></li>
 </ol>
 <p>数学知识：</p><ol>
 <li><figure style="flex: 112.34177215189874" ><img width="710" height="316" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/344beeedee7c965c01285e9d76a6e421.png" /><figcaption>image-20220622163321364</figcaption></figure><p>其中第一个等式来自第二个性质，第二个等式来自第一个性质，而 <figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5CTheta_%5Cinfty%28X%2CX%29" /><figcaption>[公式]</figcaption></figure> 就是那位deterministic的Kerenl。</p><p>于是网络输出函数的动力学方程变为：</p><figure  size-undefined><img width="-1" height="-1" src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+f_t%28%5Ctheta%2C+x%29%7D%7B%5Cpartial+t%7D+%3D++-+%5Ceta+%5CTheta_%5Cinfty%28x%2CX%29+%5Cnabla_%7Bf_t%28%5Ctheta%2CX%29%7D+%5Cmathcal%7BL%7D" /><figcaption>[公式]</figcaption></figure><p>假设loss function是我们常见的Mean squared loss，那么方程进一步化简为一个线性常微分方程（ODE）：</p><figure style="flex: 539.5348837209302" ><img width="464" height="43" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/bc6c7f594d98f5ef62651fcc3b5b1950.png" /><figcaption>image-20220622163732369</figcaption></figure><p>当将函数一阶泰勒展开并保留一阶时，和上面ode等价，所以可以认为是一阶线性模型。</p></li>
+</ol>
+<p>模型结构：</p><ol>
+<li>何凯明initialization添加系数$\sqrt[2]{\frac{c_\sigma}{d_h}}$，其中$d_h$为h层神经元个数，这样保证每一层范数相等</li>
 </ol>
 
             </div>
