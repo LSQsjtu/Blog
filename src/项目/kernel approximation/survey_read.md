@@ -32,8 +32,6 @@ random feature model可以看作两层神经网络（固定参数）
 
 
 
-不清楚的概念：kernel function, kernel matrix
-
 kernel learning by random features是通过学习分布得到。先学习random feature
 
 通过算法可以得到random feature数量级单位
