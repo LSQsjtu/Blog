@@ -12,6 +12,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/the%20relax%20summer/</loc>
+    <lastmod>2022-07-10</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</loc>
     <lastmod>2022-06-20</lastmod>
     <changefreq>always</changefreq>
