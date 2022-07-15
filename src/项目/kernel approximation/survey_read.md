@@ -14,6 +14,8 @@ excerpt: 暑期专业实习
 
 **kernel approximation**
 
+用random tensor逼近kernel matrix
+
 1. 如何使用random feature去训练数据
 2. 多少random feature需要去确保质量
 3. evaluation of popular random features based algorithms
