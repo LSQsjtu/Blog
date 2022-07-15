@@ -12,6 +12,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/Paper%20Writing/</loc>
+    <lastmod>2022-07-15</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/the%20relax%20summer/</loc>
     <lastmod>2022-07-10</lastmod>
     <changefreq>always</changefreq>
@@ -19,14 +26,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</loc>
+    <loc>/Blog/archives/chinatown/</loc>
     <lastmod>2022-06-20</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/chinatown/</loc>
+    <loc>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</loc>
     <lastmod>2022-06-20</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -82,14 +89,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/c%2B%2B%20part/</loc>
+    <loc>/Blog/archives/a%20shape%20of%20voice/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/a%20shape%20of%20voice/</loc>
+    <loc>/Blog/archives/c%2B%2B%20part/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -201,6 +208,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/model.train/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/plot%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>always</changefreq>
@@ -215,13 +229,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
     <loc>/Blog/archives/%E5%BD%92%E4%B8%80%E5%8C%96/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>always</changefreq>
@@ -229,14 +236,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/base%20pytorch/</loc>
+    <loc>/Blog/archives/Teddy%20Bear/</loc>
     <lastmod>2021-10-26</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/Teddy%20Bear/</loc>
+    <loc>/Blog/archives/base%20pytorch/</loc>
     <lastmod>2021-10-26</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -320,14 +327,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/3DtrackingOnNuScences/</loc>
+    <loc>/Blog/archives/3Dtracking/</loc>
     <lastmod>2021-09-17</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/3Dtracking/</loc>
+    <loc>/Blog/archives/3DtrackingOnNuScences/</loc>
     <lastmod>2021-09-17</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -362,14 +369,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/MOT/</loc>
+    <loc>/Blog/archives/pickle/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/pickle/</loc>
+    <loc>/Blog/archives/MOT/</loc>
     <lastmod>2021-09-04</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -418,14 +425,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/key_point/</loc>
+    <loc>/Blog/archives/resnet/</loc>
     <lastmod>2021-07-22</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/resnet/</loc>
+    <loc>/Blog/archives/key_point/</loc>
     <lastmod>2021-07-22</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -446,7 +453,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/%E5%8F%AF%E9%87%8D%E5%A4%8D%E6%80%A7%E6%80%BB%E7%BB%93/</loc>
+    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -460,7 +467,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
+    <loc>/Blog/archives/%E5%8F%AF%E9%87%8D%E5%A4%8D%E6%80%A7%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -481,6 +488,34 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>/Blog/archives/C/C%2B%2B/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/NodeJS/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/PHP/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>/Blog/archives/%E6%9E%B6%E6%9E%84%E5%B8%88/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
@@ -495,41 +530,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/Android/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/%E9%80%9A%E7%94%A8/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/PHP/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/NodeJS/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/C/C%2B%2B/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
     <loc>/Blog/archives/Java/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
@@ -538,6 +538,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/web/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/Android/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>

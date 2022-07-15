@@ -1,75 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Mon, 11 Jul 2022 11:25:44 +0806</lastBuildDate><pubDate>Mon, 11 Jul 2022 11:25:44 +0806</pubDate><item><title>Paper Reading</title><link>/Blog/archives/Paper%20Reading/</link><description>&lt;p&gt;&lt;strong&gt;阅读论文&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;1.title
-2.abstract
-3.introduction
-4.method
-5.experiments
-6.conclusion&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;第一遍：==标题、摘要、结论==。可以看一看==方法和实验部分重要的图和表==。这样可以花费十几分钟时间了解到论文是否适合你的研究方向。&lt;/li&gt;
-&lt;li&gt;第二遍：确定论文值得读之后，可以快速的把整个论文过一遍，不需要知道所有的细节，需要==了解重要的图和表==，知道每一个部分在干什么，作者相比与其他人提出了什么==不同的方法==，圈出==相关文献==。觉得文章太难，可以读==引用的文献==。&lt;/li&gt;
-&lt;li&gt;第三遍：提出什么==问题==，用什么==方法==来解决这个问题。==实验==是怎么做的。合上文章，回忆每一个部分在讲什么。换我来可以怎么做，==能不能做得更好==。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;论文项目三步分解法&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;问题&lt;/li&gt;
-&lt;li&gt;方法&lt;/li&gt;
-&lt;li&gt;结果，以及未来畅想（将某些部分替换打补丁）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;经典论文&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;==Resnet==&lt;/p&gt;&lt;p&gt;残差连接：学习浅层网络没有学习到的residual，当输入为0时后面的网络层基本为0，没有多余的信息，学习==$H(x) - x$==的信息。网络结构的设计使得梯度稳定，不会到零（后人的解释）。原始想法是将机器学习中学习残差的思想运用到深度网络训练中。&lt;/p&gt;&lt;p&gt;bottleneck：先降维，然后提取信息，再提升维度，起到降低算法复杂度的功能，不用学习无用维度的信息。&lt;/p&gt;&lt;p&gt;==Generative adversarial nets==&lt;/p&gt;&lt;p&gt;写作方面&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;对于开创性的工作来说主要说明自己独一无二的地方，基于其他方法改进的主要突出强调区别&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;创新点&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;以往是近似构造似然函数去学习这个分布，现在通过模型网络来直接&lt;strong&gt;学习分布&lt;/strong&gt;（于是可以训练了），分布的求解往往是不可逆的，无法求出分布的逆函数，来通过参数求出对应的输出数据，于是采用非常大的数据去盗版模仿&lt;/li&gt;
-&lt;li&gt;通过G和D去对抗，minmax最优化分布函数，求取最优值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;新的知识点&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;==KL散度==：如果D过拟合会导致输出为0，不好优化求导，后面有工作去更新优化方式，通过更简约的方法去学习这个分布。&lt;/li&gt;
-&lt;li&gt;如果数据不属于同一个分布，那么就可以训练同一个二分类去分类&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;BERT&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;芝麻街中人物姓名&lt;/p&gt;&lt;p&gt;解决问题&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;可以预训练后广泛运用在其他任务上（加一个输出层）&lt;/li&gt;
-&lt;li&gt;将预训练过程和大模型过程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;创新点&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;引入==mask==，完形填空，从而可以利用双向的信息，而不是单纯地就将从左向右和从右向左结合在一起&lt;/li&gt;
-&lt;li&gt;证明了利用大量没有标号的数据训练，比利用少量有标号的数据训练要更好&lt;/li&gt;
-&lt;li&gt;任务相对简单，故&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;写作&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;数值展示：绝对值（相对值）&lt;/li&gt;
-&lt;li&gt;比较，开门见山，比较BERT和GPT，Elmo&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;GPT（在下游任务上微调，分阶段训练）&lt;/p&gt;&lt;p&gt;ELmo: RNN 提取特征后再一起用于训练&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;MAE: masked autoencoder&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;解决问题：将Bert引入cv中存在三个问题&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;位置信息不好和图片信息一起输入transform中（但是一般CNN网络架构中顺序卷积会将位置信息传递下去），==ViT已经解决==。&lt;/li&gt;
-&lt;li&gt;信息密度不一样（词和图片），词不好去掉，但是图片冗余信息多，所以要丢掉高比率随机块（去掉很多块）、&lt;/li&gt;
-&lt;li&gt;decoder的设计，不同层次信息&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;创新点：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;将ViT和Bert结合起来，构建非对称的autoencoder（encoder只关注没有mask的部分，decoder关注所有信息，并且输入对应的位置信息，重新==生成==mask的部分）&lt;/li&gt;
-&lt;li&gt;发现盖住75%的图片，random掩码能够得到较好的信息（示例图片amazing，但是对于其他图片或许没有这么好的效果）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;知识点：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;ViT：将图片分割成16$\times$16的分块，当做词语来学习&lt;/li&gt;
-&lt;li&gt;auto：x，y来自同一个样本（如同一个句子或同样的图片），快的模型：efficient，大的模型：scalable&lt;/li&gt;
-&lt;li&gt;字词是高层次语义信息，所以简单输出层encoder就可以了，图片语义分割常采用转置的神经网络解码器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;写作：&lt;/p&gt;&lt;blockquote&gt;
-&lt;p&gt;名字：&lt;strong&gt;什么是什么&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;写清训练和测试过程中的操作安排，讲好自己为什么这样做，并且有数据支撑&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;MoCo&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Momentum Contrast learning&lt;/p&gt;&lt;p&gt;解决问题：&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;无监督学习无法泛化，相比较于nlp领域中是离散的key（容易建模），CV中图片信息冗余，需要建立一个更加大的字典一一对应&lt;/li&gt;
-&lt;li&gt;解决动态字典内容少，信息不一致的情况&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;创新点&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;动量对比学习 $\theta_{k+1} = m\theta_{k}+\theta_{q}$，m设置为0.999，此时更新k的部分慢&lt;/li&gt;
-&lt;li&gt;用FIFO队列维护字典，每次出去mini_batch的数据，相比较于end-to-end（大小受限），memory bank（not consistent）方法更有效&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;知识&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;对比学习，pretext task（前置任务）区分正负样本，让正样本更接近，负样本分布更离散。最简单的instance discrimination将图片随机裁剪，旋转生成新的图片，视为正样本，其余视为负样本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;写作&lt;/p&gt;&lt;blockquote&gt;
-&lt;p&gt;说明为什么要使用这个method&lt;/p&gt;&lt;p&gt;论文&lt;/p&gt;&lt;p&gt;introduction强调high level的cage的作用&lt;/p&gt;&lt;p&gt;文章公式罗列：说明为什么要这样使用&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;DeepMind 用机器学习指导视觉&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;想法：通过机器学习观察$X(Z),Y(z)$之间映射函数之间的关系，通过梯度大小反应对应量是否会影响最终目标值。&lt;/p&gt;&lt;p&gt;使用automl类工具，让你更加专注于问题本身，例如autogluon&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/Paper%20Reading/</guid><pubDate>Fri, 15 Apr 2022 00:00:00 +0806</pubDate></item><item><title>ffmpeg教程</title><link>/Blog/archives/ffmpeg%E6%95%99%E7%A8%8B/</link><description>&lt;h1&gt;ffmpeg教程&lt;/h1&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog/</link><description>记录生活美好</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/f-logo.png</url><title>我的个人博客</title><link>/Blog/</link></image><language>zh-CN</language><lastBuildDate>Fri, 15 Jul 2022 02:01:16 +0806</lastBuildDate><pubDate>Fri, 15 Jul 2022 02:01:16 +0806</pubDate><item><title>ffmpeg教程</title><link>/Blog/archives/ffmpeg%E6%95%99%E7%A8%8B/</link><description>&lt;h1&gt;ffmpeg教程&lt;/h1&gt;
 &lt;h2&gt;在Linux上安装&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;如果没有更高的权限，可以这么安装&lt;ul&gt;
@@ -171,7 +101,7 @@
 &lt;li&gt;多少random feature需要去确保质量&lt;/li&gt;
 &lt;li&gt;evaluation of popular random features based algorithms&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;data dependent（根据数据distribution采样）和data-independent（高斯分布，高斯采样就可以）&lt;/p&gt;&lt;p&gt;sample number bigger than dim but much smaller than n.&lt;/p&gt;&lt;p&gt;random feature model可以看作两层神经网络（固定参数）&lt;/p&gt;&lt;figure style="flex: 123.66071428571429" &gt;&lt;img width="554" height="224" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a5eb3adf2a8b1653a61a19b83727cf9.jpg" /&gt;&lt;figcaption&gt;double descent phenomena&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;其中左边的部分即为传统统计学习中的bias-variance trade-off，此时模型的参数小于interpolation threshold，实际上这个threshold即为模型数与样本数相等的点（在多分类的情况下略有变化）。当模型的参数超过这个threshold的时候，模型通过进一步增加参数以增加可能的最小范数模型的范围、进而达到降低test error。考虑到double descent现象是从最近的统计学习方法中发现的，与我们经典统计学习中的“U型”特征不同，故称上图左侧为classical regime，此时模型的状态是under-parameterized；而称上图右侧为modern interpolating regime，此时模型的状态是over-parameterized。&lt;/p&gt;&lt;p&gt;kernel learning by random features是通过学习分布得到。先学习random feature&lt;/p&gt;&lt;p&gt;通过算法可以得到random feature数量级单位&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/kernel%20approximation/</guid><pubDate>Sat, 18 Jun 2022 00:00:00 +0806</pubDate></item><item><title>唐人街探案</title><link>/Blog/archives/chinatown/</link><description>&lt;p&gt;&lt;strong&gt;唐人街探案&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;每个人内心都有善恶，每个人都有内心的不如意，但是每个人都要勇敢得去面对。&lt;/p&gt;&lt;p&gt;横移镜头有荒诞的喜剧效果，重复夸张的摔跤总是让人发笑，节奏把控的很好。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/chinatown/</guid><pubDate>Mon, 20 Jun 2022 00:00:00 +0806</pubDate></item><item><title>neural tangent kernel (NTK)</title><link>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</link><description>&lt;h3&gt;neural tangent kernel (NTK)&lt;/h3&gt;
+&lt;p&gt;data dependent（根据数据distribution采样）和data-independent（高斯分布，高斯采样就可以）&lt;/p&gt;&lt;p&gt;sample number bigger than dim but much smaller than n.&lt;/p&gt;&lt;p&gt;random feature model可以看作两层神经网络（固定参数）&lt;/p&gt;&lt;figure style="flex: 123.66071428571429" &gt;&lt;img width="554" height="224" src="https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/archives/assets/0a5eb3adf2a8b1653a61a19b83727cf9.jpg" /&gt;&lt;figcaption&gt;double descent phenomena&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;其中左边的部分即为传统统计学习中的bias-variance trade-off，此时模型的参数小于interpolation threshold，实际上这个threshold即为模型数与样本数相等的点（在多分类的情况下略有变化）。当模型的参数超过这个threshold的时候，模型通过进一步增加参数以增加可能的最小范数模型的范围、进而达到降低test error。考虑到double descent现象是从最近的统计学习方法中发现的，与我们经典统计学习中的“U型”特征不同，故称上图左侧为classical regime，此时模型的状态是under-parameterized；而称上图右侧为modern interpolating regime，此时模型的状态是over-parameterized。&lt;/p&gt;&lt;p&gt;kernel learning by random features是通过学习分布得到。先学习random feature&lt;/p&gt;&lt;p&gt;通过算法可以得到random feature数量级单位&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/kernel%20approximation/</guid><pubDate>Sat, 18 Jun 2022 00:00:00 +0806</pubDate></item><item><title>neural tangent kernel (NTK)</title><link>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</link><description>&lt;h3&gt;neural tangent kernel (NTK)&lt;/h3&gt;
 &lt;h4&gt;观点：&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;NTK在无限宽极限下趋于一个确定的核(Kernel)，在无限宽极限下不随着时间变化==（是训练中的不变量）==lazy training，but not always the case，说明在参数空间中变化很小，所以可以用一阶泰勒近似，只是linear in w，对w求导，not linear in x（有非线性激活函数）。而且在梯度下降的训练过程中保持不变，因此==无限宽网络==的输出层结果的动力学可以用一个常微分方程来表示。可以控制梯度，有上下限。&lt;/p&gt;&lt;/li&gt;
@@ -202,4 +132,4 @@
 &lt;ol&gt;
 &lt;li&gt;研究NTK的trainability and generalization， the NNGP (randomly initialized neural networks with certain class) kernel K and the tangent kernel Θ&lt;/li&gt;
 &lt;/ol&gt;
-</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</guid><pubDate>Mon, 20 Jun 2022 00:00:00 +0806</pubDate></item><item><title>普罗旺斯的夏天</title><link>/Blog/archives/the%20relax%20summer/</link><description>&lt;p&gt;&lt;strong&gt;普罗旺斯的夏天&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;每个地方都有一个宁静而又祥和的一天，在普罗旺斯，能在早上看到天微微泛红，渐渐地展露新的一天，展现在人们面前最纯真的大自然。&lt;/p&gt;&lt;p&gt;第一天因为机考而睡不着觉，煎熬得度过这漫长的一天，渐渐地忘记睡觉，但是也是能够开始好好整理一下自己的生活，准备好前往下一个阶段的人生。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/the%20relax%20summer/</guid><pubDate>Sun, 10 Jul 2022 00:00:00 +0806</pubDate></item></channel></rss>
+</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</guid><pubDate>Mon, 20 Jun 2022 00:00:00 +0806</pubDate></item><item><title>唐人街探案</title><link>/Blog/archives/chinatown/</link><description>&lt;p&gt;&lt;strong&gt;唐人街探案&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;每个人内心都有善恶，每个人都有内心的不如意，但是每个人都要勇敢得去面对。&lt;/p&gt;&lt;p&gt;横移镜头有荒诞的喜剧效果，重复夸张的摔跤总是让人发笑，节奏把控的很好。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/chinatown/</guid><pubDate>Mon, 20 Jun 2022 00:00:00 +0806</pubDate></item><item><title>普罗旺斯的夏天</title><link>/Blog/archives/the%20relax%20summer/</link><description>&lt;p&gt;&lt;strong&gt;普罗旺斯的夏天&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;每个地方都有一个宁静而又祥和的一天，在普罗旺斯，能在早上看到天微微泛红，渐渐地展露新的一天，展现在人们面前最纯真的大自然。&lt;/p&gt;&lt;p&gt;第一天因为机考而睡不着觉，煎熬得度过这漫长的一天，渐渐地忘记睡觉，但是也是能够开始好好整理一下自己的生活，准备好前往下一个阶段的人生。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/the%20relax%20summer/</guid><pubDate>Sun, 10 Jul 2022 00:00:00 +0806</pubDate></item><item><title>Paper Writing</title><link>/Blog/archives/Paper%20Writing/</link><description>&lt;p&gt;&lt;strong&gt;the craft of research&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;第三部分&lt;/p&gt;&lt;p&gt;how to make a claim？&lt;/p&gt;&lt;p&gt;how to let reader believe you？&lt;/p&gt;&lt;p&gt;尝试通过对话提前解决读者疑惑，说明工作的局限性&lt;/p&gt;&lt;p&gt;为了让故事更饱满，在边做的时候边写，让故事逻辑更丰满，让读者觉得你做的工作更有意义。&lt;/p&gt;</description><author>1959376918@qq.com (刘胜琪)</author><guid isPermaLink="true">/Blog/archives/Paper%20Writing/</guid><pubDate>Fri, 15 Jul 2022 00:00:00 +0806</pubDate></item></channel></rss>
