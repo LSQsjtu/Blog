@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/2dcb3295acee0ba45324760f753eebe1.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/74c2847d6fb00aaf50adaa7c7d5d0517.json"
         }
     </script>
     
@@ -115,7 +115,75 @@ var _hmt = _hmt || [];
                 
             </span>
             <div class="ga-content_body">
-                <p><strong>C++</strong></p><p>生成格式vector<int> 变量名</p><p>vector.push_back()放入最后，</p><p>queue&lt;类型&gt; 变量名 queue.push(), queue.pop(), 先进先出</p><p>move(vector) allowing the efficient transfer of resources from <code>t</code> to another object. <strong>唯一的功能是把左值强制转化为右值</strong></p><p><strong>实现移动语义，避免拷贝，从而提升程序性能</strong>, 这样可以避免深拷贝，只提取数值。</p>
+                <p><strong>C++</strong></p><p>生成格式vector<int> 变量名</p><p>vector.push_back()放入最后，</p><p>queue&lt;类型&gt; 变量名 queue.push(), queue.pop(), 先进先出</p><p>move(vector) allowing the efficient transfer of resources from <code>t</code> to another object. <strong>唯一的功能是把左值强制转化为右值</strong></p><p><strong>实现移动语义，避免拷贝，从而提升程序性能</strong>, 这样可以避免深拷贝，只提取数值。</p><p>如下，如果我们知道函数的返回值是一个指针，我们不需要知道具体是什么类型的指针，就可以定义一个变量接收函数的返回值：</p><div class="highlight"><pre><span></span><span class="k">decltype</span><span class="p">(</span><span class="n">f</span><span class="p">())</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+<p>auto会忽略变量顶层的const、&amp;属性，也就是说，一个变量如果是const int类型的，那么，如果用auto推导之后获取的变量类型则会是int。同样，&amp;（引用）属性也会被忽略，如，int &amp;，用auto推导之后就会变成int类型,但decltype不会这样：</p><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"></span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//变量x的类型是const int</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w">      </span><span class="c1">//变量z的类型是int</span>
+<span class="k">decltype</span><span class="w"> </span><span class="p">(</span><span class="n">cj</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">//变量y的类型是const int&amp;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cj</span><span class="p">;</span><span class="w">     </span><span class="c1">//变量w的类型是int</span>
+</pre></div>
+<h2><strong><code>std::function</code>类</strong></h2>
+<p>当你需要一个非模板函数对象作为类的成员或者函数参数时，你必须指定函数对象的具体类型。C++中的函数对象并没有一个基类，但是标准库提供了一个模板类<code>std::function</code>来代表所有的函数对象。</p><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">(</span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">test_function</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fmaxf</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ordinary function</span>
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">multiplies</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// class with a call operator</span>
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">multiplies</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// class with a generic call operator</span>
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// lambda</span>
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// generic lambda</span>
+<span class="n">test_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">//ERROR!</span>
+</pre></div>
+<p><code>std::function</code>并不像<code>std::vector&lt;T&gt;</code>等容器对包含的类型做了抽象，而是抽象了函数对象的参数和返回值。无论是普通函数，还是函数指针、lambdas，又或是任何可以被当做函数使用的对象，只要拥有相同参数和返回值，均可以用同一类<code>std::function</code>表示</p><h2><strong>声明Lambda表达式</strong></h2>
+<p>Lambda表达式完整的声明格式如下：</p>
+<pre><code>[capture list] (params list) mutable exception-&gt; return type { function body }
+</code></pre>
+<p>各项具体含义如下</p><ol>
+<li>capture list：捕获外部变量列表</li>
+<li>params list：形参列表</li>
+<li>mutable指示符：用来说用是否可以修改捕获的变量</li>
+<li>exception：异常设定</li>
+<li>return type：返回类型</li>
+<li>function body：函数体</li>
+</ol>
+<table>
+<thead>
+<tr>
+  <th style="text-align:center">捕获形式</th>
+  <th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:center">[]</td>
+  <td style="text-align:center">不捕获任何外部变量</td>
+</tr>
+<tr>
+  <td style="text-align:center">[变量名, …]</td>
+  <td style="text-align:center">默认以值得形式捕获指定的多个外部变量（用逗号分隔），如果引用捕获，需要显示声明（使用&amp;说明符）</td>
+</tr>
+<tr>
+  <td style="text-align:center">[this]</td>
+  <td style="text-align:center">以值的形式捕获this指针</td>
+</tr>
+<tr>
+  <td style="text-align:center">[=]</td>
+  <td style="text-align:center">以值的形式捕获所有外部变量</td>
+</tr>
+<tr>
+  <td style="text-align:center">[&amp;]</td>
+  <td style="text-align:center">以引用形式捕获所有外部变量</td>
+</tr>
+<tr>
+  <td style="text-align:center">[=,&amp;x]</td>
+  <td style="text-align:center">变量x以引用形式捕获，其余变量以传值形式捕获</td>
+</tr>
+<tr>
+  <td style="text-align:center">[&amp;,x]</td>
+  <td style="text-align:center">变量x以值的形式捕获，其余变量以引用形式捕获</td>
+</tr>
+</tbody>
+</table>
+
             </div>
         </article>
         <div id="ga-tags">
