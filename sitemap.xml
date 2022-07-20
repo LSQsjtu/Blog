@@ -12,14 +12,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/summer%20ghost/</loc>
+    <loc>/Blog/archives/applied%20function/</loc>
     <lastmod>2022-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/applied%20function/</loc>
+    <loc>/Blog/archives/summer%20ghost/</loc>
     <lastmod>2022-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -47,14 +47,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/chinatown/</loc>
+    <loc>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</loc>
     <lastmod>2022-06-20</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/neural%20tangent%20kernel%20%28NTK%29/</loc>
+    <loc>/Blog/archives/chinatown/</loc>
     <lastmod>2022-06-20</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -110,14 +110,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/a%20shape%20of%20voice/</loc>
+    <loc>/Blog/archives/c%2B%2B%20part/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/c%2B%2B%20part/</loc>
+    <loc>/Blog/archives/a%20shape%20of%20voice/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -229,13 +229,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
     <loc>/Blog/archives/plot%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>always</changefreq>
@@ -244,6 +237,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/numpy%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -271,14 +271,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/blender_script/</loc>
+    <loc>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-10-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/matlab%E8%AF%AD%E6%B3%95/</loc>
+    <loc>/Blog/archives/blender_script/</loc>
     <lastmod>2021-10-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -334,14 +334,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/tmux/</loc>
+    <loc>/Blog/archives/%E5%90%8E%E5%8F%B0/</loc>
     <lastmod>2021-09-25</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/%E5%90%8E%E5%8F%B0/</loc>
+    <loc>/Blog/archives/tmux/</loc>
     <lastmod>2021-09-25</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -446,14 +446,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/resnet/</loc>
+    <loc>/Blog/archives/key_point/</loc>
     <lastmod>2021-07-22</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/key_point/</loc>
+    <loc>/Blog/archives/resnet/</loc>
     <lastmod>2021-07-22</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -474,14 +474,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>/Blog/archives/model.train/</loc>
+    <loc>/Blog/archives/keng/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/Blog/archives/keng/</loc>
+    <loc>/Blog/archives/model.train/</loc>
     <lastmod>2021-07-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
@@ -504,27 +504,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
     <loc>/Blog/archives/emoji-cheat-sheet/</loc>
     <lastmod>2021-06-02</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/C/C%2B%2B/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/NodeJS/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-</url>
-
-<url>
-    <loc>/Blog/archives/PHP/</loc>
-    <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
@@ -559,6 +538,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/Blog/archives/web/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/PHP/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/C/C%2B%2B/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/Blog/archives/NodeJS/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
