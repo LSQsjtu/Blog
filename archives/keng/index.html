@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/9073b5355be20de4f265f5168d87c0f8.json"
+            api: "https://cdn.jsdelivr.net/gh/LSQsjtu/Blog@gh-pages/1ed46474b6a3c85560bb22149fb6057e.json"
         }
     </script>
     
@@ -195,7 +195,40 @@ var _hmt = _hmt || [];
 <li><p><strong>优化器的weight_decay项导致的隐蔽bug</strong></p><p>weight_decay指的是权值衰减，即在原损失的基础上加上一个L2惩罚项，使得模型趋向于选择更小的权重参数，起到正则化的效果。</p><p>在训练一个ResNet50的时候，网络的高层部分layer4暂时没有用到，因此也并不会有梯度回传，于是将ResNet50的<strong>所有参数</strong>都传递给Optimizer进行更新了，想着layer4应该能保持原来的权重不变才对。但是实际上，尽管layer4没有梯度回传，但是<strong>weight_decay的作用仍然存在，它使得layer4权值越来越小，趋向于0</strong>。后面需要用到layer4的时候，发现输出异常（接近于0），才注意到这个问题的存在。</p><p>虽然这样的情况可能不容易遇到，但是还是要谨慎：<strong>暂时不需要更新的权值，一定不要传递给Optimizer，避免不必要的麻烦。</strong></p></li>
 <li><p><strong>高低版本的切换</strong></p></li>
 </ol>
-<p>​		AT_CHECK()-&gt;TORCH_CHECK()</p><p>​		THCState_getCurrentStream(state)-&gt;at::cuda::getCurrentCUDAStream().stream()</p><p>​		来自 <a href="https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754">https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754</a></p>
+<p>​		AT_CHECK()-&gt;TORCH_CHECK()</p><p>​		THCState_getCurrentStream(state)-&gt;at::cuda::getCurrentCUDAStream().stream()</p><p>​		来自 <a href="https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754">https://discuss.pytorch.org/t/thcstate-getcurrentstream-in-torch1-5/85754</a></p><ol start="12">
+<li><p>有用的api</p><h3>二、爱因斯坦求和法</h3>
+<p><strong>爱因斯坦求和是一种对求和公式简洁高效的记法，其原则是当变量下标重复出现时，即可省略繁琐的求和符号。</strong></p><p>比如求和公式：</p><p>$$ \sum_{i=1}^n a_{i} b_{i} = a_{1} b_{1} + a_{2} b_{2} + ... + a_{n} b_{n} $$</p>
+<p>其中变量 <strong>a</strong> 和变量 <strong>b</strong> 的下标重复出现，则可将其表示为：</p><p>$$ a_{i} b_{i} = \sum_{i=1}^n a_{i} $$</p>
+<p>由此我们可以将上述矩阵运算化简为：</p><p>$$ C_ { i j } = \sum _ { k } A _ { i k } B _ { k j } = A _ { i k } B _ { k j } $$</p>
+<p>进一步地，我们可以得到矩阵乘法的一个抽象</p><p>$$ ik * kj = ij $$</p>
+<h2>einsum的原理</h2>
+<h3>一、具体原理</h3>
+<p>einsum方法正是利用了爱因斯坦求和简洁高效的表示方法，从而可以驾驭任何复杂的矩阵计算操作。基本的框架如下：</p><div class="highlight"><pre><span></span>C = einsum(&#39;ij,jk-&gt;ik&#39;, A, B)
+</pre></div>
+<p>上述操作表示矩阵A与矩阵B的点积。输入的参数分为两部分:</p><ul>
+<li>前面表示计算操作的指令串，</li>
+<li>后面是以逗号隔开的操作对象（数量需与前面对应）。</li>
+</ul>
+<p>其中在计算操作表示中，</p><ul>
+<li>&quot;-&gt;&quot; 左边是以逗号隔开的下标索引，重复出现的索引即是需要爱因斯坦求和的；</li>
+<li>&quot;-&gt;&quot; 右边是最后输出的结果形式。</li>
+</ul>
+<p>以上式为例，其计算公式为： $C_{ik} = \sum_{j} A_{ij} B_{jk}$ ，其等价于矩阵A与B的点积。</p><p>在矩阵之间的运算中，下标可以分为两类：</p><ul>
+<li>自由标(Free index)，也就是在输入和输出端都出现的下标</li>
+<li><a href="https://www.zhihu.com/search?q=%E5%93%91%E6%A0%87&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A2462139068%7D">哑标</a>(Summation index)，在输入端出现但输出端没有出现的下标</li>
+</ul>
+<p>矩阵运算中所有参与运算的下标都被包含在次定义中。</p><p>以上述矩阵$A,B$的乘法过程为例：</p><div class="highlight"><pre><span></span>C = np.einsum(&quot;ik,kj-&gt;ij&quot;, A, B)
+print(&quot;einsum result is :\n&quot;, C)
+print(&quot;M = A*B = \n&quot;,M)
+</pre></div>
+<p>可以看出，这与上述通过循环方式得出的结果一致。在 ik,kj -&gt; ij 的例子中, i,j 是自由标，k是哑标。</p><h3>二、计算准则</h3>
+<ol>
+<li>两个不同矩阵相乘，<strong>哑标</strong>维度需要逐元素相乘并求和，<strong>自由标</strong>保留</li>
+<li>自由标可在输出中以任意顺序出现，但只能出现一次</li>
+</ol>
+</li>
+</ol>
+<p><a href="https://www.zhihu.com/question/53365039/answer/2462139068">numpy.einsum如何理解和运用？ - 知乎</a></p>
             </div>
         </article>
         <div id="ga-tags">
